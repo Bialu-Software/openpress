@@ -28,7 +28,7 @@ docker build . -t my-blog
 
 Run the image with port
 ```
-docker run -d -p 8080:80 my-blog
+docker run -d -p <your-port>:80 my-blog
 ```
 
 ### Low spec machine
@@ -46,7 +46,7 @@ And in the `.dockerignore` remove the line `**/dist`
 
 Now you will need to copy the link of the newset `built.zip` and paste it into the command below and run it
 ```
-wget <link to the build>
+wget <link-to-the-build>
 unzip build.zip
 ```
 
@@ -59,5 +59,5 @@ docker build . -t my-blog
 
 Run the image with port
 ```
-docker run -d -p 8080:80 my-blog
+docker run -d -p <your-port>:80 my-blog
 ```
