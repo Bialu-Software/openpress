@@ -32,7 +32,7 @@ docker run -d -p 8080:80 my-blog
 ```
 
 ### Low spec machine
-If you are running the blog on something like Raspberry pi then you will want to use pre-built. You will need to go to the [release page](https://github.com/Bialu-Software/developer-blog/releases). Find the lastest release and in it file named `build.zip`. On your machine clone the repository and make these changes:
+If you are running the blog on something like Raspberry pi then you will want to use pre-built. You will need to go to the [release page](https://github.com/Bialu-Software/developer-blog/releases). Find the lastest release and in it file named `build.zip`. Clone the repository and make these changes:
 
 Rewrite the `Dockerfile` to this:
 ```Dockerfile
