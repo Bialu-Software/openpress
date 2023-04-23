@@ -1,21 +1,15 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-   <Card_3_1></Card_3_1>
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
-  </div>
-</template>
+  <Card_1_1 headline="Top games of 2020" author="Michal Kopčík" v-bind:timestamp=1682252133 />
+</template> 
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
-import Card_3_1 from '@/components/Card_3_1.vue'; // @ is an alias to /src
+import Card_1_1 from '@/components/Card_1_1.vue';
 
 export default defineComponent({
   name: 'HomeView',
   components: {
-    HelloWorld,
-    Card_3_1
+    Card_1_1
   },
 });
 </script>
