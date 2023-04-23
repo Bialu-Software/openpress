@@ -8,12 +8,6 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 
-interface Post {
-    headline: string;
-    author: string;
-    timestamp: number;
-}
-
 export default defineComponent({
     name: 'Card_1_1',
     props: {
