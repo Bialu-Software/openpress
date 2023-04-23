@@ -7,7 +7,6 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import jsonContent from '../assets/data.json'; // get the data
 
 interface Post {
     headline: string;

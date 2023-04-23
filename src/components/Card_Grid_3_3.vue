@@ -1,17 +1,13 @@
 <template>
-    <h1>JSON Content</h1>
-    <div class="card-container">
-        <div v-for="post in posts" :key="post.timestamp" class="card">
-            <h3>{{ post.headline }}</h3>
-            <p>Made by {{ post.author }}</p>
-            <p>{{ formatTimestamp(post.timestamp) }}</p>
-        </div>
-    </div>
+  <!-- <Card_1_1 :headline="posts[0].headline" :author="posts[0].author" :timestamp="posts[0].timestamp" /> -->
+  <Card_1_1 headline="Top games of 2020" author="Michal Kopčík" :timestamp=1682252133 />
+  log_posts()
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import jsonContent from '../assets/data.json'; // get the data
+import Card_1_1 from '@/components/Card_1_1.vue';
+import jsonContent from '../assets/data.json';
 
 interface Post {
     headline: string;
@@ -29,31 +25,22 @@ export default defineComponent({
     created() {
         this.posts = jsonContent.posts;
     },
-    methods: {
-        formatTimestamp(timestamp: number): string {
-            const date = new Date(timestamp * 1000);
-            const dateString = date.toLocaleDateString();
-            return dateString;
-        },
+    components: {
+        Card_1_1
     },
+    mounted() {
+        this.log_posts()
+    },
+    methods: {
+        log_posts(): void {
+            console.log(this.posts)
+        }
+    }
 });
+
 </script>
 
 <style scoped lang="scss">
 @import "../assets/main.scss";
 
-.card-container {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.card {
-    background-color: $main-component-color;
-    text-align: left;
-    color: white;
-    border: 1px solid black;
-    padding: 1rem;
-    margin: 1rem;
-    flex: 0 0 25%;
-}
 </style>
