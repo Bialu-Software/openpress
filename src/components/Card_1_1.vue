@@ -28,13 +28,28 @@ export default defineComponent({
 <style scoped lang="scss">
 @import "../assets/main.scss";
 
-.card {
-    background-color: $main-component-color;
-    text-align: left;
-    color: white;
-    border: 1px solid black;
-    padding: 1rem;
-    margin: 1rem;
-    flex: 0 0 25%;
+* {
+    margin: 0;
 }
+
+h2 {
+    padding: 10px;
+}
+
+p {
+    padding: 10px;
+}
+
+.card {
+  background-color: $main-component-color;
+  text-align: left;
+  color: white;
+  padding: 25px;
+  border-radius: $card-border-radius;
+  display: inline-block;
+  width: 25%;
+  height: 450px;
+  margin: 15px;
+}
+
 </style>

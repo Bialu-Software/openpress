@@ -1,6 +1,10 @@
 <template>
-    <div v-for="post in posts">
-        <Card_1_1 :headline="post.headline" :author="post.author" :timestamp="post.timestamp" />
+    <div class="card-container">
+        <template v-for="(post, index) in posts">
+            <Card_1_1 :headline="post.headline" :author="post.author" :timestamp="post.timestamp" />
+            <!-- If the index is a multiple of 3, create a new line -->
+            <br v-if="(index + 1) % 3 === 0">
+        </template>
     </div>
 </template>
 
