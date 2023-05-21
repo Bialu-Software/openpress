@@ -12,7 +12,7 @@ export default defineComponent({
   name: 'HomeView',
   components: {
     Card_1_1,
-    Card_Grid_3_3
+    Card_Grid_3_3,
   },
 });
 </script>
