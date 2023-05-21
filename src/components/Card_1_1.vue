@@ -49,9 +49,9 @@ p {
     text-align: left;
     padding: 25px;
     border-radius: $card-border-radius;
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
     width: 25%;
-    height: 450px;
-    margin: 15px;
+    min-height: 450px;
 }
 </style>

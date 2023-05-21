@@ -1,9 +1,8 @@
 <template>
     <div class="card-container">
         <template v-for="(post, index) in posts">
-            <Card_1_1 :headline="post.headline" :text="post.text" :author="post.author" :timestamp="post.timestamp" />
+            <Card_1_1 :headline="post.headline" v-bind:text="post.text" :author="post.author" :timestamp="post.timestamp" />
             <!-- If the index is a multiple of 3, create a new line -->
-            <br v-if="(index + 1) % 3 === 0">
         </template>
     </div>
 </template>
@@ -47,4 +46,11 @@ export default defineComponent({
 
 <style scoped lang="scss">
 @import "../assets/main.scss";
+.card-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
 </style>
