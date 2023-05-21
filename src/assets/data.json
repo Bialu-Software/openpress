@@ -1,47 +1,56 @@
 {
     "posts": [
         {
-            "headline": "1",
+            "headline": "5 Easy Ways to Boost Your Productivity Today!",
+            "text": "In this blog post, we'll share five simple and effective ways to supercharge your productivity and get more done in less time. From organizing your workspace to setting clear goals, these tips are easy to implement and will help you make the most of your day!",
             "author": "Michal Kopčík",
             "timestamp": 1682252133
         },
         {
             "headline": "2",
+            "text": "some text",
             "author": "Michal Kopčík",
             "timestamp": 1682252133
         },
         {
             "headline": "3",
+            "text": "some text",
             "author": "Michal Kopčík",
             "timestamp": 1682252133
         },
         {
             "headline": "4",
+            "text": "some text",
             "author": "Michal Kopčík",
             "timestamp": 1682252133
         },
         {
             "headline": "5",
+            "text": "some text",
             "author": "Michal Kopčík",
             "timestamp": 1682252133
         },
         {
             "headline": "6",
+            "text": "some text",
             "author": "Michal Kopčík",
             "timestamp": 1682252133
         },
         {
             "headline": "7",
+            "text": "some text",
             "author": "Michal Kopčík",
             "timestamp": 1682252133
         },
         {
             "headline": "8",
+            "text": "some text",
             "author": "Michal Kopčík",
             "timestamp": 1682252133
         },
         {
             "headline": "9",
+            "text": "some text",
             "author": "Michal Kopčík",
             "timestamp": 1682252133
         }

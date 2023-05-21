@@ -1,6 +1,7 @@
 <template>
     <div class="card">
         <h2>{{ headline }}</h2>
+        <p>{{ text }}</p>
         <p>By {{ author }} on {{ formatTimestamp(timestamp) }}</p>
     </div>
 </template>
@@ -12,6 +13,7 @@ export default defineComponent({
     name: 'Card_1_1',
     props: {
         headline: String,
+        text: String,
         author: String,
         timestamp: Number,
     },
@@ -34,22 +36,22 @@ export default defineComponent({
 
 h2 {
     padding: 10px;
+    color: $card-headline-color;
 }
 
 p {
     padding: 10px;
+    color: $card-text-color;
 }
 
 .card {
-  background-color: $main-component-color;
-  text-align: left;
-  color: white;
-  padding: 25px;
-  border-radius: $card-border-radius;
-  display: inline-block;
-  width: 25%;
-  height: 450px;
-  margin: 15px;
+    background-color: $card-background-color;
+    text-align: left;
+    padding: 25px;
+    border-radius: $card-border-radius;
+    display: inline-block;
+    width: 25%;
+    height: 450px;
+    margin: 15px;
 }
-
 </style>
