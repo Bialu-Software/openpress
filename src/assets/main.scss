@@ -3,12 +3,35 @@
 
 // Basic ----------------------------------------------------------------------------------
 
+* {
+    margin: 0;
+    padding: 0;
+}
 $main-background-color: #EEEEEE;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap'); // Importing Montserrat (bold, medium)
+$font-family: "Montserrat", sans-serif;
 
 
 // Cards ----------------------------------------------------------------------------------
 
+$card-width: 355px;
 $card-background-color: #FFFFFF;
 $card-border-radius: 10px;
 $card-headline-color: #000000;
 $card-text-color: #3F3F3F;
+
+
+// Card grid ----------------------------------------------------------------------------------
+
+$number-of-cards-in-row: 3;
+$grid-gap: 22px;
+
+
+// Navbar ----------------------------------------------------------------------------------
+
+$navbar-color: #ffffff;
+
+
+// Footer ----------------------------------------------------------------------------------
+
+$footer-color: #ffffff;

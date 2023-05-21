@@ -1,7 +1,10 @@
 <template>
     <div class="card">
+        <div class="image"></div>
         <h2>{{ headline }}</h2>
+        <div style="padding-top:25px;"></div>
         <p>{{ text }}</p>
+        <div style="padding-top:25px;"></div>
         <p>By {{ author }} on {{ formatTimestamp(timestamp) }}</p>
     </div>
 </template>
@@ -35,23 +38,33 @@ export default defineComponent({
 }
 
 h2 {
-    padding: 10px;
+    padding-top: 25px;
+    padding-left: 25px;
+    padding-right: 25px;
     color: $card-headline-color;
 }
 
 p {
-    padding: 10px;
+    padding-left: 25px;
+    padding-right: 25px;
     color: $card-text-color;
+}
+
+.image {
+    width: $card-width;
+    height: 210px;
+    background: #526EFF;
+    border-radius: $card-border-radius $card-border-radius 0px 0px;
 }
 
 .card {
     background-color: $card-background-color;
     text-align: left;
-    padding: 25px;
+    padding-bottom: 25px;
     border-radius: $card-border-radius;
     display: flex;
     flex-direction: column;
-    width: 25%;
-    min-height: 450px;
+    width: $card-width;
+    min-height: 479px;
 }
 </style>

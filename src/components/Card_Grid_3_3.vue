@@ -46,11 +46,15 @@ export default defineComponent({
 
 <style scoped lang="scss">
 @import "../assets/main.scss";
+
 .card-container {
+    margin: 0 auto;
+    width: calc(calc($number-of-cards-in-row * $card-width) + calc(calc($number-of-cards-in-row - 1) * $grid-gap));
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 30px;
+    gap: $grid-gap;
 }
+
 </style>
