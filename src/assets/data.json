@@ -1,58 +1,76 @@
 {
     "posts": [
         {
+            "imageUrl": "https://images.unsplash.com/photo-1682208703123-8b8abb609daa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
             "headline": "5 Easy Ways to Boost Your Productivity Today!",
             "text": "In this blog post, we'll share five simple and effective ways to supercharge your productivity and get more done in less time. From organizing your workspace to setting clear goals, these tips are easy to implement and will help you make the most of your day!",
             "author": "Michal Kopčík",
-            "timestamp": 1682252133
+            "tags": ["#tutorial", "#news", "#IT"],
+            "timestamp": 1684773447
         },
         {
-            "headline": "2",
-            "text": "some text",
+            "imageUrl": "https://images.unsplash.com/photo-1684419078819-ce9407a4ced5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80",
+            "headline": "This is the test article for blog page.",
+            "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto eveniet explicabo iusto quo repellat sit tempora ullam vel. Dolorem eos error harum impedit incidunt magni minus modi nulla odit quisquam?",
             "author": "Michal Kopčík",
-            "timestamp": 1682252133
+            "tags": ["#tutorial", "#news", "#IT"],
+            "timestamp": 1684773447
         },
         {
-            "headline": "3",
-            "text": "some text",
+            "imageUrl": "https://images.unsplash.com/photo-1682208703123-8b8abb609daa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+            "headline": "5 Easy Ways to Boost Your Productivity Today!",
+            "text": "In this blog post, we'll share five simple and effective ways to supercharge your productivity and get more done in less time. From organizing your workspace to setting clear goals, these tips are easy to implement and will help you make the most of your day!",
             "author": "Michal Kopčík",
-            "timestamp": 1682252133
+            "tags": ["#tutorial", "#news", "#IT"],
+            "timestamp": 1684773447
         },
         {
-            "headline": "4",
-            "text": "some text",
+            "imageUrl": "https://images.unsplash.com/photo-1684419078819-ce9407a4ced5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80",
+            "headline": "This is the test article for blog page.",
+            "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto eveniet explicabo iusto quo repellat sit tempora ullam vel. Dolorem eos error harum impedit incidunt magni minus modi nulla odit quisquam?",
             "author": "Michal Kopčík",
-            "timestamp": 1682252133
+            "tags": ["#tutorial", "#news", "#IT"],
+            "timestamp": 1684773447
         },
         {
-            "headline": "5",
-            "text": "some text",
+            "imageUrl": "https://images.unsplash.com/photo-1682208703123-8b8abb609daa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+            "headline": "5 Easy Ways to Boost Your Productivity Today!",
+            "text": "In this blog post, we'll share five simple and effective ways to supercharge your productivity and get more done in less time. From organizing your workspace to setting clear goals, these tips are easy to implement and will help you make the most of your day!",
             "author": "Michal Kopčík",
-            "timestamp": 1682252133
+            "tags": ["#tutorial", "#news", "#IT"],
+            "timestamp": 1684773447
         },
         {
-            "headline": "6",
-            "text": "some text",
+            "imageUrl": "https://images.unsplash.com/photo-1684419078819-ce9407a4ced5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80",
+            "headline": "This is the test article for blog page.",
+            "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto eveniet explicabo iusto quo repellat sit tempora ullam vel. Dolorem eos error harum impedit incidunt magni minus modi nulla odit quisquam?",
             "author": "Michal Kopčík",
-            "timestamp": 1682252133
+            "tags": ["#tutorial", "#news", "#IT"],
+            "timestamp": 1684773447
         },
         {
-            "headline": "7",
-            "text": "some text",
+            "imageUrl": "https://images.unsplash.com/photo-1682208703123-8b8abb609daa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+            "headline": "5 Easy Ways to Boost Your Productivity Today!",
+            "text": "In this blog post, we'll share five simple and effective ways to supercharge your productivity and get more done in less time. From organizing your workspace to setting clear goals, these tips are easy to implement and will help you make the most of your day!",
             "author": "Michal Kopčík",
-            "timestamp": 1682252133
+            "tags": ["#tutorial", "#news", "#IT"],
+            "timestamp": 1684773447
         },
         {
-            "headline": "8",
-            "text": "some text",
+            "imageUrl": "https://images.unsplash.com/photo-1684419078819-ce9407a4ced5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80",
+            "headline": "This is the test article for blog page.",
+            "text": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto eveniet explicabo iusto quo repellat sit tempora ullam vel. Dolorem eos error harum impedit incidunt magni minus modi nulla odit quisquam?",
             "author": "Michal Kopčík",
-            "timestamp": 1682252133
+            "tags": ["#tutorial", "#news", "#IT"],
+            "timestamp": 1684773447
         },
         {
-            "headline": "9",
-            "text": "some text",
+            "imageUrl": "https://images.unsplash.com/photo-1682208703123-8b8abb609daa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
+            "headline": "5 Easy Ways to Boost Your Productivity Today!",
+            "text": "In this blog post, we'll share five simple and effective ways to supercharge your productivity and get more done in less time. From organizing your workspace to setting clear goals, these tips are easy to implement and will help you make the most of your day!",
             "author": "Michal Kopčík",
-            "timestamp": 1682252133
+            "tags": ["#tutorial", "#news", "#IT"],
+            "timestamp": 1684773447
         }
     ]
 }

@@ -1,8 +1,7 @@
 <template>
     <div class="card-container">
         <template v-for="(post, index) in posts">
-            <Card_1_1 :headline="post.headline" v-bind:text="post.text" :author="post.author" :timestamp="post.timestamp" />
-            <!-- If the index is a multiple of 3, create a new line -->
+            <Card_1_1 :imageUrl="post.imageUrl" :headline="post.headline" :text="post.text" :author="post.author" :timestamp="post.timestamp" :tags="post.tags" />
         </template>
     </div>
 </template>
@@ -13,9 +12,11 @@ import Card_1_1 from '@/components/Card_1_1.vue';
 import jsonContent from '../assets/data.json';
 
 interface Post {
+    imageUrl: string;
     headline: string;
     text: string;
     author: string;
+    tags: string[];
     timestamp: number;
 }
 
@@ -48,13 +49,17 @@ export default defineComponent({
 @import "../assets/main.scss";
 
 .card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(355px, 1fr));
     margin: 0 auto;
-    width: calc(calc($number-of-cards-in-row * $card-width) + calc(calc($number-of-cards-in-row - 1) * $grid-gap));
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: $grid-gap;
+    width: 80%;
+    grid-gap: $grid-gap;
 }
 
+@media (max-width: 454px) {
+    .card-container {
+        display: flex;
+        flex-direction: column;
+    }
+}
 </style>
