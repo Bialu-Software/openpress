@@ -1,15 +1,27 @@
-function  filter_posts(filters) {
+let data = require("./data.json");
 
-    let text = (typeof text === 'undefined') ? "" : filters.text;
-    let views = (typeof views === 'undefined') ? "" : filters.views;
-    let time = (typeof time === 'undefined') ? 0 : filters.time;
-    let saves = (typeof saves === 'undefined') ? "" : filters.saves;
-    let amount = (typeof amount === 'undefined') ? 1 : filters.amount;
+function filter_posts(filters) {
+    
+    let { text = false, time = false, saves = false, amount = false } = filters || {};
+    let result = [];
 
-    // find the post/posts based on the variables
+    if (text !== false) {
+        result.push(...data.filter(post => post.text.includes(text)));
+        console.log("text yes");
+    }
 
+    if (time !== false) {
+        result.push(...data.filter(post => post.timestamp >= time));
+        console.log("time yes");
+    }
+
+    result = result.filter((obj, index, self) =>
+        index === self.findIndex(item => JSON.stringify(item) === JSON.stringify(obj))
+    );
+
+    return result;
 }
 
 module.exports = {
     filter_posts
-}
+};

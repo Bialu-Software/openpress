@@ -1,9 +1,11 @@
 const express = require('express')
 const app = express()
 const config = require("../config.json").backend
+let data = require("./data.json")
+let profiles = require("./profiles.json")
 const { filter_posts } = require("./filter.js")
 
-// this is what the posts will look like in the posts.json
+// this is what the posts will look like in the data.json
 //{
 //            "id": 123,
 //            "imageUrl": "https://images.unsplash.com/photo-1682208703123-8b8abb609daa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80",
@@ -23,7 +25,8 @@ app.get('/login', (req, res) => {
 // if no filter then sends all posts from json and if filter sends filtered posts (without text)
 app.get('/getPosts', (req, res) => {
   // use the filter_posts function
-  res.send('backend test')
+  // filter_posts()
+  res.send(data)
 })
 
 // sends post based on id or name (with all of the text)
