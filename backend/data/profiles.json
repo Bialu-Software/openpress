@@ -1,0 +1,7 @@
+[
+    {
+        "username": "Gumernus", 
+        "password": "",
+        "verfication": {"token": "", "expiration": 123}
+    }
+]

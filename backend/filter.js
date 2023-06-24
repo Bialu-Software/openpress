@@ -1,4 +1,4 @@
-let data = require("./data.json");
+let posts = require("./data/posts.json");
 
 function filter_posts(filters) {
     
@@ -6,12 +6,12 @@ function filter_posts(filters) {
     let result = [];
 
     if (text !== false) {
-        result.push(...data.filter(post => post.text.includes(text)));
+        result.push(...posts.filter(post => post.text.includes(text)));
         console.log("text yes");
     }
 
     if (time !== false) {
-        result.push(...data.filter(post => post.timestamp >= time));
+        result.push(...posts.filter(post => post.timestamp >= time));
         console.log("time yes");
     }
 
