@@ -1,6 +1,6 @@
 <template>
     <div class="card-container">
-        <template v-for="(post, index) in posts">
+        <template v-for="(post) in posts">
             <CardPost :imageUrl="post.imageUrl" :headline="post.headline" :text="post.text" :author="post.author" :timestamp="post.timestamp" :tags="post.tags" />
         </template>
     </div>
@@ -22,6 +22,9 @@ interface Post {
 
 export default defineComponent({
     name: 'CardGrid',
+    props: {
+        postsArray: Array
+    },
     data() {
         return {
             posts: [] as Post[],
@@ -33,20 +36,12 @@ export default defineComponent({
     components: {
         CardPost
     },
-    mounted() {
-        this.log_posts()
-    },
-    methods: {
-        log_posts(): void {
-            console.log(this.posts)
-        }
-    }
 });
 
 </script>
 
 <style scoped lang="scss">
-@import "../../assets/main";
+@import "@/assets/styles/main";
 
 .card-container {
     display: grid;

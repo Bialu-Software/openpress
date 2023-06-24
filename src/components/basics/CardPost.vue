@@ -51,15 +51,14 @@ export default defineComponent({
             ];
 
             const date = new Date(timestamp! * 1000);
-            const dateString = `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
-            return dateString;
+            return `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
         },
     }
 });
 </script>
 
 <style scoped lang="scss">
-@import "../../assets/main";
+@import "@/assets/styles/main";
 
 .date {
     text-transform: uppercase;
@@ -87,7 +86,7 @@ p {
     position: relative;
     height: 210px;
     width: 100%;
-    border-radius: $card-border-radius $card-border-radius 0px 0px;
+    border-radius: $card-border-radius $card-border-radius 0 0;
 
     .image {
         height: 210px;

@@ -51,17 +51,17 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-@import "../assets/main.scss";
+@import "@/assets/styles/main";
 
 .container {
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  gap: 23px;
+  gap: 22px;
 
   .info-card {
-    background: #FFFFFF;
+    background: $subscribeForm-card-background;
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -69,6 +69,7 @@ export default defineComponent({
     text-align: left;
     padding: 25px;
     border-radius: 8px;
+    flex: 2;
 
     .info-title {
       font-size: 30px;
@@ -77,12 +78,12 @@ export default defineComponent({
 
     .info-description {
       font-size: 17px;
-      color: #3F3F3F;
+      color: $subscribeForm-color;
     }
   }
 
   .subscribe-form {
-    background: #FFFFFF;
+    background: $subscribeForm-card-background;
     display: flex;
     flex-direction: column;
     gap: 15px;
@@ -105,12 +106,12 @@ export default defineComponent({
       input {
         outline: none;
         border-radius: 5px;
-        border: 1px solid #C8C8C8;
+        border: $subscribeForm-input-border;
         padding: 15px;
         font-size: 16px;
         background: transparent;
         transition: 0.2s;
-        color: #3F3F3F;
+        color: $subscribeForm-color;
 
         &:hover, &:focus {
           border-color: $main-color;
@@ -124,13 +125,13 @@ export default defineComponent({
         font-size: 16px;
         background: $main-color;
         border: none;
-        color: #FFFFFF;
+        color: $subscribeForm-button-color;
         font-weight: 700;
         cursor: pointer;
         transition: 0.2s;
 
         &:hover, &:focus {
-          filter: brightness(92%);
+          background: $subscribeForm-button-background-hover;
         }
       }
 
@@ -143,7 +144,7 @@ export default defineComponent({
       }
 
       .message.error {
-        color: #F5365C;
+        color: $subscribeForm-error-color;
       }
     }
   }
@@ -166,6 +167,7 @@ export default defineComponent({
 @media (max-width: 454px) {
   .container {
     .info-card, .subscribe-form {
+      padding: 20px;
       border-radius: 0;
     }
   }

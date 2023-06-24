@@ -1,13 +1,9 @@
 <template>
-  <!-- <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav> -->
   <router-view />
 </template>
 
 <style lang="scss">
-@import "./assets/main.scss";
+@import "@/assets/styles/main";
 
 body {
   background-color: $main-background-color;
@@ -15,5 +11,6 @@ body {
 
 #app {
   font-family: $font-family;
+  line-height: 1.3;
 }
 </style>

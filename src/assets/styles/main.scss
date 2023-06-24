@@ -1,0 +1,59 @@
+// This is the default white style
+
+
+// Basic ----------------------------------------------------------------------------------
+* {
+    margin: 0;
+    padding: 0;
+}
+$main-background-color: #EEEEEE;
+$main-color: #8B94FF;
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap'); // Importing Montserrat (bold, medium)
+$font-family: "Montserrat", Helvetica, Arial, sans-serif;
+
+// LatestPost Card -------------------------------------------------------------------------
+$latestPost-background-gradient: linear-gradient(90deg, rgba(255, 255, 255, 0.85) 30%, rgba(255, 255, 255, 0) 70%);
+$latestPost-tags-background: rgba(106, 118, 245, 0.3);
+$latestPost-tags-color: #292929;
+
+// SearchBar ----------------------------------------------------------------------------------
+$searchBar-input-border-color: #C8C8C8;
+$searchBar-input-color: #3F3F3F;
+$searchBar-button-color: #FFFFFF;
+$searchBar-button-background-hover: #636abd;
+
+// Cards ----------------------------------------------------------------------------------
+$card-width: 355px;
+$card-background-color: #FFFFFF;
+$card-border-radius: 10px;
+$card-headline-color: #000000;
+$card-text-color: #3F3F3F;
+$card-tag-background: rgba(86, 98, 242, 0.1);
+
+
+// Card grid ----------------------------------------------------------------------------------
+$grid-gap: 22px;
+
+// Navbar ----------------------------------------------------------------------------------
+$navbar-color: transparent;
+$navbar-border-color: #C8C8C8;
+$navbar-links-color: #3F3F3F;
+$navbar-links-hover-color: #000000;
+$navbar-link-active-color: #8B94FF;
+
+
+// SubscribeForm ----------------------------------------------------------------------------------
+$subscribeForm-card-background: #FFFFFF;
+$subscribeForm-input-border: 1px solid #C8C8C8;
+$subscribeForm-color: #3F3F3F;
+$subscribeForm-button-color: #FFFFFF;
+$subscribeForm-button-background-hover: #636abd;
+$subscribeForm-error-color: #F5365C;
+
+// Footer ----------------------------------------------------------------------------------
+$footer-color: #ffffff;
+$footer-title-color: #000000;
+$footer-copyright-link-color: #000000;
+$footer-text-color: #3F3F3F;
+$footer-link-hover-color: #8B94FF;
+$footer-line-background: #c8c8c85b;
