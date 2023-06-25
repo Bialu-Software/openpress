@@ -28,7 +28,7 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import data from '../../backend/data.json';
+import posts from "../../backend/data/posts.json";
 
 interface Post {
     id: number;
@@ -49,7 +49,7 @@ export default defineComponent({
         };
     },
     created() {
-        this.posts = data;
+        this.posts = posts;
     },
 });
 </script>

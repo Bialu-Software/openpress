@@ -74,7 +74,7 @@ import CardGrid from '@/components/basics/CardGrid.vue';
 import Footer from '@/components/Footer.vue';
 import Navbar from '@/components/Navbar.vue';
 import SubscribeForm from "@/components/SubscribeForm.vue";
-import data from "../../backend/data.json";
+import posts from "../../backend/data/posts.json";
 import CardPost from '@/components/basics/CardPost.vue';
 
 import { formatTimestamp } from "@/components/basics/functions";
@@ -97,7 +97,7 @@ export default defineComponent({
         }
     },
     mounted() {
-        let post = data.find((post: any) => post.id == Number(this.$route.params.id));
+        let post = posts.find((post: any) => post.id == Number(this.$route.params.id));
         if(post != undefined) this.post = post;
     }
 });
