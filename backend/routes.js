@@ -1,5 +1,6 @@
 const express = require("express")
 const { filter_posts } = require("./filter.js")
+const { generate_token } = require("./encryption.js")
 
 let posts = require("./data/posts.json")
 let profiles = require("./data/profiles.json")
@@ -13,8 +14,10 @@ router.get('/', (req, res) => {
 })
 
 // after sucessfull login sends auth token
-router.get('/login', (req, res) => {
-    res.send('backend test')
+router.post('/login', (req, res) => {
+    console.log(req.body);
+    data = generate_token("gumernus", "lol")
+    res.send(data.token)
 })
 
 // if no filter then sends all posts from json and if filter sends filtered posts (without text)
