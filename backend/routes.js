@@ -6,6 +6,8 @@ let posts = require("./data/posts.json")
 let profiles = require("./data/profiles.json")
 let emails = require("./data/emails.json")
 
+const secretKey = "load-me-from-env-or-config"; // This is used in token generation and verification
+
 const router = express.Router()
 
 // basic entry page
@@ -16,8 +18,14 @@ router.get('/', (req, res) => {
 // after sucessfull login sends auth token
 router.post('/login', (req, res) => {
     console.log(req.body);
-    data = generate_token("gumernus", "lol")
-    res.send(data.token)
+    /*
+    ! This does nothing to check whether the user exists nor does it check whether password hashes match.
+    It is up to this function to fetch the username from DB, check password hashes and then
+    either return an error or generate and return a session cookie with the token.
+    A password hash function is present in encryption.js under the name salted_hash_password(PASSWORD_HERE);
+    */
+    token = generate_token({username: "gumernus", id: 1, admin: true});
+    res.send(token)
 })
 
 // if no filter then sends all posts from json and if filter sends filtered posts (without text)
