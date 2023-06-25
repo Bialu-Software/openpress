@@ -1,18 +1,18 @@
 <template>
     <div class="card">
-        <a href="" class="post-link">
+        <a :href="'/post/' + id" class="post-link">
             <div class="card-image">
                 <div class="image" :style="'background: url(' + imageUrl + ');' + 'background-repeat:no-repeat;background-position:center center;background-size:cover;'"></div>
             </div>
         </a>
         <div class="card-content">
-            <a href="" class="post-link">
+            <a :href="'/post/' + id" class="post-link">
                 <p class="date">{{ formatTimestamp(timestamp) }}</p>
                 <h2 class="headline">{{ headline }}</h2>
                 <p class="description">{{ text }}</p>
 
                 <div class="tags">
-                    <p class="tag" v-for="(tag) in tags">{{ tag }}</p>
+                    <p v-for="(tag) in tags" class="tag">{{ tag }}</p>
                 </div>
             </a>
 
@@ -33,26 +33,24 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { formatTimestamp } from "./functions";
 
 export default defineComponent({
     name: 'CardPost',
     props: {
+        id: Number,
         imageUrl: String,
         headline: String,
         text: String,
+        html: String,
         author: String,
         tags: Array,
-        timestamp: Number,
+        timestamp: Number
     },
-    methods: {
-        formatTimestamp(timestamp: number | undefined): string {
-            const monthNames = ["January", "February", "March", "April", "May", "June",
-                "July", "August", "September", "October", "November", "December"
-            ];
-
-            const date = new Date(timestamp! * 1000);
-            return `${monthNames[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
-        },
+    data() {
+        return {
+            formatTimestamp
+        }
     }
 });
 </script>

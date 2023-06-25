@@ -1,25 +1,24 @@
 <template>
   <Navbar></Navbar>
-  <div class="page-content">
-    <div class="header">
-      <LatestPost class="latest-post-header"></LatestPost>
-      <SearchBar class="searchBar-header"></SearchBar>
-    </div>
 
-    <section class="latest-posts">
-      <h2 class="section-title">Latests</h2>
-      <CardGrid></CardGrid>
-    </section>
-
-    <section class="topRated-posts">
-      <h2 class="section-title">Top rated</h2>
-      <CardGrid></CardGrid>
-    </section>
-
-    <SubscribeForm class="subscribe-form"></SubscribeForm>
+  <div id="header" class="section">
+    <LatestPost class="latest-post-header"></LatestPost>
+    <SearchBar class="searchBar-header"></SearchBar>
   </div>
+
+  <section id="latest-posts" class="section">
+    <h2 class="section-title">Latests</h2>
+    <CardGrid></CardGrid>
+  </section>
+
+  <section id="topRated-posts" class="section">
+    <h2 class="section-title">Top rated</h2>
+    <CardGrid></CardGrid>
+  </section>
+
+  <SubscribeForm id="subscribe-form" class="section"></SubscribeForm>
   
-  <Footer></Footer>
+  <Footer id="footer" class="section"></Footer>
 </template>
 
 <script lang="ts">
@@ -32,14 +31,14 @@ import LatestPost from "@/components/LatestPost.vue";
 import SearchBar from "@/components/SearchBar.vue";
 
 export default defineComponent({
-    name: 'Home',
+    name: 'HomeView',
     components: {
-        SearchBar,
-        CardGrid,
-        Footer,
-        Navbar,
-        SubscribeForm,
-        LatestPost
+      SearchBar,
+      CardGrid,
+      Footer,
+      Navbar,
+      SubscribeForm,
+      LatestPost
     }
 });
 </script>
@@ -52,35 +51,28 @@ export default defineComponent({
   gap: 90px;
 }
 
-.page-content {
-  width: 80%;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 90px;
-
-  .header {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    width: 100%;
-  }
-
-  .latest-posts, .topRated-posts {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    width: 100%;
-
-    .section-title {
-      font-size: 30px;
-      font-weight: 800;
-    }
-  }
+.section {
+  padding-left: 150px;
+  padding-right: 150px;
 }
 
+#header {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+#latest-posts, #topRated-posts {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .section-title {
+    font-size: 30px;
+    font-weight: 800;
+  }
+}
+/*
 @media (max-width: 454px) {
   .page-content {
     width: 100%;
@@ -90,6 +82,33 @@ export default defineComponent({
       .section-title {
         padding-left: 20px;
       }
+    }
+  }
+}*/
+
+@media (max-width: 1409px) {
+  .section {
+    padding-left: 90px;
+    padding-right: 90px;
+  }
+}
+
+@media (max-width: 820px) {
+  .section {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
+@media (max-width: 454px) {
+  #footer {
+    padding: 0;
+  }
+  .section {
+    width: 100%;
+    padding: 0;
+    .section-title {
+      padding-left: 20px;
     }
   }
 }
