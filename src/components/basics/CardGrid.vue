@@ -10,7 +10,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import CardPost from '@/components/basics/CardPost.vue';
-import data from '../../../backend/data.json';
+import posts from "../../../backend/data/posts.json";
 import { Post } from "./interfaces";
 
 export default defineComponent({
@@ -24,7 +24,7 @@ export default defineComponent({
         };
     },
     created() {
-        this.posts = data;
+        this.posts = posts;
     },
     components: {
         CardPost
