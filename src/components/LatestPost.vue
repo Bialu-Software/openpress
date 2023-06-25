@@ -28,12 +28,14 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import jsonContent from '@/assets/data.json';
+import data from '../../backend/data.json';
 
 interface Post {
+    id: number;
     imageUrl: string;
     headline: string;
     text: string;
+    html: string;
     author: string;
     tags: string[];
     timestamp: number;
@@ -47,7 +49,7 @@ export default defineComponent({
         };
     },
     created() {
-        this.posts = jsonContent.posts;
+        this.posts = data;
     },
 });
 </script>

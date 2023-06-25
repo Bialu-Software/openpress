@@ -22,7 +22,7 @@
 import { defineComponent } from 'vue';
 
 export default defineComponent({
-    name: 'Navbar',
+    name: 'SubscribeForm',
     data() {
         return {
             Form: { email: "" },
@@ -54,7 +54,6 @@ export default defineComponent({
 @import "@/assets/styles/main";
 
 .container {
-  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

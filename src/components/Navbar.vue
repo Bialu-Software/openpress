@@ -1,10 +1,10 @@
 <template>
     <nav class="navbar" ref="navbar">
         <div class="mobile-navbar">
-            <div class="logo">
+            <a class="logo" href="/">
                 <img src="@/assets/images/logo.png" alt="Blog logo" class="image-logo">
                 <p class="logo-name">Bialu Software</p>
-            </div>
+            </a>
 
             <i class="bi bi-list hamburger" @click="openNavbar()"></i>
         </div>
@@ -46,6 +46,8 @@ export default defineComponent({
         align-items: center;
         justify-content: center;
         gap: 10px;
+        color: #000;
+        text-decoration: none;
 
         .image-logo {
             max-width: 40px;

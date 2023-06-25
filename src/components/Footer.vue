@@ -57,7 +57,6 @@ export default defineComponent({
 }
 
 footer {
-    width: 100%;
     background-color: $footer-color;
     display: flex;
     justify-content: center;
@@ -65,8 +64,8 @@ footer {
 
     .container {
         display: flex;
-        width: 80%;
-        padding: 40px;
+        padding-top: 40px;
+        padding-bottom: 40px;
         gap: 30px;
         flex-direction: column;
         color: $footer-text-color;
