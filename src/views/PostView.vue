@@ -49,7 +49,7 @@
 
         <div class="post-footer">
             <div class="tags">
-                <p class="tag" v-for="(tag) in post.tags">{{ tag }}</p>
+                <p class="tag" v-for="(tag) in post.tags" :key="tag">{{ tag }}</p>
             </div>
             <div class="info save-post">
                 <p class="info-text">Save Post:</p>
@@ -60,7 +60,7 @@
 
     <section id="topRated-posts" class="section">
         <h2 class="section-title">Top rated</h2>
-        <CardGrid></CardGrid>
+        <CardGrid :postsArray="posts"></CardGrid>
     </section>
 
     <SubscribeForm id="subscribe-form" class="section"></SubscribeForm>
@@ -93,11 +93,12 @@ export default defineComponent({
     data() {
         return {
             post: {} as Post,
-            formatTimestamp
+            formatTimestamp,
+            posts
         }
     },
     mounted() {
-        let post = posts.find((post: any) => post.id == Number(this.$route.params.id));
+        let post = posts.find((post: any) => post.id == Number(this.$route.query.id));
         if(post != undefined) this.post = post;
     }
 });
