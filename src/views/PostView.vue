@@ -53,7 +53,8 @@
             </div>
             <div class="info save-post">
                 <p class="info-text">Save Post:</p>
-                <h4 class="info-value"><i class="bi bi-bookmark"></i></h4>
+                <h4 class="info-value" v-if="savedPostIndex === -1"><i class="bi bi-bookmark bookmark" @click="setItem(postId)"></i></h4>
+                <h4 class="info-value" v-else><i class="bi bi-bookmark-fill" @click="setItem(postId)"></i></h4>
             </div>
         </div>
     </div>
@@ -79,7 +80,7 @@ import CardPost from '@/components/basics/CardPost.vue';
 
 import { formatTimestamp } from "@/components/basics/functions";
 import { Post } from "@/components/basics/interfaces";
-
+import { SavedPosts } from '@/components/basics/classes';
 
 export default defineComponent({
     name: 'PostView',
@@ -94,11 +95,19 @@ export default defineComponent({
         return {
             post: {} as Post,
             formatTimestamp,
-            posts
+            posts,
+            postId: Number(this.$route.query.id),
+            savedPostIndex: SavedPosts.checkPost(Number(this.$route.query.id))
+        }
+    },
+    methods: {
+        setItem(id: number | undefined) {
+            SavedPosts.setItem(id);
+            this.savedPostIndex = SavedPosts.checkPost(id);
         }
     },
     mounted() {
-        let post = posts.find((post: any) => post.id == Number(this.$route.query.id));
+        let post = posts.find((post: any) => post.id == this.postId);
         if(post != undefined) this.post = post;
     }
 });
