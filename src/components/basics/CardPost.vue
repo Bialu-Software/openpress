@@ -1,12 +1,12 @@
 <template>
     <div class="card">
-        <a :href="'/post/' + id" class="post-link">
+        <a :href="'/post?id=' + id" class="post-link">
             <div class="card-image">
                 <div class="image" :style="'background: url(' + imageUrl + ');' + 'background-repeat:no-repeat;background-position:center center;background-size:cover;'"></div>
             </div>
         </a>
         <div class="card-content">
-            <a :href="'/post/' + id" class="post-link">
+            <a :href="'/post?id=' + id" class="post-link">
                 <p class="date">{{ formatTimestamp(timestamp) }}</p>
                 <h2 class="headline">{{ headline }}</h2>
                 <p class="description">{{ text }}</p>
