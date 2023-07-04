@@ -1,7 +1,7 @@
 <template>
-    <div v-if="!posts"></div>
+    <div v-if="!postsArray"></div>
     <div class="card-container" v-else>
-        <template v-for="(post) in posts" :key="post.id">
+        <template v-for="(post) in postsArray" :key="post.id">
             <CardPost :id="post.id" :imageUrl="post.imageUrl" :headline="post.headline" :text="post.text" :author="post.author" :timestamp="post.timestamp" :tags="post.tags"/>
         </template>
     </div>
@@ -10,27 +10,15 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import CardPost from '@/components/basics/CardPost.vue';
-import posts from "../../../backend/data/posts.json";
-import { Post } from "./interfaces";
 
 export default defineComponent({
     name: 'CardGrid',
-    props: {
-        postsArray: Array
-    },
-    data() {
-        return {
-            posts: [] as Post[],
-        };
-    },
-    created() {
-        console.log(posts)
-        
-        this.posts = posts;
-    },
+    props: [ 
+        "postsArray"
+    ],
     components: {
         CardPost
-    }
+    },
 });
 
 </script>
