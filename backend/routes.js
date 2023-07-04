@@ -24,7 +24,7 @@ router.post('/login', (req, res) => {
     either return an error or generate and return a session cookie with the token.
     A password hash function is present in encryption.js under the name salted_hash_password(PASSWORD_HERE);
     */
-    token = generate_token({username: "gumernus", id: 1, admin: true});
+    token = generate_token({username: "gumernus", id: 1, admin: true}, "lol");
     res.send(token)
 })
 
