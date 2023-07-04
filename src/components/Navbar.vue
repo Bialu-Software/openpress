@@ -10,9 +10,9 @@
         </div>
 
         <ul class="links">
-            <li class="link active"><a href="#">News</a></li>
-            <li class="link"><a href="#">Saved</a></li>
-            <li class="link"><a href="#">Contact</a></li>
+            <li class="link news"><a href="#">News</a></li>
+            <li class="link saved"><a href="/saved-posts">Saved</a></li>
+            <li class="link contact"><a href="#">Contact</a></li>
         </ul>
     </nav>
 </template>
@@ -22,10 +22,16 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
     name: 'Navbar',
+    props: {
+        activeLink: String
+    },
     methods: {
         openNavbar() {
             (this.$refs.navbar as HTMLInputElement).classList.toggle("open");
         }
+    },
+    mounted() {
+        if(this.activeLink) document.querySelector("." + this.activeLink)?.classList.add("active");
     }
 });
 </script>
