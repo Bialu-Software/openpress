@@ -1,8 +1,8 @@
 <template>
     <div v-if="!posts"></div>
     <div class="card-container" v-else>
-        <template v-for="(post) in posts">
-            <CardPost :id="post.id" :imageUrl="post.imageUrl" :headline="post.headline" :text="post.text" :author="post.author" :timestamp="post.timestamp" :tags="post.tags" />
+        <template v-for="(post) in posts" :key="post.id">
+            <CardPost :id="post.id" :imageUrl="post.imageUrl" :headline="post.headline" :text="post.text" :author="post.author" :timestamp="post.timestamp" :tags="post.tags"/>
         </template>
     </div>
 </template>
@@ -24,11 +24,13 @@ export default defineComponent({
         };
     },
     created() {
+        console.log(posts)
+        
         this.posts = posts;
     },
     components: {
         CardPost
-    },
+    }
 });
 
 </script>
@@ -38,15 +40,14 @@ export default defineComponent({
 
 .card-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(355px, 1fr));
-    grid-gap: $grid-gap;
+    gap: $grid-gap;
+    grid-template-columns: repeat(auto-fill, minmax(355px, 1fr));
 }
 
-@media (max-width: 454px) {
+@media (max-width: 419px) {
     .card-container {
         display: flex;
         flex-direction: column;
-        width: 100%;
-    }
+    } 
 }
 </style>
