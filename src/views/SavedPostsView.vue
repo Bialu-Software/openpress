@@ -2,10 +2,10 @@
   <Navbar :activeLink="'saved'" style="background: #fff;" v-if="savedPosts.length <= 0"></Navbar>
 
   <div id="page-content" class="section error" v-if="savedPosts.length <= 0">
-    <i class="bi bi-exclamation-triangle-fill"></i>
-    <h1>The post was not found</h1>
+    <i class="bi bi-bookmarks"></i>
+    <h1>Nothing is saved</h1>
     <p>
-      Oops! The requested blog post was not found. The post does not seem to exist. Sorry for the inconvenience. While we investigate whether this is an error, please check out our other engaging content. 
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo tristique elit, id varius libero eleifend eu. Sed eu lacus nulla. Pellentesque sit amet interdum nunc. Ut eget faucibus leo.
       <br><br>
       Link back to the home page: <a href="/">Link</a>
     </p>
@@ -114,6 +114,7 @@ export default defineComponent({
   padding-bottom: 90px;
   margin-top: -90px;
   background: #fff;
+  gap: 20px;
 
   i {
     font-size: 70px;
@@ -186,6 +187,11 @@ export default defineComponent({
   .sort-menu, .section-description {
     padding-right: 20px;
     padding-left: 20px;
+  }
+
+  #page-content:is(.error) {
+    padding: 20px;
+    width: auto;
   }
 }
 
