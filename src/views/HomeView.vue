@@ -1,5 +1,5 @@
 <template>
-  <Navbar></Navbar>
+  <Navbar :activeLink="'news'"></Navbar>
 
   <div id="header" class="section">
     <LatestPost class="latest-post-header"></LatestPost>
@@ -8,12 +8,12 @@
 
   <section id="latest-posts" class="section">
     <h2 class="section-title">Latests</h2>
-    <CardGrid></CardGrid>
+    <CardGrid :postsArray="posts"></CardGrid>
   </section>
 
   <section id="topRated-posts" class="section">
     <h2 class="section-title">Top rated</h2>
-    <CardGrid></CardGrid>
+    <CardGrid :postsArray="posts"></CardGrid>
   </section>
 
   <SubscribeForm id="subscribe-form" class="section"></SubscribeForm>
@@ -29,6 +29,7 @@ import Navbar from '@/components/Navbar.vue'
 import SubscribeForm from "@/components/SubscribeForm.vue";
 import LatestPost from "@/components/LatestPost.vue";
 import SearchBar from "@/components/SearchBar.vue";
+import posts from "../../backend/data/posts.json";
 
 export default defineComponent({
     name: 'HomeView',
@@ -39,6 +40,11 @@ export default defineComponent({
       Navbar,
       SubscribeForm,
       LatestPost
+    },
+    data() {
+      return {
+        posts
+      }
     }
 });
 </script>
@@ -59,7 +65,7 @@ export default defineComponent({
 #header {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
 }
 
 #latest-posts, #topRated-posts {
@@ -72,19 +78,6 @@ export default defineComponent({
     font-weight: 800;
   }
 }
-/*
-@media (max-width: 454px) {
-  .page-content {
-    width: 100%;
-
-    .latest-posts, .topRated-posts {
-      width: 100%;
-      .section-title {
-        padding-left: 20px;
-      }
-    }
-  }
-}*/
 
 @media (max-width: 1409px) {
   .section {
