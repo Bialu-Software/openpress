@@ -12,7 +12,7 @@
                 <p class="description">{{ text }}</p>
 
                 <div class="tags">
-                    <p v-for="(tag) in tags" class="tag">{{ tag }}</p>
+                    <p class="tag" v-for="(tag) in tags" :key="tags?.indexOf(tag)">{{ tag }}</p>
                 </div>
             </a>
 
@@ -24,7 +24,8 @@
 
                 <div class="action-icons">
                     <i class="bi bi-share"></i>
-                    <i class="bi bi-bookmark"></i>
+                    <i class="bi bi-bookmark bookmark" @click="setItem(id)" v-if="savedPostIndex === -1"></i>
+                    <i class="bi bi-bookmark-fill" @click="setItem(id)" v-else></i>
                 </div>
             </div>
         </div>
@@ -34,6 +35,7 @@
 <script lang="ts">
 import { defineComponent } from 'vue';
 import { formatTimestamp } from "./functions";
+import { SavedPosts } from "./classes";
 
 export default defineComponent({
     name: 'CardPost',
@@ -49,7 +51,14 @@ export default defineComponent({
     },
     data() {
         return {
-            formatTimestamp
+            formatTimestamp,
+            savedPostIndex: SavedPosts.checkPost(this.id)
+        }
+    },
+    methods: {
+        setItem(id: number | undefined) {
+            SavedPosts.setItem(id);
+            this.savedPostIndex = SavedPosts.checkPost(id);
         }
     }
 });
@@ -92,6 +101,10 @@ p {
         position: relative;
         transition: transform 0.2s ease-in-out;
     }
+}
+
+.little {
+    max-width: 400px;
 }
 
 .card {
