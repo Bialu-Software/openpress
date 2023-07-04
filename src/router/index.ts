@@ -8,9 +8,14 @@ const routes: Array<RouteRecordRaw> = [
     component: HomeView
   },
   {
-    path: '/post/:id',
+    path: '/post',
     name: 'post',
     component: () => import('../views/PostView.vue')
+  },
+  {
+    path: '/saved-posts',
+    name: 'savedPosts',
+    component: () => import('../views/SavedPostsView.vue')
   }
 ]
 
