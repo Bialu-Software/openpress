@@ -1,7 +1,7 @@
 <template>
     <div class="header">
         <a href="#" class="post-link">
-            <div class="latest-post" :style="'background: url(https://www.hdwallpapers.in/download/forest_lake_between_trees_during_sunset_hd_nature-HD.jpg);' + 'background-repeat:no-repeat;background-position:center center;background-size:cover;'">
+            <div class="latest-post" :style="'background: url(https://static.vecteezy.com/system/resources/previews/012/347/852/non_2x/post-computer-message-email-online-social-marketing-media-communication-cyberspace-laptop-web-network-information-hands-send-person-keyboard-corporate-notebook-company-business-spam-technology-screen-free-photo.jpg);' + 'background-repeat:no-repeat;background-position:center center;background-size:cover;'">
                 <div class="content">
                     <p class="date">APRIL 8, 2023</p>
                     <h2 class="headline">5 Easy Ways to Boost Your Productivity Today!</h2>
