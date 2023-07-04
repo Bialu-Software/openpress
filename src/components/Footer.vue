@@ -63,6 +63,7 @@ footer {
     align-items: center;
 
     .container {
+        width: 100%;
         display: flex;
         padding-top: 40px;
         padding-bottom: 40px;
