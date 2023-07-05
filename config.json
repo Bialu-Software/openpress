@@ -1,5 +1,6 @@
 {
     "backend": {
-        "port": 3000
+        "port": 3000,
+        "secret_key": "change_this_to_whatever"
     }
 }
