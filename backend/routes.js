@@ -1,4 +1,5 @@
 const express = require("express")
+const fs = require('fs')
 const { filter_posts } = require("./filter.js")
 const { generate_token } = require("./encryption.js")
 
@@ -24,20 +25,23 @@ router.post('/login', (req, res) => {
     either return an error or generate and return a session cookie with the token.
     A password hash function is present in encryption.js under the name salted_hash_password(PASSWORD_HERE);
     */
-    token = generate_token({username: "gumernus", id: 1, admin: true}, "lol");
+    token = generate_token({ username: "gumernus", id: 1, admin: true }, "lol");
     res.send(token)
 })
 
 // if no filter then sends all posts from json and if filter sends filtered posts (without text)
 router.get('/getPosts', (req, res) => {
+    let page = req.body.page - 1
+    requested_posts = posts.slice(page * 10, (page * 10) + 10)
     // use the filter_posts function
-    // filter_posts()
-    res.send(data)
+
+    res.send({ posts: requested_posts, max_page: Math.ceil(posts.length / 10) })
 })
 
 // sends post based on id or name (with all of the text)
 router.get('/getPost', (req, res) => {
     // use the filter_posts function
+
     res.send('backend test')
 })
 
@@ -56,18 +60,48 @@ router.get('/editPost', (req, res) => {
     res.send('backend test')
 })
 
-// sends all emails form the json
-router.get('/subscriberEmailsGet', (req, res) => {
-    res.send('backend test')
-})
+// sends all emails form the json (needs the token system)
+// router.get('/subscriberEmailsGet', (req, res) => {
+//     fs.readFile("./data/emails.json", "utf8", (err, data) => {
+//         if (err) return res.status(500).send("Failed to read emails file");
 
-router.get('/subscriberEmailsDel', (req, res) => {
-    res.send('backend test')
-})
+//         const jsonArray = JSON.parse(data);
+//         res.send(jsonArray);
+//     });
+// });
+
+router.post('/subscriberEmailsDel', (req, res) => {
+    const email = req.body.email;
+
+    fs.readFile("./data/emails.json", "utf8", (err, data) => {
+        if (err) return res.status(500).send("Failed to read emails file");
+
+        const jsonArray = JSON.parse(data).filter(item => item !== email);
+
+        fs.writeFile("./data/emails.json", JSON.stringify(jsonArray), "utf8", err => {
+            if (err) return res.status(500).send("Failed to update emails file");
+            res.send("Email was successfully deleted");
+        });
+    });
+});
+
 
 router.get('/subscriberEmailsAdd', (req, res) => {
-    res.send('backend test')
-})
+    const email = req.body.email;
+
+    fs.readFile("./data/emails.json", "utf8", (err, data) => {
+        if (err) return res.status(500).send("Failed to read emails file");
+
+        const jsonArray = JSON.parse(data);
+        jsonArray.push(email);
+
+        fs.writeFile("./data/emails.json", JSON.stringify(jsonArray), "utf8", (err) => {
+            if (err) return res.status(500).send("Failed to write to emails file");
+            res.send("Email was successfully added to the email list");
+        });
+    });
+});
+
 
 router.get('/sendEmails', (req, res) => {
     res.send('backend test')
