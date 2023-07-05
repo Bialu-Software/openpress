@@ -1,3 +1,5 @@
+If you are running this API separately run it from this folder and with command `node index.js`
+
 ## API Documentation
 
 This is the documentation for the blog backend API.
