@@ -4,5 +4,11 @@
         "username": "Gumernus", 
         "profile_image": "",
         "password": ""
+    },
+    {
+        "id": 2,
+        "username": "Astro", 
+        "profile_image": "",
+        "password": ""
     }
 ]

@@ -32,16 +32,22 @@ router.post('/login', (req, res) => {
 router.get('/getPosts', (req, res) => {
     let page = req.body.page - 1
     let posts_per_page = req.body.posts_per_page
-    requested_posts = posts.slice(page * posts_per_page, (page * posts_per_page) + posts_per_page)
+    let filters = req.body.filters // headline, tags
+
+    if (filters != undefined || Object.keys(!filters).length < 0 ) {
+        filtered_posts = filter_posts(filters)
+    } else {
+        filtered_posts = posts
+    }
+
+    requested_posts = filtered_posts.slice(page * posts_per_page, (page * posts_per_page) + posts_per_page)
 
     // delete html part of posts for better performance on web
     requested_posts.forEach((post) => {
         delete post.html;
     });
 
-    // use the filter_posts function
-
-    res.send({ posts: requested_posts, max_page: Math.ceil(posts.length / posts_per_page) })
+    res.send({ posts: requested_posts, max_page: Math.ceil(filtered_posts.length / posts_per_page) })
 })
 
 // sends post based on id or name (with all of the text)
@@ -49,7 +55,7 @@ router.get('/getPost', (req, res) => {
     // use the filter_posts function
     // add author info
 
-    res.send('backend test')
+    res.send(result)
 })
 
 // gets info about the post then adds it to the json and sends response based on if the post was saved or not

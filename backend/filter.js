@@ -1,20 +1,21 @@
 let posts = require("./data/posts.json");
+let profiles = require("./data/profiles.json")
 
-// the filter should filter based on headline, author, tags, 
+// the filter should filter based on headline, author, tags
 
 function filter_posts(filters) {
-    
-    let { text = false, time = false, saves = false, amount = false } = filters || {};
+
+    let { headline = false, author = false, tags = [] } = filters || {};
     let result = [];
 
-    if (text !== false) {
-        result.push(...posts.filter(post => post.text.includes(text)));
-        console.log("text yes");
+    if (headline !== false) {
+        result.push(...posts.filter(post => post.headline.includes(headline)));
     }
 
-    if (time !== false) {
-        result.push(...posts.filter(post => post.timestamp >= time));
-        console.log("time yes");
+    // author search todo
+
+    if (tags.length > 0) {
+        result.push(...posts.filter(post => tags.every(tag => post.tags.includes(tag))));
     }
 
     result = result.filter((obj, index, self) =>
@@ -22,6 +23,7 @@ function filter_posts(filters) {
     );
 
     return result;
+
 }
 
 module.exports = {
