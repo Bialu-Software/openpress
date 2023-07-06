@@ -20,7 +20,7 @@ The base URL for all endpoints is: `http://localhost:backend_port/api`
 
 - `GET /getPosts`
   - Description: Retrieve posts from the JSON file
-  - Request Body: `{ "page": 1 }`
+  - Request Body: `{ "page": 1, "posts_per_page": 10 }`
   - Response: Object containing posts and max_page
 
 - `GET /getPost`
@@ -30,18 +30,23 @@ The base URL for all endpoints is: `http://localhost:backend_port/api`
 
 - `GET /addPost`
   - Description: Add a new post to the JSON file
-  - Request Body: `{ }`
-  - Response: `backend test`
+  - Request Body: `{ "token": "authentication_token" }`
+  - Response: `do something` if the token is valid, or `Invalid token` if the token is invalid
 
 - `GET /delPost`
   - Description: Delete a post from the JSON file
-  - Request Body: `{ }`
-  - Response: `backend test`
+  - Request Body: `{ "token": "authentication_token" }`
+  - Response: `do something` if the token is valid, or `Invalid token` if the token is invalid
 
 - `GET /editPost`
   - Description: Edit a post in the JSON file
-  - Request Body: `{ }`
-  - Response: `backend test`
+  - Request Body: `{ "token": "authentication_token" }`
+  - Response: `do something` if the token is valid, or `Invalid token` if the token is invalid
+
+- `GET /subscriberEmailsGet`
+  - Description: Retrieve all emails from the emails JSON file
+  - Request Body: `{ "token": "authentication_token" }`
+  - Response: Array of email addresses if the token is valid, or `Invalid token` if the token is invalid
 
 - `POST /subscriberEmailsDel`
   - Description: Delete an email from the emails JSON file
@@ -55,7 +60,8 @@ The base URL for all endpoints is: `http://localhost:backend_port/api`
 
 - `GET /sendEmails`
   - Description: Send emails
-  - Response: `backend test`
-
+  - Request Body: `{ "token": "authentication_token" }`
+  - Response: `Emails sent` if the token is valid, or `Invalid token` if the token is invalid
+  
 Please note that the actual functionality and implementation of these routes may vary. Make sure to provide the appropriate request bodies and handle responses accordingly.
 
