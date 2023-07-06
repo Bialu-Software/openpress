@@ -20,7 +20,7 @@ The base URL for all endpoints is: `http://localhost:backend_port/api`
 
 - `GET /getPosts`
   - Description: Retrieve posts from the JSON file
-  - Request Body: `{ "page": 1, "posts_per_page": 10 }`
+  - Request Body: `{ "page": 1, "posts_per_page": 10, "filters": { "headline": "example", "tags": "#example" } }`
   - Response: Object containing posts and max_page
 
 - `GET /getPost`
@@ -62,6 +62,7 @@ The base URL for all endpoints is: `http://localhost:backend_port/api`
   - Description: Send emails
   - Request Body: `{ "token": "authentication_token" }`
   - Response: `Emails sent` if the token is valid, or `Invalid token` if the token is invalid
+
   
 Please note that the actual functionality and implementation of these routes may vary. Make sure to provide the appropriate request bodies and handle responses accordingly.
 
