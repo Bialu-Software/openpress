@@ -28,14 +28,20 @@ router.post('/login', (req, res) => {
     res.send(token)
 })
 
-// if no filter then sends all posts from json and if filter sends filtered posts (without text)
+// send more posts
 router.get('/getPosts', (req, res) => {
-    // remove html from all of them
     let page = req.body.page - 1
-    requested_posts = posts.slice(page * 10, (page * 10) + 10)
+    let posts_per_page = req.body.posts_per_page
+    requested_posts = posts.slice(page * posts_per_page, (page * posts_per_page) + posts_per_page)
+
+    // delete html part of posts for better performance on web
+    requested_posts.forEach((post) => {
+        delete post.html;
+    });
+
     // use the filter_posts function
 
-    res.send({ posts: requested_posts, max_page: Math.ceil(posts.length / 10) })
+    res.send({ posts: requested_posts, max_page: Math.ceil(posts.length / posts_per_page) })
 })
 
 // sends post based on id or name (with all of the text)
