@@ -20,7 +20,7 @@ The base URL for all endpoints is: `http://localhost:backend_port/api`
 
 - `GET /getPosts`
   - Description: Retrieve posts from the JSON file
-  - Request Body: `{ "page": 1, "posts_per_page": 10, "filters": { "headline": "example", "tags": "#example" } }`
+  - Request Body: `{ "page": 1, "posts_per_page": 10, "filters": { "headline": "example", "text": "example", "tags": "#example" } }`
   - Response: Object containing posts and max_page
 
 - `GET /getPost`

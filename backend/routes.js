@@ -32,7 +32,7 @@ router.post('/login', (req, res) => {
 router.get('/getPosts', (req, res) => {
     let page = req.body.page - 1
     let posts_per_page = req.body.posts_per_page
-    let filters = req.body.filters // headline, tags (with #)
+    let filters = req.body.filters // headline, tags (with #), text
 
     if (filters != undefined || Object.keys(!filters).length < 0 ) {
         filtered_posts = filter_posts(filters)
