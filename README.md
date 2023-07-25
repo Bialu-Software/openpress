@@ -1,9 +1,4 @@
-# Developer Blog
-
-![image](https://github.com/Bialu-Software/developer-blog/assets/70224036/8b751887-660d-4a50-a0d6-34aa4b47d4b2)
-![image](https://github.com/Bialu-Software/developer-blog/assets/70224036/e5e65b6b-5ea6-4829-932f-edfd47918e43)
-![image](https://github.com/Bialu-Software/developer-blog/assets/70224036/69bde4a2-c0a7-4d12-9685-bd5196bb29f0)
-
+![OpenPress-banner](https://github.com/Bialu-Software/openpress/assets/70224036/8d289c62-1e3f-4404-a5cc-7a2b1dca20ab)
 
 ## Project setup
 ```
@@ -66,3 +61,10 @@ Run the image with port
 ```
 docker run -d -p <your-port>:80 my-blog
 ```
+
+## Screenshots
+
+![image](https://github.com/Bialu-Software/developer-blog/assets/70224036/8b751887-660d-4a50-a0d6-34aa4b47d4b2)
+![image](https://github.com/Bialu-Software/developer-blog/assets/70224036/e5e65b6b-5ea6-4829-932f-edfd47918e43)
+![image](https://github.com/Bialu-Software/developer-blog/assets/70224036/69bde4a2-c0a7-4d12-9685-bd5196bb29f0)
+
