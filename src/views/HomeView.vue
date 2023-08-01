@@ -17,35 +17,54 @@
   </section>
 
   <SubscribeForm id="subscribe-form" class="section"></SubscribeForm>
-  
+
   <Footer id="footer" class="section"></Footer>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
-import CardGrid from '@/components/basics/CardGrid.vue';
-import Footer from '@/components/Footer.vue'
-import Navbar from '@/components/Navbar.vue'
+import { defineComponent } from "vue";
+import CardGrid from "@/components/basics/CardGrid.vue";
+import Footer from "@/components/Footer.vue";
+import Navbar from "@/components/Navbar.vue";
 import SubscribeForm from "@/components/SubscribeForm.vue";
 import LatestPost from "@/components/LatestPost.vue";
 import SearchBar from "@/components/SearchBar.vue";
 import posts from "../../backend/data/posts.json";
+import profiles from "../../backend/data/profiles.json";
+import { Post } from "../components/basics/interfaces";
 
 export default defineComponent({
-    name: 'HomeView',
-    components: {
-      SearchBar,
-      CardGrid,
-      Footer,
-      Navbar,
-      SubscribeForm,
-      LatestPost
-    },
-    data() {
+  name: "HomeView",
+  components: {
+    SearchBar,
+    CardGrid,
+    Footer,
+    Navbar,
+    SubscribeForm,
+    LatestPost,
+  },
+  data() {
+    return {
+      posts: [] as Post[],
+    };
+  },
+  mounted() {
+    const updatedPosts = posts.map((post) => {
+      const postAuthorId = post.author;
+      const foundProfile = profiles.find(
+        (profile: any) => profile.id === postAuthorId
+      );
+
+      const author = foundProfile ? foundProfile.username : "Anonymous";
+
       return {
-        posts
-      }
-    }
+        ...post,
+        author: author,
+      };
+    });
+
+    this.posts = updatedPosts;
+  },
 });
 </script>
 
@@ -68,7 +87,8 @@ export default defineComponent({
   gap: 20px;
 }
 
-#latest-posts, #topRated-posts {
+#latest-posts,
+#topRated-posts {
   display: flex;
   flex-direction: column;
   gap: 20px;
