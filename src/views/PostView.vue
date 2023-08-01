@@ -81,6 +81,7 @@ import CardPost from '@/components/basics/CardPost.vue';
 import { formatTimestamp } from "@/components/basics/functions";
 import { Post } from "@/components/basics/interfaces";
 import { SavedPosts } from '@/components/basics/classes';
+import profiles from "../../backend/data/profiles.json";
 
 export default defineComponent({
     name: 'PostView',
@@ -95,7 +96,7 @@ export default defineComponent({
         return {
             post: {} as Post,
             formatTimestamp,
-            posts,
+            posts: null,
             postId: Number(this.$route.query.id),
             savedPostIndex: SavedPosts.checkPost(Number(this.$route.query.id))
         }
@@ -106,9 +107,20 @@ export default defineComponent({
             this.savedPostIndex = SavedPosts.checkPost(id);
         }
     },
-    mounted() {
-        let post = posts.find((post: any) => post.id == this.postId);
-        if(post != undefined) this.post = post;
+    created() {
+        let post = posts.find((post: any) => post.id === this.postId);
+
+        if (post) {
+            const foundProfile = profiles.find((profile: any) => profile.id == post?.author);
+            let author = foundProfile ? foundProfile.username : "Anonymous";
+
+            let updatedPost = {
+                ...post, 
+                author: author,
+            };
+
+            this.post = updatedPost;
+        }
     }
 });
 </script>
