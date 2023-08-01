@@ -28,7 +28,6 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import posts from "../../backend/data/posts.json";
 
 interface Post {
     id: number;
@@ -43,14 +42,6 @@ interface Post {
 
 export default defineComponent({
     name: 'LatestPost',
-    data() {
-        return {
-            posts: [] as Post[],
-        };
-    },
-    created() {
-        this.posts = posts;
-    },
 });
 </script>
 
