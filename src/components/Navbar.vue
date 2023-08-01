@@ -10,7 +10,7 @@
         </div>
 
         <ul class="links">
-            <li class="link news"><a href="#">News</a></li>
+            <li class="link news"><a href="/">News</a></li>
             <li class="link saved"><a href="/saved-posts">Saved</a></li>
             <li class="link contact"><a href="#">Contact</a></li>
         </ul>
