@@ -1,70 +1,69 @@
 ![OpenPress-banner](https://github.com/Bialu-Software/openpress/assets/70224036/8d289c62-1e3f-4404-a5cc-7a2b1dca20ab)
 
-## Project setup
+<h3 align="center">OpenPress</h3>
+
+---
+
+<p align="center"> ✨Fully open-source and customizable blog written in vuejs and nodejs
+    <br> 
+</p>
+
+## 📝 Table of Contents
+
+- [About](#about)
+- [Getting Started](#getting_started)
+- [Usage](#usage)
+- [Deployment](#deployment)
+- [Built Using](#built_using)
+
+## 🧐 About <a name = "about"></a>
+
+This project is open-source blog written using vuejs (frontend) and nodejs (backend). The blog has its own dashboard and sqlite3 database.
+
+## 🏁 Getting Started <a name = "getting_started"></a>
+
+In order to run the project we will first need to copy it onto your system. do that with the command `git clone https://github.com/Bialu-Software/openpress.git` (assuming that you have git installed).
+
+### Prerequisites
+
+To do anything with the project you will need to install Node.js from [this website](https://nodejs.org/en/download) or you can use some sort of node version manager. To check if you have installed Node.js, run this command:
+
+```
+node -v
+```
+
+### Installing
+
+Now you need to go to the project directory and run this command so you have all of the needed packages.
+
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+After is everything installed we can run it:
+
 ```
 npm run serve
 ```
 
-### Compiles and minifies for production
+Now if you go to `http://localhost:8080/` in your browser, you should see something like this:
+
+![image](https://github.com/Bialu-Software/openpress/assets/70224036/e443c8be-b3ee-43ff-9e8a-188dd2d9f124)
+
+## 🎈 Usage <a name="usage"></a>
+
+This project is not intended for commercial use but nothing is stopping you :)
+
+## 🚀 Deployment <a name = "deployment"></a>
+
+To fully deploy your blog we suggest using a linux system. And to build and minify the project use:
+
 ```
 npm run build
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## ⛏️ Built Using <a name = "built_using"></a>
 
-## Run with Docker
-
-### Normal machine
-Build the image
-```
-docker build . -t my-blog
-```
-
-Run the image with port
-```
-docker run -d -p <your-port>:80 my-blog
-```
-
-### Low spec machine
-If you are running the blog on something like Raspberry pi then you will want to use pre-built. You will need to go to the [release page](https://github.com/Bialu-Software/developer-blog/releases). Find the lastest release and in it file named `build.zip`. Clone the repository and make these changes:
-
-Rewrite the `Dockerfile` to this:
-```Dockerfile
-FROM nginx:alpine as production-stage
-RUN mkdir /app
-COPY ./dist /app
-COPY nginx.conf /etc/nginx/nginx.conf
-```
-
-And in the `.dockerignore` remove the line `**/dist`
-
-Now you will need to copy the link of the newset `built.zip` and paste it into the command below and run it
-```
-wget <link-to-the-build>
-unzip build.zip
-```
-
-Now just run the build and run commands as usual
-
-Build the image
-```
-docker build . -t my-blog
-```
-
-Run the image with port
-```
-docker run -d -p <your-port>:80 my-blog
-```
-
-## Screenshots
-
-![image](https://github.com/Bialu-Software/developer-blog/assets/70224036/8b751887-660d-4a50-a0d6-34aa4b47d4b2)
-![image](https://github.com/Bialu-Software/developer-blog/assets/70224036/e5e65b6b-5ea6-4829-932f-edfd47918e43)
-![image](https://github.com/Bialu-Software/developer-blog/assets/70224036/69bde4a2-c0a7-4d12-9685-bd5196bb29f0)
-
+- [SQLite](https://www.sqlite.org/index.html) - Database
+- [VueJs](https://vuejs.org/) - Web Framework
+- [NodeJs](https://nodejs.org/en/) - Server Environment
