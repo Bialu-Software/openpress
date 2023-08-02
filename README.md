@@ -1,4 +1,4 @@
-![OpenPress-banner](https://github.com/Bialu-Software/openpress/assets/70224036/8d289c62-1e3f-4404-a5cc-7a2b1dca20ab)
+![OpenPress banner](https://github.com/Bialu-Software/openpress/assets/70224036/8d289c62-1e3f-4404-a5cc-7a2b1dca20ab)
 
 <h3 align="center">OpenPress</h3>
 
@@ -48,7 +48,8 @@ npm run serve
 
 Now if you go to `http://localhost:8080/` in your browser, you should see something like this:
 
-![image](https://github.com/Bialu-Software/openpress/assets/70224036/e443c8be-b3ee-43ff-9e8a-188dd2d9f124)
+![screenshot of the website](https://github.com/Bialu-Software/openpress/assets/70224036/ace7822b-572c-4b06-89de-b2510ad87a92)
+
 
 ## 🎈 Usage <a name="usage"></a>
 
