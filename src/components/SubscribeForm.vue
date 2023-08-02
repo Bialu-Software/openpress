@@ -93,6 +93,7 @@ export default defineComponent({
     transition: 0.2s;
 
     i {
+      color: $subscribeForm-icon-color;
       font-size: 50px;
     }
 

@@ -159,6 +159,7 @@ p {
 
     .action-icons {
         display: flex;
+        color: $card-icon-color;
         gap: 10px;
         align-items: center;
 
