@@ -79,6 +79,10 @@ export default defineComponent({
       font-size: 17px;
       color: $subscribeForm-color;
     }
+
+    h3 {
+      color: $subscribeForm-headline-color;
+    }
   }
 
   .subscribe-form {

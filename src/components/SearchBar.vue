@@ -33,6 +33,7 @@ export default defineComponent({
     outline: none;
     font-size: 15px;
     color: $searchBar-input-color;
+    background-color: $searchBar-background-color;
     padding: 20px 10px;
   }
 
@@ -63,7 +64,7 @@ export default defineComponent({
 
     &::after {
       content: "";
-      background: #FFFFFF;
+      background-color: $searchBar-background-color;
       height: 100%;
       width: 20px;
       position: absolute;
