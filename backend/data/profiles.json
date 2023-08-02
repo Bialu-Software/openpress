@@ -1,14 +1,62 @@
 [
     {
         "id": 1,
-        "username": "Gumernus", 
-        "profile_image": "",
-        "password": ""
+        "username": "Gumernus",
+        "profile_image": "https://example.com/profiles/gumernus.jpg",
+        "password": "gumernus123"
     },
     {
         "id": 2,
-        "username": "Astro", 
-        "profile_image": "",
-        "password": ""
+        "username": "Astro",
+        "profile_image": "https://example.com/profiles/astro.jpg",
+        "password": "astro456"
+    },
+    {
+        "id": 3,
+        "username": "TravelBug",
+        "profile_image": "https://example.com/profiles/travelbug.jpg",
+        "password": "travel123"
+    },
+    {
+        "id": 4,
+        "username": "BookWorm",
+        "profile_image": "https://example.com/profiles/bookworm.jpg",
+        "password": "readbooks"
+    },
+    {
+        "id": 5,
+        "username": "TechGeek",
+        "profile_image": "https://example.com/profiles/techgeek.jpg",
+        "password": "techlover"
+    },
+    {
+        "id": 6,
+        "username": "FoodieFinds",
+        "profile_image": "https://example.com/profiles/foodie.jpg",
+        "password": "foodiepassion"
+    },
+    {
+        "id": 7,
+        "username": "FitnessFreak",
+        "profile_image": "https://example.com/profiles/fitnessfreak.jpg",
+        "password": "fitlife"
+    },
+    {
+        "id": 8,
+        "username": "NatureLover",
+        "profile_image": "https://example.com/profiles/naturelover.jpg",
+        "password": "nature123"
+    },
+    {
+        "id": 9,
+        "username": "ArtisticSoul",
+        "profile_image": "https://example.com/profiles/artisticsoul.jpg",
+        "password": "artpassion"
+    },
+    {
+        "id": 10,
+        "username": "Wanderlust",
+        "profile_image": "https://example.com/profiles/wanderlust.jpg",
+        "password": "wanderer"
     }
 ]
