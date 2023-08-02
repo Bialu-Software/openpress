@@ -48,7 +48,8 @@ npm run serve
 
 Now if you go to `http://localhost:8080/` in your browser, you should see something like this:
 
-![screenshot of the website](https://github.com/Bialu-Software/openpress/assets/70224036/ace7822b-572c-4b06-89de-b2510ad87a92)
+![screenshot of the website](https://github.com/Bialu-Software/openpress/assets/70224036/48174d72-2636-48dd-9ace-e03ca51aff82)
+
 
 
 ## 🎈 Usage <a name="usage"></a>
