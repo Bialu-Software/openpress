@@ -65,7 +65,7 @@ export default defineComponent({
 .latest-post {
     width: 100%;
     min-height: 500px;
-    border-radius: 10px;
+    border-radius: $latestPost-border-radius;
     position: relative;
     height: 100%;
     display: flex;

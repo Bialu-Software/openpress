@@ -28,7 +28,7 @@ export default defineComponent({
   .search-input {
     position: relative;
     width: 100%;
-    border-radius: 8px;
+    border-radius: $searchBar-border-radius;
     border: 1px solid $searchBar-input-border-color;
     outline: none;
     font-size: 15px;

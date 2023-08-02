@@ -3,7 +3,7 @@
         <div class="mobile-navbar">
             <a class="logo" href="/">
                 <img src="@/assets/images/logo.png" alt="Blog logo" class="image-logo">
-                <p class="logo-name">Bialu Software</p>
+                <p class="logo-name">OpenPress</p>
             </a>
 
             <i class="bi bi-list hamburger" @click="openNavbar()"></i>

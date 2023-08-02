@@ -7,21 +7,23 @@
     padding: 0;
 }
 $main-background-color: #EEEEEE;
-$main-color: #8B94FF;
+$main-color: #da9b3d;
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap'); // Importing Montserrat (bold, medium)
 $font-family: "Montserrat", Helvetica, Arial, sans-serif;
 
 // LatestPost Card -------------------------------------------------------------------------
 $latestPost-background-gradient: linear-gradient(90deg, rgba(255, 255, 255, 0.85) 30%, rgba(255, 255, 255, 0) 70%);
-$latestPost-tags-background: rgba(106, 118, 245, 0.3);
+$latestPost-tags-background: rgba(245, 208, 106, 0.3);
 $latestPost-tags-color: #292929;
+$latestPost-border-radius: 10px;
 
 // SearchBar ----------------------------------------------------------------------------------
 $searchBar-background-color: #ffffff;
 $searchBar-input-border-color: #C8C8C8;
 $searchBar-input-color: #3F3F3F;
 $searchBar-button-color: #FFFFFF;
-$searchBar-button-background-hover: #636abd;
+$searchBar-button-background-hover: #da9b3d;
+$searchBar-border-radius: 8px;
 
 // Cards ----------------------------------------------------------------------------------
 $card-width: 355px;
@@ -29,7 +31,7 @@ $card-background-color: #FFFFFF;
 $card-border-radius: 10px;
 $card-headline-color: #000000;
 $card-text-color: #3F3F3F;
-$card-tag-background: rgba(86, 98, 242, 0.1);
+$card-tag-background: rgba(242, 190, 86, 0.1);
 $card-icon-color: #000000;
 
 
@@ -41,7 +43,7 @@ $navbar-color: transparent;
 $navbar-border-color: #C8C8C8;
 $navbar-links-color: #3F3F3F;
 $navbar-links-hover-color: #000000;
-$navbar-link-active-color: #8B94FF;
+$navbar-link-active-color: #da9b3d;
 
 
 // SubscribeForm ----------------------------------------------------------------------------------
@@ -50,14 +52,15 @@ $subscribeForm-headline-color: #000000;
 $subscribeForm-input-border: 1px solid #C8C8C8;
 $subscribeForm-color: #3F3F3F;
 $subscribeForm-button-color: #FFFFFF;
-$subscribeForm-button-background-hover: #636abd;
+$subscribeForm-button-background-hover: #da9b3d;
 $subscribeForm-icon-color: #000000;
 $subscribeForm-error-color: #F5365C;
+$subscribeForm-border-radius: 8px;
 
 // Footer ----------------------------------------------------------------------------------
 $footer-color: #ffffff;
 $footer-title-color: #000000;
 $footer-copyright-link-color: #000000;
 $footer-text-color: #3F3F3F;
-$footer-link-hover-color: #8B94FF;
+$footer-link-hover-color: #da9b3d;
 $footer-line-background: #c8c8c85b;

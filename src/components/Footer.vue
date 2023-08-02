@@ -3,7 +3,7 @@
         <div class="container">
             <div class="columns">
                 <div class="column left">
-                    <h2 class="title">Bialu Developers</h2>
+                    <h2 class="title">OpenPress</h2>
                     <p class="description">Lörem ipsum pongar valig pede, tisade. Tilåskapet decijål ifall sar pure. Klittra tidögt och soment, viradade utivis. Sebina hedersvåld.</p>
                 </div>
 
@@ -30,7 +30,7 @@
 
             <div class="line"></div>
 
-            <p class="copyright">Copyright &copy; 2022 - 2023. All Rights Reserved by <a href="#" class="link">Bialu</a>.</p>
+            <p class="copyright">Copyright &copy; 2022 - 2023. All Rights Reserved by <a href="#" class="link">Bialu Software</a>.</p>
         </div>
     </footer>
 </template>

@@ -67,7 +67,7 @@ export default defineComponent({
     justify-content: center;
     text-align: left;
     padding: 25px;
-    border-radius: 8px;
+    border-radius: $subscribeForm-border-radius;
     flex: 2;
 
     .info-title {
@@ -93,7 +93,7 @@ export default defineComponent({
     align-items: center;
     justify-content: center;
     padding: 25px;
-    border-radius: 8px;
+    border-radius: $subscribeForm-border-radius;
     transition: 0.2s;
 
     i {
