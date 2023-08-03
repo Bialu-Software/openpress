@@ -1,13 +1,18 @@
 <template>
-  <Navbar :activeLink="'saved'" style="background: #fff;" v-if="savedPosts.length <= 0"></Navbar>
+  <Navbar
+    :activeLink="'saved'"
+    style="background: #fff"
+    v-if="savedPosts.length <= 0"
+  ></Navbar>
 
   <div id="page-content" class="section error" v-if="savedPosts.length <= 0">
     <i class="bi bi-bookmarks"></i>
     <h1>Nothing is saved</h1>
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo tristique elit, id varius libero eleifend eu.
-      Sed eu lacus nulla. Pellentesque sit amet interdum nunc. Ut eget faucibus leo.
-      <br><br>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo
+      tristique elit, id varius libero eleifend eu. Sed eu lacus nulla.
+      Pellentesque sit amet interdum nunc. Ut eget faucibus leo.
+      <br /><br />
       Link back to the home page: <a href="/">Link</a>
     </p>
   </div>
@@ -17,16 +22,16 @@
     <CardGrid :postsArray="posts"></CardGrid>
   </section>
 
-
-
-
   <Navbar :activeLink="'saved'" v-if="savedPosts.length > 0"></Navbar>
 
   <div id="page-content" class="section" v-if="savedPosts.length > 0">
     <div class="header-content">
       <h1 class="section-title">Saved Posts</h1>
-      <p class="section-description">You have saved <span class="saved-post-length">{{ savedPosts.length }}</span> posts
-        in total.</p>
+      <p class="section-description">
+        You have saved
+        <span class="saved-post-length">{{ savedPosts.length }}</span> posts in
+        total.
+      </p>
 
       <SearchBar class="searchBar-header"></SearchBar>
 
@@ -62,14 +67,14 @@ export default defineComponent({
     SearchBar,
     Footer,
     Navbar,
-    CardGrid
+    CardGrid,
   },
   data() {
     return {
       savedPosts: [] as Post[],
       activeSort: 1,
-      posts
-    }
+      posts,
+    };
   },
   mounted() {
     this.getAllSavedPosts();
@@ -80,7 +85,9 @@ export default defineComponent({
       let savedPostsArray = SavedPosts.getSavedPosts().parsedData;
 
       for (let index = 0; index < savedPostsArray.length; index++) {
-        const post = posts.find((post: any) => post.id == Number(savedPostsArray[index]));
+        const post = posts.find(
+          (post: any) => post.id == Number(savedPostsArray[index])
+        );
         savedPostsArray[index] = post;
       }
 
@@ -90,23 +97,25 @@ export default defineComponent({
     changeSort(sortMenuItemId: number) {
       if (sortMenuItemId == 1) {
         this.getAllSavedPosts();
-
       } else if (sortMenuItemId == 2) {
         this.savedPosts.sort((x, y) => {
           return y.timestamp - x.timestamp;
         });
-
       } else if (sortMenuItemId == 3) {
         this.savedPosts.sort((x, y) => {
           return x.timestamp - y.timestamp;
         });
       }
 
-      (this.$refs["item" + this.activeSort] as HTMLDataListElement).classList.remove("active");
-      (this.$refs["item" + sortMenuItemId] as HTMLDataListElement).classList.add("active");
+      (
+        this.$refs["item" + this.activeSort] as HTMLDataListElement
+      ).classList.remove("active");
+      (
+        this.$refs["item" + sortMenuItemId] as HTMLDataListElement
+      ).classList.add("active");
 
       this.activeSort = sortMenuItemId;
-    }
+    },
   },
 });
 </script>
@@ -125,7 +134,7 @@ export default defineComponent({
 
   a {
     text-transform: uppercase;
-    color: #8B94FF;
+    color: #8b94ff;
     font-weight: 700;
     text-decoration: none;
     transition: 0.2s;
@@ -149,7 +158,7 @@ export default defineComponent({
 }
 
 .section-description {
-  color: #3F3F3F;
+  color: #3f3f3f;
 }
 
 .saved-post-length {
@@ -175,19 +184,18 @@ export default defineComponent({
     cursor: pointer;
 
     &:hover {
-      background: #8B94FF;
+      background: #8b94ff;
       color: #fff;
     }
   }
 
   .active {
-    background: #8B94FF;
+    background: #8b94ff;
     color: #fff;
   }
 }
 
 @media (max-width: 454px) {
-
   .sort-menu,
   .section-description {
     padding-right: 20px;
@@ -206,4 +214,5 @@ export default defineComponent({
       width: 100%;
     }
   }
-}</style>
+}
+</style>
