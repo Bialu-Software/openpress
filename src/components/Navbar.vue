@@ -56,7 +56,7 @@ export default defineComponent({
         text-decoration: none;
 
         .image-logo {
-            content:url($logo-image);
+            content: url($logo-image);
             max-width: 40px;
             height: auto;
         }
@@ -64,6 +64,13 @@ export default defineComponent({
         .logo-name {
             font-weight: 900;
             font-size: 20px;
+            text-indent: -9999px;
+
+            &::before {
+                text-indent: 0;
+                content: $logo-name;
+                float: left;
+            }
         }
     }
 

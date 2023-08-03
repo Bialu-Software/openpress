@@ -4,7 +4,8 @@
             <div class="columns">
                 <div class="column left">
                     <h2 class="title">OpenPress</h2>
-                    <p class="description">Lörem ipsum pongar valig pede, tisade. Tilåskapet decijål ifall sar pure. Klittra tidögt och soment, viradade utivis. Sebina hedersvåld.</p>
+                    <p class="description">Lörem ipsum pongar valig pede, tisade. Tilåskapet decijål ifall sar pure. Klittra
+                        tidögt och soment, viradade utivis. Sebina hedersvåld.</p>
                 </div>
 
                 <div class="right">
@@ -16,7 +17,7 @@
                             <li><a href="#" class="link">Contact us</a></li>
                         </ul>
                     </div>
-    
+
                     <div class="column">
                         <h2 class="title">More</h2>
                         <ul class="links">
@@ -30,7 +31,7 @@
 
             <div class="line"></div>
 
-            <p class="copyright">Copyright &copy; 2022 - 2023. All Rights Reserved by <a href="#" class="link">Bialu Software</a>.</p>
+            <p class="copyright">Copyright &copy; 2022 - 2023. All Rights Reserved by <a href="#" class="link"></a>.</p>
         </div>
     </footer>
 </template>
@@ -50,7 +51,7 @@ export default defineComponent({
     text-decoration: none;
     color: $footer-text-color;
     transition: 0.2s;
-    
+
     &:hover {
         color: $footer-link-hover-color;
     }
@@ -81,7 +82,7 @@ footer {
                 display: flex;
                 flex-direction: column;
                 gap: 20px;
-                
+
                 .title {
                     font-size: 20px;
                     font-weight: 900;
@@ -102,6 +103,16 @@ footer {
 
             .left {
                 flex: 0.5;
+
+                h2 {
+                    text-indent: -9999px;
+
+                    &::before {
+                        text-indent: 0;
+                        content: $logo-name;
+                        float: left;
+                    }
+                }
             }
 
             .right {
@@ -124,11 +135,16 @@ footer {
 
             .link {
                 color: $footer-copyright-link-color;
-
+                text-indent: -9999px;
                 transition: 0.2s;
-            
+
                 &:hover {
                     color: $footer-link-hover-color;
+                }
+
+                &::before {
+                    text-indent: 0;
+                    content: $logo-name;
                 }
             }
         }
@@ -144,7 +160,7 @@ footer {
             .right {
                 gap: 60px;
             }
-    
+
             .left {
                 flex: 1;
             }
