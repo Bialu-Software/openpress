@@ -1,52 +1,66 @@
 <template>
-    <div class="container">
-        <div class="info-card">
-            <h3 class="info-title">Stay up to date!</h3>
-            <p class="info-description">Stay Updated with Exclusive Content and Offers! Subscribe Now for the Latest News and Exciting Updates Delivered Straight to Your Inbox.</p>
-        </div>
-
-        <div class="subscribe-form">
-            <i class="bi bi-envelope-at"></i>
-
-            <form class="form" @submit.prevent="test()">
-                <input type="email" placeholder="Enter your email" class="email" v-model="Form.email" @input="hideMessage()" required>
-                <button type="submit" class="submit-button">Subscribe</button>
-                <p class="message success" v-if="isError == 'false'">Thank you for registering your email.</p>
-                <p class="message error" v-if="isError == 'true'">An error occurred, please try again.</p>
-            </form>
-        </div>
+  <div class="container">
+    <div class="info-card">
+      <h3 class="info-title">Stay up to date!</h3>
+      <p class="info-description">
+        Stay Updated with Exclusive Content and Offers! Subscribe Now for the
+        Latest News and Exciting Updates Delivered Straight to Your Inbox.
+      </p>
     </div>
+
+    <div class="subscribe-form">
+      <i class="bi bi-envelope-at"></i>
+
+      <form class="form" @submit.prevent="test()">
+        <input
+          type="email"
+          placeholder="Enter your email"
+          class="email"
+          v-model="Form.email"
+          @input="hideMessage()"
+          required
+        />
+        <button type="submit" class="submit-button">Subscribe</button>
+        <p class="message success" v-if="isError == 'false'">
+          Thank you for registering your email.
+        </p>
+        <p class="message error" v-if="isError == 'true'">
+          An error occurred, please try again.
+        </p>
+      </form>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from "vue";
 
 export default defineComponent({
-    name: 'SubscribeForm',
-    data() {
-        return {
-            Form: { email: "" },
-            isError: ""
-        }
-    },
-    methods: {
-        test() {
-            try {
-                console.log(this.Form.email);
-                this.isError = "false";
-            } catch (e) {
-                console.log(e);
-                this.isError = "true";
-            }
+  name: "SubscribeForm",
+  data() {
+    return {
+      Form: { email: "" },
+      isError: "",
+    };
+  },
+  methods: {
+    test() {
+      try {
+        console.log(this.Form.email);
+        this.isError = "false";
+      } catch (e) {
+        console.log(e);
+        this.isError = "true";
+      }
 
-            setTimeout(() => {
-              this.isError = "false";
-            }, 4000);
-        },
-        hideMessage() {
-            this.isError = "";
-        }
-    }
+      setTimeout(() => {
+        this.isError = "false";
+      }, 4000);
+    },
+    hideMessage() {
+      this.isError = "";
+    },
+  },
 });
 </script>
 
@@ -117,7 +131,8 @@ export default defineComponent({
         transition: 0.2s;
         color: $subscribeForm-color;
 
-        &:hover, &:focus {
+        &:hover,
+        &:focus {
           border-color: $main-color;
         }
       }
@@ -134,7 +149,8 @@ export default defineComponent({
         cursor: pointer;
         transition: 0.2s;
 
-        &:hover, &:focus {
+        &:hover,
+        &:focus {
           background: $subscribeForm-button-background-hover;
         }
       }
@@ -159,7 +175,7 @@ export default defineComponent({
     flex-direction: column;
 
     .subscribe-form .form {
-        min-width: 100%;
+      min-width: 100%;
 
       .message {
         min-width: 100%;
@@ -170,7 +186,8 @@ export default defineComponent({
 
 @media (max-width: 454px) {
   .container {
-    .info-card, .subscribe-form {
+    .info-card,
+    .subscribe-form {
       padding: 20px;
       border-radius: 0;
     }
