@@ -49,6 +49,7 @@ export default defineComponent({
     };
   },
   mounted() {
+    document.title = "OpenPress | Home";
     const updatedPosts = posts.map((post) => {
       const postAuthorId = post.author;
       const foundProfile = profiles.find(

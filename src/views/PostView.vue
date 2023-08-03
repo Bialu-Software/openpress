@@ -5,7 +5,8 @@
         <i class="bi bi-exclamation-triangle-fill"></i>
         <h1>The post was not found</h1>
         <p>
-            Oops! The requested blog post was not found. The post does not seem to exist. Sorry for the inconvenience. While we investigate whether this is an error, please check out our other engaging content. 
+            Oops! The requested blog post was not found. The post does not seem to exist. Sorry for the inconvenience. While
+            we investigate whether this is an error, please check out our other engaging content.
             <br><br>
             Link back to the home page: <a href="/">Link</a>
         </p>
@@ -21,7 +22,8 @@
         <img :src="post.imageUrl" class="post-img" alt="Post image" draggable="false">
         <div class="under-img">
             <div class="author">
-                <img src="https://media.extra.cz/static/img/2020/12/c39c180-103863-sym6-2500.jpg" class="author-img" alt="Author profile image" draggable="false">
+                <img src="https://media.extra.cz/static/img/2020/12/c39c180-103863-sym6-2500.jpg" class="author-img"
+                    alt="Author profile image" draggable="false">
                 <div class="info">
                     <p class="info-text">Written By</p>
                     <h4 class="info-value">{{ post.author }}</h4>
@@ -30,10 +32,10 @@
             <div class="share info">
                 <p class="info-text">Share On</p>
                 <h4 class="info-value">
-                    <a href="#" class="share-link"><i class="bi bi-facebook"></i></a> 
+                    <a href="#" class="share-link"><i class="bi bi-facebook"></i></a>
                     <a href="#" class="share-link"><i class="bi bi-twitter"></i></a>
 
-                    <span class="line"></span> 
+                    <span class="line"></span>
 
                     <a href="#" class="share-link"><i class="bi bi-link-45deg"></i></a>
                 </h4>
@@ -53,7 +55,8 @@
             </div>
             <div class="info save-post">
                 <p class="info-text">Save Post:</p>
-                <h4 class="info-value" v-if="savedPostIndex === -1"><i class="bi bi-bookmark bookmark" @click="setItem(postId)"></i></h4>
+                <h4 class="info-value" v-if="savedPostIndex === -1"><i class="bi bi-bookmark bookmark"
+                        @click="setItem(postId)"></i></h4>
                 <h4 class="info-value" v-else><i class="bi bi-bookmark-fill" @click="setItem(postId)"></i></h4>
             </div>
         </div>
@@ -101,6 +104,9 @@ export default defineComponent({
             savedPostIndex: SavedPosts.checkPost(Number(this.$route.query.id))
         }
     },
+    mounted() {
+        document.title = "OpenPress | Post";
+    },
     methods: {
         setItem(id: number | undefined) {
             SavedPosts.setItem(id);
@@ -115,7 +121,7 @@ export default defineComponent({
             let author = foundProfile ? foundProfile.username : "Anonymous";
 
             let updatedPost = {
-                ...post, 
+                ...post,
                 author: author,
             };
 
@@ -265,7 +271,7 @@ export default defineComponent({
 
 #post-content:is(.error) {
     gap: 20px;
-    
+
     i {
         font-size: 70px;
     }
@@ -303,5 +309,4 @@ export default defineComponent({
             height: 300px;
         }
     }
-}
-</style>
+}</style>

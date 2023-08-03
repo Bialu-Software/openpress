@@ -5,7 +5,8 @@
     <i class="bi bi-bookmarks"></i>
     <h1>Nothing is saved</h1>
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo tristique elit, id varius libero eleifend eu. Sed eu lacus nulla. Pellentesque sit amet interdum nunc. Ut eget faucibus leo.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo tristique elit, id varius libero eleifend eu.
+      Sed eu lacus nulla. Pellentesque sit amet interdum nunc. Ut eget faucibus leo.
       <br><br>
       Link back to the home page: <a href="/">Link</a>
     </p>
@@ -24,10 +25,11 @@
   <div id="page-content" class="section" v-if="savedPosts.length > 0">
     <div class="header-content">
       <h1 class="section-title">Saved Posts</h1>
-      <p class="section-description">You have saved <span class="saved-post-length">{{ savedPosts.length }}</span> posts in total.</p>
-  
+      <p class="section-description">You have saved <span class="saved-post-length">{{ savedPosts.length }}</span> posts
+        in total.</p>
+
       <SearchBar class="searchBar-header"></SearchBar>
-  
+
       <ul class="sort-menu">
         <li>Sort by:</li>
         <li class="item active" ref="item1" @click="changeSort(1)">All</li>
@@ -69,6 +71,10 @@ export default defineComponent({
       posts
     }
   },
+  mounted() {
+    this.getAllSavedPosts();
+    document.title = "OpenPress | Saved";
+  },
   methods: {
     getAllSavedPosts() {
       let savedPostsArray = SavedPosts.getSavedPosts().parsedData;
@@ -82,7 +88,7 @@ export default defineComponent({
     },
 
     changeSort(sortMenuItemId: number) {
-      if(sortMenuItemId == 1) {
+      if (sortMenuItemId == 1) {
         this.getAllSavedPosts();
 
       } else if (sortMenuItemId == 2) {
@@ -102,9 +108,6 @@ export default defineComponent({
       this.activeSort = sortMenuItemId;
     }
   },
-  mounted() {
-    this.getAllSavedPosts();
-  }
 });
 </script>
 
@@ -184,7 +187,9 @@ export default defineComponent({
 }
 
 @media (max-width: 454px) {
-  .sort-menu, .section-description {
+
+  .sort-menu,
+  .section-description {
     padding-right: 20px;
     padding-left: 20px;
   }
@@ -201,5 +206,4 @@ export default defineComponent({
       width: 100%;
     }
   }
-}
-</style>
+}</style>
