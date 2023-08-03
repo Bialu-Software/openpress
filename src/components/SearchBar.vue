@@ -1,18 +1,24 @@
 <template>
-    <div class="container">
-        <div class="search-bar">
-            <input type="text" placeholder="Search blog posts..." class="search-input">
-            <button class="search-button pc">Search <i class="bi bi-search"></i></button>
-            <button class="search-button mobile"><i class="bi bi-search"></i></button>
-        </div>
+  <div class="container">
+    <div class="search-bar">
+      <input
+        type="text"
+        placeholder="Search blog posts..."
+        class="search-input"
+      />
+      <button class="search-button pc">
+        Search <i class="bi bi-search"></i>
+      </button>
+      <button class="search-button mobile"><i class="bi bi-search"></i></button>
     </div>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent } from "vue";
 
 export default defineComponent({
-    name: 'SearchBar',
+  name: "SearchBar",
 });
 </script>
 
@@ -94,9 +100,9 @@ export default defineComponent({
       display: none;
     }
 
-      .search-input {
-          width: calc(100% - 22px);
-      }
+    .search-input {
+      width: calc(100% - 22px);
+    }
 
     .search-button {
       padding: 10px;
