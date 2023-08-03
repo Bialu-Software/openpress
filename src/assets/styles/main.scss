@@ -12,13 +12,13 @@
     padding-right: 150px;
 }
 
-$main-background-color: #EEEEEE;
+$main-background-color: #1b1b1b;
 $main-color: #da9b3d;
 $logo-image: "@/assets/images/logo.png";
 $logo-name: "OpenPress";
-$logo-name-color: #000000;
-$headline-color: #000000;
-$text-color: #252525;
+$logo-name-color: #ffffff;
+$headline-color: #ffffff;
+$text-color: #d5d5d5;
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap'); // Importing Montserrat (bold, medium)
 $font-family: "Montserrat", Helvetica, Arial, sans-serif;
 
@@ -30,21 +30,21 @@ $latestPost-headline-color: #FFFFFF;
 $latestPost-description-color: #E2E2E2;
 
 // SearchBar ----------------------------------------------------------------------------------
-$searchBar-background-color: #ffffff;
-$searchBar-input-border-color: #E2E2E2;
-$searchBar-input-color: #3F3F3F;
+$searchBar-background-color: #383838;
+$searchBar-input-border-color: #2a2a2a;
+$searchBar-input-color: #ffffff;
 $searchBar-button-color: #FFFFFF;
-$searchBar-button-background-hover: rgb(204, 149, 65);
+$searchBar-button-background-hover: #f2ac43;
 $searchBar-border-radius: 8px;
 
 // Cards ----------------------------------------------------------------------------------
 $card-width: 355px;
-$card-background-color: #FFFFFF;
+$card-background-color: #383838;
 $card-border-radius: 10px;
-$card-headline-color: #000000;
-$card-text-color: #3F3F3F;
-$card-icon-color: #000000;
-$card-tag-color: #da9b3d6b;
+$card-headline-color: #ffffff;
+$card-text-color: #dadada;
+$card-icon-color: #ffffff;
+$card-tag-color: #936929;
 
 
 // Card grid ----------------------------------------------------------------------------------
@@ -52,20 +52,20 @@ $grid-gap: 22px;
 
 // Navbar ----------------------------------------------------------------------------------
 $navbar-color: transparent;
-$navbar-border-color: #E2E2E2;
-$navbar-links-color: #3F3F3F;
-$navbar-links-hover-color: #000000;
+$navbar-border-color: #4b4b4b;
+$navbar-links-color: #acacac;
+$navbar-links-hover-color: #e2e2e2;
 $navbar-link-active-color: #da9b3d;
 
 
 // SubscribeForm ----------------------------------------------------------------------------------
-$subscribeForm-card-background: #FFFFFF;
-$subscribeForm-headline-color: #000000;
-$subscribeForm-input-border: 1px solid #E2E2E2;
-$subscribeForm-text-color: #3F3F3F;
+$subscribeForm-card-background: #383838;
+$subscribeForm-headline-color: #ffffff;
+$subscribeForm-input-border: 1px solid #292929;
+$subscribeForm-text-color: #dadada;
 $subscribeForm-button-color: #FFFFFF;
-$subscribeForm-button-background-hover: rgb(204, 149, 65);
-$subscribeForm-icon-color: #000000;
+$subscribeForm-button-background-hover: #f2ac43;
+$subscribeForm-icon-color: #ffffff;
 $subscribeForm-error-color: #F5365C;
 $subscribeForm-border-radius: 8px;
 
