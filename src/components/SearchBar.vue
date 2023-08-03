@@ -1,15 +1,16 @@
 <template>
   <div class="container">
     <div class="search-bar">
-      <input
-        type="text"
-        placeholder="Search blog posts..."
-        class="search-input"
-      />
-      <button class="search-button pc">
-        Search <i class="bi bi-search"></i>
-      </button>
-      <button class="search-button mobile"><i class="bi bi-search"></i></button>
+      <div class="content">
+        <input
+          type="text"
+          placeholder="Search blog posts..."
+          class="search-input"
+        />
+        <button class="search-button">
+          <span class="text">Search</span> <i class="bi bi-search"></i>
+        </button>
+      </div>
     </div>
   </div>
 </template>
@@ -24,32 +25,31 @@ export default defineComponent({
 
 <style scoped lang="scss">
 @import "@/assets/styles/main";
-
 .search-bar {
-  display: flex;
   position: relative;
-  align-items: center;
-  justify-content: center;
+  border-radius: $searchBar-border-radius;
+  border: 1px solid $searchBar-input-border-color;
+  background-color: $searchBar-background-color;
+  padding: 15px;
 
-  .search-input {
-    position: relative;
+  .content {
     width: 100%;
-    border-radius: $searchBar-border-radius;
-    border: 1px solid $searchBar-input-border-color;
-    outline: none;
-    font-size: 15px;
-    color: $searchBar-input-color;
-    background-color: $searchBar-background-color;
-    padding: 20px 10px;
+    display: flex;
+    position: relative;
+    align-items: center;
+    gap: 15px;
+    justify-content:space-between;
   }
 
-  .search-button.mobile {
-    display: none;
+  .search-input {
+    outline: none;
+    border: none;
+    width: 100%;
+    font-size: 15px;
+    color: $searchBar-input-color;
   }
 
   .search-button {
-    position: absolute;
-    right: 10px;
     padding: 10px 20px;
     border-radius: 5px;
     outline: none;
@@ -67,16 +67,6 @@ export default defineComponent({
     &:hover {
       background: $searchBar-button-background-hover;
     }
-
-    &::after {
-      content: "";
-      background-color: $searchBar-background-color;
-      height: 100%;
-      width: 20px;
-      position: absolute;
-      top: 0;
-      left: -20px;
-    }
   }
 }
 
@@ -87,25 +77,14 @@ export default defineComponent({
   }
 
   .search-bar {
-    flex-direction: column;
-    width: 100%;
-    gap: 20px;
     align-items: start;
-
-    .search-button.mobile {
-      display: flex;
-    }
-
-    .search-button.pc {
-      display: none;
-    }
-
-    .search-input {
-      width: calc(100% - 22px);
-    }
 
     .search-button {
       padding: 10px;
+
+      .text {
+        display: none;
+      }
     }
   }
 }
