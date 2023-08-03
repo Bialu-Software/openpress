@@ -47,6 +47,7 @@ export default defineComponent({
     width: 100%;
     font-size: 15px;
     color: $searchBar-input-color;
+    background-color: transparent;
   }
 
   .search-button {

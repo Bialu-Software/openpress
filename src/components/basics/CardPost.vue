@@ -7,7 +7,7 @@
           :style="
             'background: url(' +
             imageUrl +
-            ');' +
+            ');' +  
             'background-repeat:no-repeat;background-position:center center;background-size:cover;'
           "
         ></div>

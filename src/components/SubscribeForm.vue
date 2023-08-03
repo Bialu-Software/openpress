@@ -91,7 +91,7 @@ export default defineComponent({
 
     .info-description {
       font-size: 17px;
-      color: $subscribeForm-color;
+      color: $subscribeForm-text-color;
     }
 
     h3 {
@@ -129,7 +129,7 @@ export default defineComponent({
         font-size: 16px;
         background: transparent;
         transition: 0.2s;
-        color: $subscribeForm-color;
+        color: $subscribeForm-text-color;
 
         &:hover,
         &:focus {

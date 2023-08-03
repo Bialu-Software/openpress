@@ -50,6 +50,7 @@ export default defineComponent({
   },
   mounted() {
     document.title = "OpenPress | Home";
+    
     const updatedPosts = posts.map((post) => {
       const postAuthorId = post.author;
       const foundProfile = profiles.find(
@@ -70,6 +71,8 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
+@import "@/assets/styles/main";
+
 #app {
   display: flex;
   justify-content: center;
@@ -97,6 +100,7 @@ export default defineComponent({
   .section-title {
     font-size: 30px;
     font-weight: 800;
+    color: $headline-color;
   }
 }
 

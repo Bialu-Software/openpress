@@ -1,7 +1,6 @@
 <template>
   <Navbar
     :activeLink="'saved'"
-    style="background: #fff"
     v-if="savedPosts.length <= 0"
   ></Navbar>
 
@@ -59,6 +58,7 @@ import SearchBar from "@/components/SearchBar.vue";
 import CardGrid from "@/components/basics/CardGrid.vue";
 import { SavedPosts } from "../components/basics/classes";
 import posts from "../../backend/data/posts.json";
+import profiles from "../../backend/data/profiles.json";
 import { Post } from "@/components/basics/interfaces";
 
 export default defineComponent({
@@ -73,12 +73,28 @@ export default defineComponent({
     return {
       savedPosts: [] as Post[],
       activeSort: 1,
-      posts,
+      posts: [] as Post[]
     };
   },
   mounted() {
     this.getAllSavedPosts();
     document.title = "OpenPress | Saved";
+
+    const updatedPosts = posts.map((post) => {
+      const postAuthorId = post.author;
+      const foundProfile = profiles.find(
+        (profile: any) => profile.id === postAuthorId
+      );
+
+      const author = foundProfile ? foundProfile.username : "Anonymous";
+
+      return {
+        ...post,
+        author: author,
+      };
+    });
+
+    this.posts = updatedPosts;
   },
   methods: {
     getAllSavedPosts() {
@@ -121,20 +137,37 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+@import "@/assets/styles/main";
+
+.section-title {
+    font-size: 30px;
+    font-weight: 800;
+    color: $headline-color;
+  }
+
 #page-content:is(.error) {
   padding-top: 90px;
   padding-bottom: 90px;
   margin-top: -90px;
-  background: #fff;
+  background-color: $main-background-color;
   gap: 20px;
 
   i {
+    color: $headline-color;
     font-size: 70px;
+  }
+
+  h1 {
+    color: $headline-color;
+  }
+
+  p {
+    color: $text-color;
   }
 
   a {
     text-transform: uppercase;
-    color: #8b94ff;
+    color: $main-color;
     font-weight: 700;
     text-decoration: none;
     transition: 0.2s;
@@ -215,4 +248,5 @@ export default defineComponent({
     }
   }
 }
+
 </style>
