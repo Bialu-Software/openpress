@@ -16,7 +16,7 @@ $font-family: "Montserrat", Helvetica, Arial, sans-serif;
 
 // LatestPost Card -------------------------------------------------------------------------
 $latestPost-background-gradient: linear-gradient(0, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
-$latestPost-background: rgba(0, 0, 0, 0.8);
+$latestPost-background: rgba(0, 0, 0, 0.6);
 $latestPost-border-radius: 10px;
 $latestPost-headline-color: #FFFFFF;
 $latestPost-description-color: #E2E2E2;
@@ -26,7 +26,7 @@ $searchBar-background-color: #ffffff;
 $searchBar-input-border-color: #E2E2E2;
 $searchBar-input-color: #3F3F3F;
 $searchBar-button-color: #FFFFFF;
-$searchBar-button-background-hover: #da9b3d;
+$searchBar-button-background-hover: rgb(204, 149, 65);
 $searchBar-border-radius: 8px;
 
 // Cards ----------------------------------------------------------------------------------
@@ -55,15 +55,15 @@ $subscribeForm-headline-color: #000000;
 $subscribeForm-input-border: 1px solid #E2E2E2;
 $subscribeForm-color: #3F3F3F;
 $subscribeForm-button-color: #FFFFFF;
-$subscribeForm-button-background-hover: #da9b3d;
+$subscribeForm-button-background-hover: rgb(204, 149, 65);
 $subscribeForm-icon-color: #000000;
 $subscribeForm-error-color: #F5365C;
 $subscribeForm-border-radius: 8px;
 
 // Footer ----------------------------------------------------------------------------------
-$footer-color: #ffffff;
-$footer-title-color: #000000;
-$footer-copyright-link-color: #000000;
-$footer-text-color: #3F3F3F;
-$footer-link-hover-color: #da9b3d;
-$footer-line-background: #c8c8c85b;
+$footer-color: #da9b3d;
+$footer-title-color: #ffffff;
+$footer-copyright-link-color: #ffffff;
+$footer-text-color: #E2E2E2;
+$footer-link-hover-color: #ffffff;
+$footer-line-background: #E2E2E2;
