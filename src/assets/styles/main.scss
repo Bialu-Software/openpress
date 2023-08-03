@@ -10,18 +10,20 @@ $main-background-color: #EEEEEE;
 $main-color: #da9b3d;
 $logo-image: "@/assets/images/logo.png";
 $logo-name: "OpenPress";
+$logo-name-color: #000000;
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap'); // Importing Montserrat (bold, medium)
 $font-family: "Montserrat", Helvetica, Arial, sans-serif;
 
 // LatestPost Card -------------------------------------------------------------------------
-$latestPost-background-gradient: linear-gradient(90deg, rgba(255, 255, 255, 0.85) 30%, rgba(255, 255, 255, 0) 70%);
-$latestPost-tags-background: rgba(245, 208, 106, 0.3);
-$latestPost-tags-color: #292929;
+$latestPost-background-gradient: linear-gradient(0, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
+$latestPost-background: rgba(0, 0, 0, 0.8);
 $latestPost-border-radius: 10px;
+$latestPost-headline-color: #FFFFFF;
+$latestPost-description-color: #E2E2E2;
 
 // SearchBar ----------------------------------------------------------------------------------
 $searchBar-background-color: #ffffff;
-$searchBar-input-border-color: #C8C8C8;
+$searchBar-input-border-color: #E2E2E2;
 $searchBar-input-color: #3F3F3F;
 $searchBar-button-color: #FFFFFF;
 $searchBar-button-background-hover: #da9b3d;
@@ -33,7 +35,6 @@ $card-background-color: #FFFFFF;
 $card-border-radius: 10px;
 $card-headline-color: #000000;
 $card-text-color: #3F3F3F;
-$card-tag-background: rgba(242, 190, 86, 0.1);
 $card-icon-color: #000000;
 
 
@@ -42,7 +43,7 @@ $grid-gap: 22px;
 
 // Navbar ----------------------------------------------------------------------------------
 $navbar-color: transparent;
-$navbar-border-color: #C8C8C8;
+$navbar-border-color: #E2E2E2;
 $navbar-links-color: #3F3F3F;
 $navbar-links-hover-color: #000000;
 $navbar-link-active-color: #da9b3d;
@@ -51,7 +52,7 @@ $navbar-link-active-color: #da9b3d;
 // SubscribeForm ----------------------------------------------------------------------------------
 $subscribeForm-card-background: #FFFFFF;
 $subscribeForm-headline-color: #000000;
-$subscribeForm-input-border: 1px solid #C8C8C8;
+$subscribeForm-input-border: 1px solid #E2E2E2;
 $subscribeForm-color: #3F3F3F;
 $subscribeForm-button-color: #FFFFFF;
 $subscribeForm-button-background-hover: #da9b3d;
