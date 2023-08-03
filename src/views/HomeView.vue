@@ -123,7 +123,7 @@ export default defineComponent({
     padding: 0;
   }
   .section {
-    width: 100%;
+    // width: 100%;
     padding: 0;
     .section-title {
       padding-left: 20px;

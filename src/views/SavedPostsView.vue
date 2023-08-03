@@ -249,4 +249,33 @@ export default defineComponent({
   }
 }
 
+// kinda dont work OWO (from HomeViews.vue)
+
+@media (max-width: 1409px) {
+  .section {
+    padding-left: 90px;
+    padding-right: 90px;
+  }
+}
+
+@media (max-width: 820px) {
+  .section {
+    padding-left: 50px;
+    padding-right: 50px;
+  }
+}
+
+@media (max-width: 454px) {
+  #footer {
+    padding: 0;
+  }
+  .section {
+    // width: 100%;
+    padding: 0;
+    .section-title {
+      padding-left: 20px;
+    }
+  }
+}
+
 </style>

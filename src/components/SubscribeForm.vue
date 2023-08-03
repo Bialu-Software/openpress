@@ -186,8 +186,9 @@ export default defineComponent({
 
 @media (max-width: 454px) {
   .container {
-    .info-card,
-    .subscribe-form {
+    width: 100%;
+    padding: 0px;
+    .subscribe-form, .info-card {
       padding: 20px;
       border-radius: 0;
     }
