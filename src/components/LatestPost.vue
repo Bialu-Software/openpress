@@ -42,7 +42,6 @@ export default defineComponent({
   gap: 30px;
   width: 100%;
   align-items: center;
-  margin-top: -20px;
 }
 
 .post-link {
