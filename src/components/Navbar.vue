@@ -31,7 +31,7 @@ export default defineComponent({
         }
     },
     mounted() {
-        if(this.activeLink) document.querySelector("." + this.activeLink)?.classList.add("active");
+        if (this.activeLink) document.querySelector("." + this.activeLink)?.classList.add("active");
     }
 });
 </script>
@@ -56,6 +56,7 @@ export default defineComponent({
         text-decoration: none;
 
         .image-logo {
+            content:url($logo-image);
             max-width: 40px;
             height: auto;
         }
