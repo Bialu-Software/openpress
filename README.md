@@ -46,6 +46,8 @@ Before we can run the web application, we might want to init the database for th
 npm run syncdb
 ```
 
+**You will want to sync the DB every time you update the database schema**
+
 After is everything installed we can run it:
 
 ```
