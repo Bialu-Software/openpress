@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "build": "vue-cli-service build",
+    "syncdb": "node ./backend/db/sync.js"
   },
   "dependencies": {
     "bootstrap-icons": "^1.10.5",
