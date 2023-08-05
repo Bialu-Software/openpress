@@ -40,6 +40,12 @@ Now you need to go to the project directory and run this command so you have all
 npm install
 ```
 
+Before we can run the web application, we might want to init the database for the backend using:
+
+```
+npm run syncdb
+```
+
 After is everything installed we can run it:
 
 ```
