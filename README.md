@@ -15,6 +15,7 @@
 - [Usage](#usage)
 - [Deployment](#deployment)
 - [Built Using](#built_using)
+- [Maintenance](#aintenance)
 
 ## 🧐 About <a name = "about"></a>
 
@@ -46,8 +47,6 @@ Before we can run the web application, we might want to init the database for th
 npm run syncdb
 ```
 
-**You will want to sync the DB every time you update the database schema**
-
 After is everything installed we can run it:
 
 ```
@@ -57,8 +56,6 @@ npm run serve
 Now if you go to `http://localhost:8080/` in your browser, you should see something like this:
 
 ![screenshot of the website](https://github.com/Bialu-Software/openpress/assets/70224036/48174d72-2636-48dd-9ace-e03ca51aff82)
-
-
 
 ## 🎈 Usage <a name="usage"></a>
 
@@ -71,6 +68,15 @@ To fully deploy your blog we suggest using a linux system. And to build and mini
 ```
 npm run build
 ```
+
+## Maintenance ⚙<a name = "aintenance"></a>
+
+If you want to update the database schema, you will afterwardsneed to run this command
+
+```
+npm run syncdb
+```
+
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
