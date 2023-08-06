@@ -18,7 +18,7 @@ module.exports = (sequelize) => {
     image_url: {
       allowNull: false,
       type: DataTypes.STRING,
-      unique: true,
+      unique: false,
     },
     headline: {
       allowNull: false,
@@ -65,3 +65,4 @@ module.exports = (sequelize) => {
     },
   });
 };
+

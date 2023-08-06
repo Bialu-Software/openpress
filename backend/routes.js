@@ -5,70 +5,80 @@ const config = require("../config.json").backend
 const { filter_posts } = require("./filter.js")
 const { generate_token, verify_token } = require("./encryption.js")
 
-let posts = require("./data/posts.json")
-let profiles = require("./data/profiles.json")
-let emails = require("./data/emails.json")
+const { models } = require("./db/");
 
 const router = express.Router()
 
 // basic entry page
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
     res.send('blog backend :)')
 })
 
 // after sucessfull login sends auth token
-router.post('/login', (req, res) => {
+router.post('/login', async (req, res) => {
     /*
     ! This does nothing to check whether the user exists nor does it check whether password hashes match.
     It is up to this function to fetch the username from DB, check password hashes and then
     either return an error or generate and return a session cookie with the token.
     A password hash function is present in encryption.js under the name salted_hash_password(PASSWORD_HERE);
     */
-    token = generate_token({ username: "gumernus", id: 1, admin: true }, config.secret_key);
+    await models.user.create({ username: "gumernus", password: "admin123" });
+    let token = generate_token({ username: "gumernus", id: 1, admin: true }, config.secret_key);
+    console.log(token);
     res.send(token)
 })
 
 // send more posts
-router.get('/getPosts', (req, res) => {
-    let page = req.body.page - 1
-    let posts_per_page = req.body.posts_per_page
-    let filters = req.body.filters // headline, tags (with #), text
+router.get('/getPosts', async (req, res) => {
 
-    if (filters != undefined || Object.keys(!filters).length < 0 ) {
-        filtered_posts = filter_posts(filters)
-    } else {
-        filtered_posts = posts
-    }
+    // ---- OLD CODE ----
 
-    requested_posts = filtered_posts.slice(page * posts_per_page, (page * posts_per_page) + posts_per_page)
+    // let page = req.body.page - 1
+    // let posts_per_page = req.body.posts_per_page
+    // let filters = req.body.filters // headline, tags (with #), text
 
-    // delete html part of posts for better performance on web
-    requested_posts.forEach((post) => {
-        delete post.html;
-    });
+    // if (filters != undefined || Object.keys(!filters).length < 0 ) {
+    //     filtered_posts = filter_posts(filters)
+    // } else {
+    //     filtered_posts = posts
+    // }
 
-    res.send({ posts: requested_posts, max_page: Math.ceil(filtered_posts.length / posts_per_page) })
+    // requested_posts = filtered_posts.slice(page * posts_per_page, (page * posts_per_page) + posts_per_page)
+
+    // // delete html part of posts for better performance on web
+    // requested_posts.forEach((post) => {
+    //     delete post.html;
+    // });
+
+    // res.send({ posts: requested_posts, max_page: Math.ceil(filtered_posts.length / posts_per_page) })
+
+    // ---- OLD CODE ----
+    // ---- NEW CODE ----
+
+    // currently sends all posts. 
+    res.send(await models.post.findAll())
 })
 
 // sends post based on id or name (with all of the text)
-router.get('/getPost', (req, res) => {
+router.get('/getPost', async (req, res) => {
     // use the filter_posts function
     // add author info
 
-    res.send(result)
+    res.send("does not work")
 })
 
 // gets info about the post then adds it to the json and sends response based on if the post was saved or not
-router.get('/addPost', (req, res) => {
+router.post('/addPost', async (req, res) => {
     if (verify_token(req.body.token, config.secret_key).isValid == true) {
-        res.send("do something")
+        await models.post.create({headline: req.body.headline, text: req.body.text, html: req.body.html, image_url: req.body.image_url, author: req.body.author, timestamp: req.body.timestamp});
+        res.send("Post successfully added")
     } else {
         return res.status(500).send("Invalid token");
     }
 })
 
 // deletes post from the json and sends response based on if it was deleted or not
-router.get('/delPost', (req, res) => {
+router.get('/delPost', async (req, res) => {
     if (verify_token(req.body.token, config.secret_key).isValid == true) {
         res.send("do something")
     } else {
@@ -77,7 +87,7 @@ router.get('/delPost', (req, res) => {
 })
 
 // edit post from the json and sends response based on if it was deleted or not
-router.get('/editPost', (req, res) => {
+router.get('/editPost', async (req, res) => {
     if (verify_token(req.body.token, config.secret_key).isValid == true) {
         res.send("do something")
     } else {
@@ -86,7 +96,7 @@ router.get('/editPost', (req, res) => {
 })
 
 // sends all emails form the json (needs the token system)
-router.get('/subscriberEmailsGet', (req, res) => {
+router.get('/subscriberEmailsGet', async (req, res) => {
     if (verify_token(req.body.token, config.secret_key).isValid == true) {
         fs.readFile("./data/emails.json", "utf8", (err, data) => {
             if (err) return res.status(500).send("Failed to read emails file");
@@ -99,7 +109,7 @@ router.get('/subscriberEmailsGet', (req, res) => {
     }
 });
 
-router.post('/subscriberEmailsDel', (req, res) => {
+router.post('/subscriberEmailsDel', async (req, res) => {
     const email = req.body.email;
 
     fs.readFile("./data/emails.json", "utf8", (err, data) => {
@@ -115,7 +125,7 @@ router.post('/subscriberEmailsDel', (req, res) => {
 });
 
 
-router.get('/subscriberEmailsAdd', (req, res) => {
+router.get('/subscriberEmailsAdd', async (req, res) => {
     const email = req.body.email;
 
     fs.readFile("./data/emails.json", "utf8", (err, data) => {
@@ -132,7 +142,7 @@ router.get('/subscriberEmailsAdd', (req, res) => {
 });
 
 
-router.get('/sendEmails', (req, res) => {
+router.get('/sendEmails', async (req, res) => {
     if (verify_token(req.body.token, config.secret_key).isValid == true) {
         res.send("Emails sent")
     } else {
