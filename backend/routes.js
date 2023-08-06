@@ -22,6 +22,7 @@ router.post('/login', async (req, res) => {
     either return an error or generate and return a session cookie with the token.
     A password hash function is present in encryption.js under the name salted_hash_password(PASSWORD_HERE);
     */
+    await models.user.create({ username: "gumernus", password: "admin123" });
     let token = generate_token({ username: "gumernus", id: 1, admin: true }, config.secret_key);
     console.log(token);
     res.send(token)
@@ -69,8 +70,8 @@ router.get('/getPost', async (req, res) => {
 // gets info about the post then adds it to the json and sends response based on if the post was saved or not
 router.post('/addPost', async (req, res) => {
     if (verify_token(req.body.token, config.secret_key).isValid == true) {
-        console.log(req)
-        await models.post.create({postid: 0, image_url: req.body.image_url, headline: req.body.headline, text: req.body.text, html: req.body.html, author: req.body.author, timestamp: req.body.timestamp });
+        await models.post.create({headline: req.body.headline, text: req.body.text, html: req.body.html, image_url: req.body.image_url, author: req.body.author, timestamp: req.body.timestamp});
+        res.send("Post successfully added")
     } else {
         return res.status(500).send("Invalid token");
     }
