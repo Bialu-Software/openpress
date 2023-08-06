@@ -69,7 +69,7 @@ To fully deploy your blog we suggest using a linux system. And to build and mini
 npm run build
 ```
 
-## Maintenance ⚙<a name = "aintenance"></a>
+## ⚙ Maintenance <a name = "aintenance"></a>
 
 If you want to update the database schema, you will afterwardsneed to run this command
 
