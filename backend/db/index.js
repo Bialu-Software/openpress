@@ -6,7 +6,7 @@ const { apply_relations } = require("./model_relations.js");
 // const sequelize = new Sequelize(process.env.DB_CONNECTION_URL);
 const sequelize = new Sequelize({
   dialect: "sqlite",
-  storage: "/home/script/Programming/Projects/openpress/database.sqlite",
+  storage: "database.sqlite",
   logQueryParameters: true,
   benchmark: true,
 });

@@ -70,7 +70,7 @@ router.get('/getPost', async (req, res) => {
 router.post('/addPost', async (req, res) => {
     if (verify_token(req.body.token, config.secret_key).isValid == true) {
         console.log(req)
-        await models.post.create({ image_url: req.body.image_url, headline: req.body.headline, text: req.body.text, html: req.body.html, author: req.body.author, timestamp: req.body.timestamp });
+        await models.post.create({postid: 0, image_url: req.body.image_url, headline: req.body.headline, text: req.body.text, html: req.body.html, author: req.body.author, timestamp: req.body.timestamp });
     } else {
         return res.status(500).send("Invalid token");
     }
