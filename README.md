@@ -50,7 +50,7 @@ npm run syncdb
 After is everything installed we can run it:
 
 ```
-npm run serve
+npm run start
 ```
 
 Now if you go to `http://localhost:8080/` in your browser, you should see something like this:

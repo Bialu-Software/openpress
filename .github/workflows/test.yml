@@ -23,7 +23,7 @@ jobs:
       - name: Build and serve Vue project
         run: |
           npm run build
-          npm run serve &
+          npm run start &
           sleep 10
           if ! curl -sS http://localhost:8080/ >/dev/null ; then
             echo "Error: Unable to serve the Vue project"
