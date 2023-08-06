@@ -6,7 +6,7 @@ const { apply_relations } = require("./model_relations.js");
 // const sequelize = new Sequelize(process.env.DB_CONNECTION_URL);
 const sequelize = new Sequelize({
   dialect: "sqlite",
-  storage: "database.sqlite",
+  storage: "/home/script/Programming/Projects/openpress/database.sqlite",
   logQueryParameters: true,
   benchmark: true,
 });
@@ -25,6 +25,15 @@ for (const modelDefiner of modelDefiners) {
 // See model_relations.js for implementation
 // This function will define how models are related between each other
 apply_relations(sequelize);
+
+sequelize
+  .sync()
+  .then(() => {
+    console.log("Database synced successfully");
+  })
+  .catch((error) => {
+    console.error("Error syncing the database:", error);
+  });
 
 // We export the sequelize connection instance to be used around our app.
 // When trying to access the DB from elsewhere in the app, import this

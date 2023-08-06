@@ -1,5 +1,5 @@
 const { DataTypes } = require("sequelize");
-const User = require("./user.model");
+//const User = require("./user.model");
 
 function remove_illegal_tag_characters(inputString) {
   const regex = /[^A-Za-z0-9_]/g;
@@ -9,7 +9,7 @@ function remove_illegal_tag_characters(inputString) {
 
 module.exports = (sequelize) => {
   sequelize.define("post", {
-    id: {
+    postid: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
@@ -38,9 +38,10 @@ module.exports = (sequelize) => {
     author: {
       type: DataTypes.INTEGER,
       allowNull: false,
+      unique: false,
       references: {
-        model: User,
-        key: "id",
+        model: "users",
+        key: "userid",
       },
     },
     tags: {
@@ -51,10 +52,10 @@ module.exports = (sequelize) => {
         const tags_arr = tags_str ? tags_str.split(",") : [];
         return tags_arr.map((tag) => hash_tag + tag);
       },
-      set(value) {
-        modified_value = remove_illegal_tag_characters(value);
-        const tags_str = modified_value ? modified_value.join(",") : "";
-        this.setDataValue("tags", tags_str);
+      set(values) {
+        const cleanedValues = values.map(remove_illegal_tag_characters);
+        const tagsStr = cleanedValues.join(",");
+        this.setDataValue("tags", tagsStr);
       },
     },
     timestamp: {
