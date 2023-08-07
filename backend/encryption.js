@@ -10,7 +10,7 @@ function generate_token(payload, secretKey) {
   */
   payload.timestamp = Date.now();
   const encodedPayload = Buffer.from(JSON.stringify(payload)).toString(
-    "base64"
+    "base64",
   );
   const hmac = crypto.createHmac("sha512", secretKey);
   hmac.update(encodedPayload);
@@ -25,25 +25,36 @@ function verify_token(jwt, secretKey) {
   If the return value isValid is false, it means this token has been manipulated with and should not be trusted at all.
   The return value payload contains the data encoded when generating it.
   */
-  const [encodedPayload, signature] = jwt.split(".");
-  const hmac = crypto.createHmac("sha512", secretKey);
-  hmac.update(encodedPayload);
-  const calculatedSignature = hmac.digest("base64");
-  const isSignatureValid = signature === calculatedSignature;
-  const payload = JSON.parse(
-    Buffer.from(encodedPayload, "base64").toString("utf8")
-  );
-  return {
-    isValid: isSignatureValid,
-    payload: payload,
-  };
+  try {
+    const [encodedPayload, signature] = jwt.split(".");
+    const hmac = crypto.createHmac("sha512", secretKey);
+    hmac.update(encodedPayload);
+    const calculatedSignature = hmac.digest("base64");
+    const isSignatureValid = signature === calculatedSignature;
+    const payload = JSON.parse(
+      Buffer.from(encodedPayload, "base64").toString("utf8"),
+    );
+    return {
+      isValid: isSignatureValid,
+      payload: payload,
+    };
+  } catch {
+    return {
+      isValid: false,
+      payload: {},
+    };
+  }
 }
 
 function salted_hash_password(password) {
   // Hashes a password
-  password = `${password}:${password.split("").reverse().join("")}`;
-  const hash = crypto.createHash('sha256').update(password).digest('hex');
-  return hash
+  // TODO: Instead of simply reversing the password, we should generate a random secret based off a random seed created from the password
+  password_modified = `${password}:${password.split("").reverse().join("")}`;
+  const hash = crypto
+    .createHash("sha256")
+    .update(password_modified)
+    .digest("hex");
+  return hash;
 }
 
 module.exports = {
