@@ -27,12 +27,12 @@ module.exports = (sequelize) => {
     },
     text: {
       allowNull: false,
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       unique: false,
     },
     html: {
       allowNull: false,
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       unique: false,
     },
     author: {
@@ -65,4 +65,3 @@ module.exports = (sequelize) => {
     },
   });
 };
-
