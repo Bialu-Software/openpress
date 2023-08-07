@@ -23,6 +23,11 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
       unique: false,
     },
+    email: {
+      allowNull: true,
+      type: DataTypes.STRING,
+      unique: false,
+    },
     profile_image: {
       allowNull: true,
       type: DataTypes.STRING,
