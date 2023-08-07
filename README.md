@@ -71,7 +71,7 @@ npm run build
 
 ## ⚙ Maintenance <a name = "aintenance"></a>
 
-If you want to update the database schema, you will afterwardsneed to run this command
+If you want to update the database schema, you will afterwards need to run this command
 
 ```
 npm run syncdb
