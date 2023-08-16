@@ -1,6 +1,6 @@
 ![OpenPress banner](https://github.com/Bialu-Software/openpress/assets/70224036/8d289c62-1e3f-4404-a5cc-7a2b1dca20ab)
 
-<h3 align="center">OpenPress</h3>
+<h3 align="center">OpenPress</h3> 
 
 ---
 
@@ -83,3 +83,5 @@ npm run syncdb
 - [SQLite](https://www.sqlite.org/index.html) - Database
 - [VueJs](https://vuejs.org/) - Web Framework
 - [NodeJs](https://nodejs.org/en/) - Server Environment
+
+<a href="https://github.com/Bialu-Software/" ><img width="223" hspace="10" alt="Powered by Bialu Software" src="https://media.discordapp.net/attachments/1055532722304585765/1069690405425254420/blue-icon.png?width=602&height=80"> </a>
