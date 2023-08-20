@@ -23,7 +23,7 @@ module.exports = (sequelize) => {
     headline: {
       allowNull: false,
       type: DataTypes.STRING,
-      unique: true,
+      unique: false,
     },
     text: {
       allowNull: false,
@@ -53,7 +53,12 @@ module.exports = (sequelize) => {
         return tags_arr.map((tag) => hash_tag + tag);
       },
       set(values) {
-        const cleanedValues = values.map(remove_illegal_tag_characters);
+        const arrValues = values
+          .replace(", ", ",")
+          .replace(" ,", ",")
+          .replace(" , ", ",")
+          .split(",");
+        const cleanedValues = arrValues.map(remove_illegal_tag_characters);
         const tagsStr = cleanedValues.join(",");
         this.setDataValue("tags", tagsStr);
       },
