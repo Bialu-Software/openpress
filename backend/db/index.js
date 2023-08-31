@@ -7,7 +7,6 @@ const { apply_relations } = require("./model_relations.js");
 const sequelize = new Sequelize({
   dialect: "sqlite",
   storage: "database.sqlite",
-  logQueryParameters: true,
   benchmark: true,
 });
 
