@@ -8,6 +8,7 @@ const sequelize = new Sequelize({
   dialect: "sqlite",
   storage: "database.sqlite",
   benchmark: true,
+  logging: false
 });
 
 const modelDefiners = [
