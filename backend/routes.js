@@ -79,9 +79,9 @@ router.get('/getPost', async (req, res) => {
 router.post('/addPost', async (req, res) => {
     if (verify_token(req.body.token, config.secret_key).isValid == true) {
 
-        await Post.create(headline = req.body.headline, text = req.body.text, html = req.body.html, image_url = req.body.image_url, tags = req.body.tags, author = req.body.author, timestamp = req.body.timestamp)
-        // await models.post.create({ headline: req.body.headline, text: req.body.text, html: req.body.html, image_url: req.body.image_url, author: req.body.author, timestamp: req.body.timestamp });
+        await Post.create(req.body.image_url, req.body.headline, req.body.text, req.body.html, req.body.author, req.body.tags, req.body.timestamp)
         res.send("Post successfully added")
+        
     } else {
         return res.status(500).send("Invalid token");
     }

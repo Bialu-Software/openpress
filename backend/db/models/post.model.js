@@ -53,6 +53,8 @@ module.exports = (sequelize) => {
         return tags_arr.map((tag) => hash_tag + tag);
       },
       set(values) {
+        console.log(values);
+        
         const cleanedValues = values.map(remove_illegal_tag_characters);
         const tagsStr = cleanedValues.join(",");
         this.setDataValue("tags", tagsStr);
