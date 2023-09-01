@@ -1,6 +1,14 @@
-const express = require('express')
+const express = require('express');
 const cors = require('cors');
-const config = require("../config.json").backend
+const fs = require('fs');
+const crypto = require('crypto');
+const config = require("../config.json").backend;
+
+if (config.secret_key == "change_this_to_whatever") {
+  const newSecretKey = crypto.randomBytes(32).toString('hex');
+  config.secret_key = newSecretKey;
+  fs.writeFileSync('./config.json', JSON.stringify({ backend: config }, null, 2));
+}
 
 const app = express()
 const routes = require("./routes")
