@@ -12,6 +12,7 @@ router.get('/', async (req, res) => {
     return res.send('openpress backend :)')
 })
 
+// new version from dbapi branch
 router.post('/login', async (req, res) => {
 
     if (await User.login(username = req.body.username, password = req.body.password)) {
@@ -24,6 +25,7 @@ router.post('/login', async (req, res) => {
 
 })
 
+// new version from dbapi branch
 router.post('/register', async (req, res) => {
 
     if (await User.register(username = req.body.username, password = req.body.password, email = req.body.email)) {
@@ -34,54 +36,31 @@ router.post('/register', async (req, res) => {
 
 })
 
-// send more posts
+// new version from dbapi branch
 router.get('/getPosts', async (req, res) => {
 
-    // ---- OLD CODE ----
-
-    // let page = req.body.page - 1
-    // let posts_per_page = req.body.posts_per_page
-    // let filters = req.body.filters // headline, tags (with #), text
-
-    // if (filters != undefined || Object.keys(!filters).length < 0 ) {
-    //     filtered_posts = filter_posts(filters)
-    // } else {
-    //     filtered_posts = posts
-    // }
-
-    // requested_posts = filtered_posts.slice(page * posts_per_page, (page * posts_per_page) + posts_per_page)
-
-    // // delete html part of posts for better performance on web
-    // requested_posts.forEach((post) => {
-    //     delete post.html;
-    // });
-
-    // res.send({ posts: requested_posts, max_page: Math.ceil(filtered_posts.length / posts_per_page) })
-
-    // ---- OLD CODE ----
-    // ---- NEW CODE ----
-
-    // currently sends all posts. 
     let limit = req.body.limit ? limit : 10;
     let page = req.body.page ? req.body.page : 1;
-    return res.send(await Post.fetch_all(limit = limit, page = page))
+    return res.send(await Post.fetch_many_by_filter(req.body.filters, limit, page))
+
 })
 
-// sends post based on id or name (with all of the text)
+// new version from dbapi branch 
 router.get('/getPost', async (req, res) => {
-    // use the filter_posts function
-    // add author info
 
-    res.send("does not work")
+    let limit = req.body.limit ? limit : 10;
+    let page = req.body.page ? req.body.page : 1;
+    return res.send(await Post.fetch_one_by_filter(req.body.filters, limit, page))
+
 })
 
-// gets info about the post then adds it to the json and sends response based on if the post was saved or not
+// new version from dbapi branch
 router.post('/addPost', async (req, res) => {
     if (verify_token(req.body.token, config.secret_key).isValid == true) {
 
         await Post.create(req.body.image_url, req.body.headline, req.body.text, req.body.html, req.body.author, req.body.tags, req.body.timestamp)
         res.send("Post successfully added")
-        
+
     } else {
         return res.status(500).send("Invalid token");
     }

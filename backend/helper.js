@@ -1,5 +1,6 @@
 const { models } = require("./db/");
 const { salted_hash_password, salted_check_password } = require("./encryption");
+const { Op } = require('sequelize');
 
 class User {
   static async fetch_by_id(id) {
@@ -114,10 +115,15 @@ class Post {
 
   static async fetch_one_by_filter(flt) {
     /*
-    Queries the database for the post with the specified id
+    Queries the database for the post with the specified filter
     !Returns null if a post matching this filter does not exist
     */
-    const post = await models.post.findOne({ where: flt });
+    const post = await models.post.findOne({
+      where: {
+        [Op.or]: Object.keys(flt).map(column => ({ [column]: { [Op.like]: `%${flt[column]}%` } }))
+      }
+    });
+
     return post;
   }
 
@@ -125,15 +131,19 @@ class Post {
     /*
     Queries the database for many posts matching the specified filter.
     Use the limit and page arguments to set how many rows to return and which page to return.
-    !Returns null if no such posts exist
+    Returns null if no such posts exist.
     */
     const offset = (page - 1) * limit;
+
     const posts = await models.post.findAll({
-      where: flt,
-      limit: limit,
-      offset: offset,
+      where: {
+        [Op.or]: Object.keys(flt).map(column => ({ [column]: { [Op.like]: `%${flt[column]}%` } })),
+      },
+      limit,
+      offset,
     });
-    return posts;
+
+    return posts
   }
 
   static async fetch_all(limit = 10, page = 1) {
