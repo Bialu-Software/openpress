@@ -1,8 +1,5 @@
 <template>
-  <Navbar
-    :activeLink="'saved'"
-    v-if="savedPosts.length <= 0"
-  ></Navbar>
+  <Navbar :activeLink="'saved'" v-if="savedPosts.length <= 0"></Navbar>
 
   <div id="page-content" class="section error" v-if="savedPosts.length <= 0">
     <i class="bi bi-bookmarks"></i>
@@ -12,7 +9,7 @@
       tristique elit, id varius libero eleifend eu. Sed eu lacus nulla.
       Pellentesque sit amet interdum nunc. Ut eget faucibus leo.
       <br /><br />
-      Link back to the home page: <a href="/">Link</a>
+      <a href="/">Link back to the home page</a>
     </p>
   </div>
 
@@ -37,8 +34,8 @@
       <ul class="sort-menu">
         <li>Sort by:</li>
         <li class="item active" ref="item1" @click="changeSort(1)">All</li>
-        <li class="item" ref="item2" @click="changeSort(2)">Nejstarší</li>
-        <li class="item" ref="item3" @click="changeSort(3)">Nejmladší</li>
+        <li class="item" ref="item2" @click="changeSort(2)">Oldest</li>
+        <li class="item" ref="item3" @click="changeSort(3)">Newest</li>
       </ul>
     </div>
 
@@ -140,10 +137,10 @@ export default defineComponent({
 @import "@/assets/styles/main";
 
 .section-title {
-    font-size: 30px;
-    font-weight: 800;
-    color: $headline-color;
-  }
+  font-size: 30px;
+  font-weight: 800;
+  color: $headline-color;
+}
 
 #page-content:is(.error) {
   padding-top: 90px;
@@ -191,11 +188,11 @@ export default defineComponent({
 }
 
 .section-description {
-  color: #3f3f3f;
+  color: $text-color;
 }
 
 .saved-post-length {
-  color: #000;
+  color: $headline-color;
   font-weight: 700;
 }
 
@@ -208,7 +205,8 @@ export default defineComponent({
   flex-wrap: wrap;
 
   .item {
-    background: #fff;
+    color: $card-text-color;
+    background: $card-background-color;
     padding: 10px 20px;
     border-radius: 8px;
     min-width: 100px;
@@ -217,18 +215,24 @@ export default defineComponent({
     cursor: pointer;
 
     &:hover {
-      background: #8b94ff;
-      color: #fff;
+      background: $main-color;
+      color: $searchBar-button-color;
     }
+
+  }
+
+  li {
+    color: $text-color;
   }
 
   .active {
-    background: #8b94ff;
-    color: #fff;
+    background: $main-color;
+    color: $searchBar-button-color;
   }
 }
 
 @media (max-width: 454px) {
+
   .sort-menu,
   .section-description {
     padding-right: 20px;
@@ -269,13 +273,14 @@ export default defineComponent({
   #footer {
     padding: 0;
   }
+
   .section {
     // width: 100%;
     padding: 0;
+
     .section-title {
       padding-left: 20px;
     }
   }
 }
-
 </style>

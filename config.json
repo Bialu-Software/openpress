@@ -1,4 +1,7 @@
 {
+  "frontend-prod": {
+    "port": 8080
+  },
   "backend": {
     "port": 3000,
     "secret_key": "39ce9e0ef7fc2453e6c4188b46032d5c5da016bb292758ea4a0d3c2f87181b9f"
