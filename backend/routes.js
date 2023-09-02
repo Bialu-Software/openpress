@@ -1,10 +1,13 @@
 const express = require('express');
 const fs = require('fs');
-const config = require('../config.json').backend;
 
 const { generate_token, verify_token } = require('./encryption.js');
 
 const { User, Post } = require('./helper');
+
+const config = {
+  secretKey: process.env.SECRET_KEY,
+};
 
 const router = express.Router();
 
@@ -18,7 +21,7 @@ router.post('/login', async (req, res) => {
     let logged_user = (await User.fetch_by_username((username = req.body.username))).dataValues;
     let token = generate_token(
       { username: logged_user.username, id: logged_user.userid, admin: false },
-      config.secret_key,
+      config.secretKey,
     );
     return res.send(token);
   } else {
@@ -51,7 +54,7 @@ router.get('/getPost', async (req, res) => {
 
 // new version from dbapi branch
 router.post('/addPost', async (req, res) => {
-  if (verify_token(req.body.token, config.secret_key).isValid == true) {
+  if (verify_token(req.body.token, config.secretKey).isValid == true) {
     await Post.create(
       req.body.image_url,
       req.body.headline,
@@ -69,7 +72,7 @@ router.post('/addPost', async (req, res) => {
 
 // deletes post from the json and sends response based on if it was deleted or not
 router.get('/delPost', async (req, res) => {
-  if (verify_token(req.body.token, config.secret_key).isValid == true) {
+  if (verify_token(req.body.token, config.secretKey).isValid == true) {
     res.send('do something');
   } else {
     return res.status(500).send('Invalid token');
@@ -78,7 +81,7 @@ router.get('/delPost', async (req, res) => {
 
 // edit post from the json and sends response based on if it was deleted or not
 router.get('/editPost', async (req, res) => {
-  if (verify_token(req.body.token, config.secret_key).isValid == true) {
+  if (verify_token(req.body.token, config.secretKey).isValid == true) {
     res.send('do something');
   } else {
     return res.status(500).send('Invalid token');
@@ -87,7 +90,7 @@ router.get('/editPost', async (req, res) => {
 
 // sends all emails form the json (needs the token system)
 router.get('/subscriberEmailsGet', async (req, res) => {
-  if (verify_token(req.body.token, config.secret_key).isValid == true) {
+  if (verify_token(req.body.token, config.secretKey).isValid == true) {
     fs.readFile('./data/emails.json', 'utf8', (err, data) => {
       if (err) return res.status(500).send('Failed to read emails file');
 
@@ -131,7 +134,7 @@ router.get('/subscriberEmailsAdd', async (req, res) => {
 });
 
 router.get('/sendEmails', async (req, res) => {
-  if (verify_token(req.body.token, config.secret_key).isValid == true) {
+  if (verify_token(req.body.token, config.secretKey).isValid == true) {
     res.send('Emails sent');
   } else {
     return res.status(500).send('Invalid token');
