@@ -2,11 +2,7 @@
   <nav class="navbar" ref="navbar">
     <div class="mobile-navbar">
       <a class="logo" href="/">
-        <img
-          src="@/assets/images/logo.png"
-          alt="Blog logo"
-          class="image-logo"
-        />
+        <img src="@/assets/images/logo.png" alt="Blog logo" class="image-logo" />
         <p class="logo-name">OpenPress</p>
       </a>
 
@@ -22,27 +18,26 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: "Navbar",
+  name: 'Navbar',
   props: {
     activeLink: String,
   },
   methods: {
     openNavbar() {
-      (this.$refs.navbar as HTMLInputElement).classList.toggle("open");
+      (this.$refs.navbar as HTMLInputElement).classList.toggle('open');
     },
   },
   mounted() {
-    if (this.activeLink)
-      document.querySelector("." + this.activeLink)?.classList.add("active");
+    if (this.activeLink) document.querySelector('.' + this.activeLink)?.classList.add('active');
   },
 });
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/styles/main";
+@import '@/assets/styles/main';
 
 .navbar {
   display: flex;

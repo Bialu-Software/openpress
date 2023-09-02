@@ -1,5 +1,5 @@
-const { models } = require("./db/");
-const { salted_hash_password, salted_check_password } = require("./encryption");
+const { models } = require('./db/');
+const { salted_hash_password, salted_check_password } = require('./encryption');
 const { Op } = require('sequelize');
 
 class User {
@@ -120,8 +120,8 @@ class Post {
     */
     const post = await models.post.findOne({
       where: {
-        [Op.or]: Object.keys(flt).map(column => ({ [column]: { [Op.like]: `%${flt[column]}%` } }))
-      }
+        [Op.or]: Object.keys(flt).map((column) => ({ [column]: { [Op.like]: `%${flt[column]}%` } })),
+      },
     });
 
     return post;
@@ -137,13 +137,13 @@ class Post {
 
     const posts = await models.post.findAll({
       where: {
-        [Op.or]: Object.keys(flt).map(column => ({ [column]: { [Op.like]: `%${flt[column]}%` } })),
+        [Op.or]: Object.keys(flt).map((column) => ({ [column]: { [Op.like]: `%${flt[column]}%` } })),
       },
       limit,
       offset,
     });
 
-    return posts
+    return posts;
   }
 
   static async fetch_all(limit = 10, page = 1) {
@@ -160,15 +160,7 @@ class Post {
     return posts;
   }
 
-  static async create(
-    image_url,
-    headline,
-    text,
-    html,
-    author,
-    tags,
-    timestamp
-  ) {
+  static async create(image_url, headline, text, html, author, tags, timestamp) {
     /*
     Attempts to create a new post row from the specified arguments
     !Returns false if we fail, otherwise true if we succeed

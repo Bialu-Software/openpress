@@ -5,9 +5,8 @@
     <i class="bi bi-bookmarks"></i>
     <h1>Nothing is saved</h1>
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo
-      tristique elit, id varius libero eleifend eu. Sed eu lacus nulla.
-      Pellentesque sit amet interdum nunc. Ut eget faucibus leo.
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo tristique elit, id varius libero eleifend eu.
+      Sed eu lacus nulla. Pellentesque sit amet interdum nunc. Ut eget faucibus leo.
       <br /><br />
       <a href="/">Link back to the home page</a>
     </p>
@@ -25,8 +24,7 @@
       <h1 class="section-title">Saved Posts</h1>
       <p class="section-description">
         You have saved
-        <span class="saved-post-length">{{ savedPosts.length }}</span> posts in
-        total.
+        <span class="saved-post-length">{{ savedPosts.length }}</span> posts in total.
       </p>
 
       <SearchBar class="searchBar-header"></SearchBar>
@@ -48,18 +46,18 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import Footer from "@/components/Footer.vue";
-import Navbar from "@/components/Navbar.vue";
-import SearchBar from "@/components/SearchBar.vue";
-import CardGrid from "@/components/basics/CardGrid.vue";
-import { SavedPosts } from "../components/basics/classes";
-import posts from "../../backend/data/posts.json";
-import profiles from "../../backend/data/profiles.json";
-import { Post } from "@/components/basics/interfaces";
+import { defineComponent } from 'vue';
+import Footer from '@/components/Footer.vue';
+import Navbar from '@/components/Navbar.vue';
+import SearchBar from '@/components/SearchBar.vue';
+import CardGrid from '@/components/basics/CardGrid.vue';
+import { SavedPosts } from '../components/basics/classes';
+import posts from '../../backend/data/posts.json';
+import profiles from '../../backend/data/profiles.json';
+import { Post } from '@/components/basics/interfaces';
 
 export default defineComponent({
-  name: "HomeView",
+  name: 'HomeView',
   components: {
     SearchBar,
     Footer,
@@ -70,20 +68,18 @@ export default defineComponent({
     return {
       savedPosts: [] as Post[],
       activeSort: 1,
-      posts: [] as Post[]
+      posts: [] as Post[],
     };
   },
   mounted() {
     this.getAllSavedPosts();
-    document.title = "OpenPress | Saved";
+    document.title = 'OpenPress | Saved';
 
     const updatedPosts = posts.map((post) => {
       const postAuthorId = post.author;
-      const foundProfile = profiles.find(
-        (profile: any) => profile.id === postAuthorId
-      );
+      const foundProfile = profiles.find((profile: any) => profile.id === postAuthorId);
 
-      const author = foundProfile ? foundProfile.username : "Anonymous";
+      const author = foundProfile ? foundProfile.username : 'Anonymous';
 
       return {
         ...post,
@@ -98,9 +94,7 @@ export default defineComponent({
       let savedPostsArray = SavedPosts.getSavedPosts().parsedData;
 
       for (let index = 0; index < savedPostsArray.length; index++) {
-        const post = posts.find(
-          (post: any) => post.id == Number(savedPostsArray[index])
-        );
+        const post = posts.find((post: any) => post.id == Number(savedPostsArray[index]));
         savedPostsArray[index] = post;
       }
 
@@ -120,12 +114,8 @@ export default defineComponent({
         });
       }
 
-      (
-        this.$refs["item" + this.activeSort] as HTMLDataListElement
-      ).classList.remove("active");
-      (
-        this.$refs["item" + sortMenuItemId] as HTMLDataListElement
-      ).classList.add("active");
+      (this.$refs['item' + this.activeSort] as HTMLDataListElement).classList.remove('active');
+      (this.$refs['item' + sortMenuItemId] as HTMLDataListElement).classList.add('active');
 
       this.activeSort = sortMenuItemId;
     },
@@ -134,7 +124,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/styles/main";
+@import '@/assets/styles/main';
 
 .section-title {
   font-size: 30px;
@@ -218,7 +208,6 @@ export default defineComponent({
       background: $main-color;
       color: $searchBar-button-color;
     }
-
   }
 
   li {
@@ -232,7 +221,6 @@ export default defineComponent({
 }
 
 @media (max-width: 454px) {
-
   .sort-menu,
   .section-description {
     padding-right: 20px;

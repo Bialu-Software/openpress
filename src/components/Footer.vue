@@ -5,8 +5,8 @@
         <div class="column left">
           <h2 class="title">OpenPress</h2>
           <p class="description">
-            Lörem ipsum pongar valig pede, tisade. Tilåskapet decijål ifall sar
-            pure. Klittra tidögt och soment, viradade utivis. Sebina hedersvåld.
+            Lörem ipsum pongar valig pede, tisade. Tilåskapet decijål ifall sar pure. Klittra tidögt och soment,
+            viradade utivis. Sebina hedersvåld.
           </p>
         </div>
 
@@ -42,15 +42,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: "Footer",
+  name: 'Footer',
 });
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/styles/main";
+@import '@/assets/styles/main';
 
 .link {
   text-decoration: none;

@@ -22,19 +22,19 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import CardGrid from "@/components/basics/CardGrid.vue";
-import Footer from "@/components/Footer.vue";
-import Navbar from "@/components/Navbar.vue";
-import SubscribeForm from "@/components/SubscribeForm.vue";
-import LatestPost from "@/components/LatestPost.vue";
-import SearchBar from "@/components/SearchBar.vue";
-import posts from "../../backend/data/posts.json";
-import profiles from "../../backend/data/profiles.json";
-import { Post } from "../components/basics/interfaces";
+import { defineComponent } from 'vue';
+import CardGrid from '@/components/basics/CardGrid.vue';
+import Footer from '@/components/Footer.vue';
+import Navbar from '@/components/Navbar.vue';
+import SubscribeForm from '@/components/SubscribeForm.vue';
+import LatestPost from '@/components/LatestPost.vue';
+import SearchBar from '@/components/SearchBar.vue';
+import posts from '../../backend/data/posts.json';
+import profiles from '../../backend/data/profiles.json';
+import { Post } from '../components/basics/interfaces';
 
 export default defineComponent({
-  name: "HomeView",
+  name: 'HomeView',
   components: {
     SearchBar,
     CardGrid,
@@ -49,15 +49,13 @@ export default defineComponent({
     };
   },
   mounted() {
-    document.title = "OpenPress | Home";
-    
+    document.title = 'OpenPress | Home';
+
     const updatedPosts = posts.map((post) => {
       const postAuthorId = post.author;
-      const foundProfile = profiles.find(
-        (profile: any) => profile.id === postAuthorId
-      );
+      const foundProfile = profiles.find((profile: any) => profile.id === postAuthorId);
 
-      const author = foundProfile ? foundProfile.username : "Anonymous";
+      const author = foundProfile ? foundProfile.username : 'Anonymous';
 
       return {
         ...post,
@@ -71,7 +69,7 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import "@/assets/styles/main";
+@import '@/assets/styles/main';
 
 #app {
   display: flex;
