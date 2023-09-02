@@ -6,6 +6,7 @@ node_modules
 database.sqlite
 
 # local env files
+.env
 .env.local
 .env.*.local
 
