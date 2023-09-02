@@ -6,41 +6,31 @@ const dotenv = require('dotenv').config();
 
 // Check if the secret key is set
 if (process.env.SECRET_KEY === undefined || process.env.SECRET_KEY === '') {
-  // In development mode only, generate a random secret key and save it to the .env file,
-  // else throw an error
-  if (process.env.NODE_ENV === 'development') {
-    const secretKey = crypto.randomBytes(64).toString('hex');
+  const secretKey = crypto.randomBytes(64).toString('hex');
 
-    // Check if the .env file exists, if it does, add the key into it,
-    // else create it and add the secret key
-    if (fs.existsSync('.env')) {
-      let file = fs.readFileSync('.env', 'utf8');
+  // Check if the .env file exists, if it does, add the key into it,
+  // else create it and add the secret key
+  if (fs.existsSync('.env')) {
+    let file = fs.readFileSync('.env', 'utf8');
 
-      // Check if the secret key is already set in the .env file, if it is, replace the line,
-      // else add it
-      if (file.includes('SECRET_KEY')) {
-        file = file.replace(/SECRET_KEY=.*/g, `SECRET_KEY=${secretKey}\n`);
-      } else {
-        file += `\nSECRET_KEY=${secretKey}\n`;
-      }
-
-      fs.writeFileSync('.env', file);
+    // Check if the secret key is already set in the .env file, if it is, replace the line,
+    // else add it
+    if (file.includes('SECRET_KEY')) {
+      file = file.replace(/SECRET_KEY=.*/g, `SECRET_KEY=${secretKey}\n`);
     } else {
-      fs.writeFileSync('.env', `SECRET_KEY=${secretKey}\n`);
+      file += `\nSECRET_KEY=${secretKey}\n`;
     }
 
-    // Update the secret key in the environment variables
-    process.env.SECRET_KEY = secretKey;
-
-    console.warn(`\x1b[33;1mWARNING\x1b[0m: server secret key was not set,
-  a random secret key has been generated and saved to the .env file`);
+    fs.writeFileSync('.env', file);
   } else {
-    console.error(
-      `\x1b[31;1mERROR\x1b[0m: server secret key not set,
-        set the SECRET_KEY environment variable or add it to the .env file`,
-    );
-    process.exit(1);
+    fs.writeFileSync('.env', `SECRET_KEY=${secretKey}\n`);
   }
+
+  // Update the secret key in the environment variables
+  process.env.SECRET_KEY = secretKey;
+
+  console.warn(`\x1b[33;1mWARNING\x1b[0m: server secret key was not set,
+  a random secret key has been generated and saved to the .env file`);
 }
 
 const config = {
