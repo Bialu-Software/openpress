@@ -2,29 +2,23 @@
   <div class="container">
     <div class="search-bar">
       <div class="content">
-        <input
-          type="text"
-          placeholder="Search blog posts..."
-          class="search-input"
-        />
-        <button class="search-button">
-          <span class="text">Search</span> <i class="bi bi-search"></i>
-        </button>
+        <input type="text" placeholder="Search blog posts..." class="search-input" />
+        <button class="search-button"><span class="text">Search</span> <i class="bi bi-search"></i></button>
       </div>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: "SearchBar",
+  name: 'SearchBar',
 });
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/styles/main";
+@import '@/assets/styles/main';
 .search-bar {
   position: relative;
   border-radius: $searchBar-border-radius;
@@ -38,7 +32,7 @@ export default defineComponent({
     position: relative;
     align-items: center;
     gap: 15px;
-    justify-content:space-between;
+    justify-content: space-between;
   }
 
   .search-input {

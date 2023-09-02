@@ -7,7 +7,7 @@
           :style="
             'background: url(' +
             imageUrl +
-            ');' +  
+            ');' +
             'background-repeat:no-repeat;background-position:center center;background-size:cover;'
           "
         ></div>
@@ -32,11 +32,7 @@
 
         <div class="action-icons">
           <i class="bi bi-share"></i>
-          <i
-            class="bi bi-bookmark bookmark"
-            @click="setItem(id)"
-            v-if="savedPostIndex === -1"
-          ></i>
+          <i class="bi bi-bookmark bookmark" @click="setItem(id)" v-if="savedPostIndex === -1"></i>
           <i class="bi bi-bookmark-fill" @click="setItem(id)" v-else></i>
         </div>
       </div>
@@ -45,12 +41,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import { formatTimestamp } from "./functions";
-import { SavedPosts } from "./classes";
+import { defineComponent } from 'vue';
+import { formatTimestamp } from './functions';
+import { SavedPosts } from './classes';
 
 export default defineComponent({
-  name: "CardPost",
+  name: 'CardPost',
   props: {
     id: Number,
     imageUrl: String,
@@ -77,7 +73,7 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/styles/main";
+@import '@/assets/styles/main';
 
 .date {
   text-transform: uppercase;

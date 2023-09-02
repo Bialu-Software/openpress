@@ -5,6 +5,7 @@ If you are running this API separately run it from this folder and with command 
 This is the documentation for the blog backend API.
 
 ### Base URL
+
 The base URL for all endpoints is: `http://localhost:backend_port/api`
 
 ### Routes
@@ -63,6 +64,4 @@ The base URL for all endpoints is: `http://localhost:backend_port/api`
   - Request Body: `{ "token": "authentication_token" }`
   - Response: `Emails sent` if the token is valid, or `Invalid token` if the token is invalid
 
-  
 Please note that the actual functionality and implementation of these routes may vary. Make sure to provide the appropriate request bodies and handle responses accordingly.
-

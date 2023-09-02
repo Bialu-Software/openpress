@@ -1,7 +1,7 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-  sequelize.define("user", {
+  sequelize.define('user', {
     userid: {
       allowNull: false,
       autoIncrement: true,
