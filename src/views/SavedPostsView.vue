@@ -5,9 +5,7 @@
     <i class="bi bi-bookmarks"></i>
     <h1>Nothing is saved</h1>
     <p>
-      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed commodo
-      tristique elit, id varius libero eleifend eu. Sed eu lacus nulla.
-      Pellentesque sit amet interdum nunc. Ut eget faucibus leo.
+      To save a post, click on the flag at the bottom. You will see all of your saved posts here.
       <br /><br />
       <a href="/">Link back to the home page</a>
     </p>
@@ -103,6 +101,22 @@ export default defineComponent({
         );
         savedPostsArray[index] = post;
       }
+
+      savedPostsArray = savedPostsArray.map((post: { author: any; }) => {
+
+        const postAuthorId = post.author;
+        const foundProfile = profiles.find(
+          (profile: any) => profile.id === postAuthorId
+        );
+
+        const author = foundProfile ? foundProfile.username : "Anonymous";
+
+        return {
+          ...post,
+          author: author,
+        };
+
+      });
 
       this.savedPosts = savedPostsArray;
     },
