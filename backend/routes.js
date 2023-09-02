@@ -2,76 +2,65 @@ const express = require("express")
 const fs = require('fs')
 const config = require("../config.json").backend
 
-const { filter_posts } = require("./filter.js")
 const { generate_token, verify_token } = require("./encryption.js")
 
-const { models } = require("./db/");
+const { User, Post } = require("./helper");
 
 const router = express.Router()
 
-// basic entry page
 router.get('/', async (req, res) => {
-    res.send('blog backend :)')
+    return res.send('openpress backend :)')
 })
 
-// after sucessfull login sends auth token
+// new version from dbapi branch
 router.post('/login', async (req, res) => {
-    /*
-    ! This does nothing to check whether the user exists nor does it check whether password hashes match.
-    It is up to this function to fetch the username from DB, check password hashes and then
-    either return an error or generate and return a session cookie with the token.
-    A password hash function is present in encryption.js under the name salted_hash_password(PASSWORD_HERE);
-    */
-    await models.user.create({ username: "gumernus", password: "admin123" });
-    let token = generate_token({ username: "gumernus", id: 1, admin: true }, config.secret_key);
-    console.log(token);
-    res.send(token)
+
+    if (await User.login(username = req.body.username, password = req.body.password)) {
+
+        let logged_user = (await User.fetch_by_username(username = req.body.username)).dataValues
+        let token = generate_token({ username: logged_user.username, id: logged_user.userid, admin: false }, config.secret_key);
+        return res.send(token)
+
+    } else { return res.status(401).send("Invalid username or password"); }
+
 })
 
-// send more posts
+// new version from dbapi branch
+router.post('/register', async (req, res) => {
+
+    if (await User.register(username = req.body.username, password = req.body.password, email = req.body.email)) {
+
+        return res.status(201).json({ message: 'Registration successful' });
+
+    } else { return res.status(400).send("Registration was not successful"); }
+
+})
+
+// new version from dbapi branch
 router.get('/getPosts', async (req, res) => {
 
-    // ---- OLD CODE ----
+    let limit = req.body.limit ? limit : 10;
+    let page = req.body.page ? req.body.page : 1;
+    return res.send(await Post.fetch_many_by_filter(req.body.filters, limit, page))
 
-    // let page = req.body.page - 1
-    // let posts_per_page = req.body.posts_per_page
-    // let filters = req.body.filters // headline, tags (with #), text
-
-    // if (filters != undefined || Object.keys(!filters).length < 0 ) {
-    //     filtered_posts = filter_posts(filters)
-    // } else {
-    //     filtered_posts = posts
-    // }
-
-    // requested_posts = filtered_posts.slice(page * posts_per_page, (page * posts_per_page) + posts_per_page)
-
-    // // delete html part of posts for better performance on web
-    // requested_posts.forEach((post) => {
-    //     delete post.html;
-    // });
-
-    // res.send({ posts: requested_posts, max_page: Math.ceil(filtered_posts.length / posts_per_page) })
-
-    // ---- OLD CODE ----
-    // ---- NEW CODE ----
-
-    // currently sends all posts. 
-    res.send(await models.post.findAll())
 })
 
-// sends post based on id or name (with all of the text)
+// new version from dbapi branch 
 router.get('/getPost', async (req, res) => {
-    // use the filter_posts function
-    // add author info
 
-    res.send("does not work")
+    let limit = req.body.limit ? limit : 10;
+    let page = req.body.page ? req.body.page : 1;
+    return res.send(await Post.fetch_one_by_filter(req.body.filters, limit, page))
+
 })
 
-// gets info about the post then adds it to the json and sends response based on if the post was saved or not
+// new version from dbapi branch
 router.post('/addPost', async (req, res) => {
     if (verify_token(req.body.token, config.secret_key).isValid == true) {
-        await models.post.create({headline: req.body.headline, text: req.body.text, html: req.body.html, image_url: req.body.image_url, author: req.body.author, timestamp: req.body.timestamp});
+
+        await Post.create(req.body.image_url, req.body.headline, req.body.text, req.body.html, req.body.author, req.body.tags, req.body.timestamp)
         res.send("Post successfully added")
+
     } else {
         return res.status(500).send("Invalid token");
     }

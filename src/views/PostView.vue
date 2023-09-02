@@ -5,9 +5,8 @@
     <i class="bi bi-exclamation-triangle-fill"></i>
     <h1>The post was not found</h1>
     <p>
-      Oops! The requested blog post was not found. The post does not seem to
-      exist. Sorry for the inconvenience. While we investigate whether this is
-      an error, please check out our other engaging content.
+      Oops! The requested blog post was not found. The post does not seem to exist. Sorry for the inconvenience. While
+      we investigate whether this is an error, please check out our other engaging content.
       <br /><br />
       Link back to the home page: <a href="/">Link</a>
     </p>
@@ -20,12 +19,7 @@
         <h4 class="info-value">{{ formatTimestamp(post.timestamp) }}</h4>
       </div>
     </div>
-    <img
-      :src="post.imageUrl"
-      class="post-img"
-      alt="Post image"
-      draggable="false"
-    />
+    <img :src="post.imageUrl" class="post-img" alt="Post image" draggable="false" />
     <div class="under-img">
       <div class="author">
         <img
@@ -83,21 +77,21 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import CardGrid from "@/components/basics/CardGrid.vue";
-import Footer from "@/components/Footer.vue";
-import Navbar from "@/components/Navbar.vue";
-import SubscribeForm from "@/components/SubscribeForm.vue";
-import posts from "../../backend/data/posts.json";
-import CardPost from "@/components/basics/CardPost.vue";
+import { defineComponent } from 'vue';
+import CardGrid from '@/components/basics/CardGrid.vue';
+import Footer from '@/components/Footer.vue';
+import Navbar from '@/components/Navbar.vue';
+import SubscribeForm from '@/components/SubscribeForm.vue';
+import posts from '../../backend/data/posts.json';
+import CardPost from '@/components/basics/CardPost.vue';
 
-import { formatTimestamp } from "@/components/basics/functions";
-import { Post } from "@/components/basics/interfaces";
-import { SavedPosts } from "@/components/basics/classes";
-import profiles from "../../backend/data/profiles.json";
+import { formatTimestamp } from '@/components/basics/functions';
+import { Post } from '@/components/basics/interfaces';
+import { SavedPosts } from '@/components/basics/classes';
+import profiles from '../../backend/data/profiles.json';
 
 export default defineComponent({
-  name: "PostView",
+  name: 'PostView',
   components: {
     CardGrid,
     Footer,
@@ -115,15 +109,13 @@ export default defineComponent({
     };
   },
   mounted() {
-    document.title = "OpenPress | Post";
+    document.title = 'OpenPress | Post';
 
     const updatedPosts = posts.map((post) => {
       const postAuthorId = post.author;
-      const foundProfile = profiles.find(
-        (profile: any) => profile.id === postAuthorId
-      );
+      const foundProfile = profiles.find((profile: any) => profile.id === postAuthorId);
 
-      const author = foundProfile ? foundProfile.username : "Anonymous";
+      const author = foundProfile ? foundProfile.username : 'Anonymous';
 
       return {
         ...post,
@@ -143,10 +135,8 @@ export default defineComponent({
     let post = posts.find((post: any) => post.id === this.postId);
 
     if (post) {
-      const foundProfile = profiles.find(
-        (profile: any) => profile.id == post?.author
-      );
-      let author = foundProfile ? foundProfile.username : "Anonymous";
+      const foundProfile = profiles.find((profile: any) => profile.id == post?.author);
+      let author = foundProfile ? foundProfile.username : 'Anonymous';
 
       let updatedPost = {
         ...post,
@@ -160,14 +150,14 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-@import "@/assets/styles/main";
-@import url("../assets/styles/codePostFormater.scss");
+@import '@/assets/styles/main';
+@import url('../assets/styles/codePostFormater.scss');
 
 .section-title {
-    font-size: 30px;
-    font-weight: 800;
-    color: $headline-color;
-  }
+  font-size: 30px;
+  font-weight: 800;
+  color: $headline-color;
+}
 .content {
   * {
     color: $text-color;

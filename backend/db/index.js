@@ -1,19 +1,19 @@
-const { Sequelize } = require("sequelize");
-const { apply_relations } = require("./model_relations.js");
+const { Sequelize } = require('sequelize');
+const { apply_relations } = require('./model_relations.js');
 
 // In a real app, you should keep the database connection URL as an environment variable.
 // But for this example, we will just use a local SQLite database.
 // const sequelize = new Sequelize(process.env.DB_CONNECTION_URL);
 const sequelize = new Sequelize({
-  dialect: "sqlite",
-  storage: "database.sqlite",
-  logQueryParameters: true,
+  dialect: 'sqlite',
+  storage: 'database.sqlite',
   benchmark: true,
+  logging: false,
 });
 
 const modelDefiners = [
-  require("./models/user.model"),
-  require("./models/post.model"),
+  require('./models/user.model'),
+  require('./models/post.model'),
   // Add more models here...
   // require('./models/item'),
 ];
@@ -29,10 +29,10 @@ apply_relations(sequelize);
 sequelize
   .sync()
   .then(() => {
-    console.log("Database synced successfully");
+    console.log('Database synced successfully');
   })
   .catch((error) => {
-    console.error("Error syncing the database:", error);
+    console.error('Error syncing the database:', error);
   });
 
 // We export the sequelize connection instance to be used around our app.

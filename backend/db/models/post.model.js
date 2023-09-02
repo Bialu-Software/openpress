@@ -1,14 +1,14 @@
-const { DataTypes } = require("sequelize");
+const { DataTypes } = require('sequelize');
 //const User = require("./user.model");
 
 function remove_illegal_tag_characters(inputString) {
   const regex = /[^A-Za-z0-9_]/g;
-  const cleanedString = inputString.replace(regex, "");
+  const cleanedString = inputString.replace(regex, '');
   return cleanedString;
 }
 
 module.exports = (sequelize) => {
-  sequelize.define("post", {
+  sequelize.define('post', {
     postid: {
       allowNull: false,
       autoIncrement: true,
@@ -23,7 +23,7 @@ module.exports = (sequelize) => {
     headline: {
       allowNull: false,
       type: DataTypes.STRING,
-      unique: true,
+      unique: false,
     },
     text: {
       allowNull: false,
@@ -40,22 +40,22 @@ module.exports = (sequelize) => {
       allowNull: false,
       unique: false,
       references: {
-        model: "users",
-        key: "userid",
+        model: 'users',
+        key: 'userid',
       },
     },
     tags: {
       type: DataTypes.TEXT,
       get() {
-        const hash_tag = "#";
-        const tags_str = this.getDataValue("tags");
-        const tags_arr = tags_str ? tags_str.split(",") : [];
+        const hash_tag = '#';
+        const tags_str = this.getDataValue('tags');
+        const tags_arr = tags_str ? tags_str.split(',') : [];
         return tags_arr.map((tag) => hash_tag + tag);
       },
       set(values) {
         const cleanedValues = values.map(remove_illegal_tag_characters);
-        const tagsStr = cleanedValues.join(",");
-        this.setDataValue("tags", tagsStr);
+        const tagsStr = cleanedValues.join(',');
+        this.setDataValue('tags', tagsStr);
       },
     },
     timestamp: {

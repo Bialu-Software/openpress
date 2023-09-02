@@ -3,8 +3,8 @@
     <div class="info-card">
       <h3 class="info-title">Stay up to date!</h3>
       <p class="info-description">
-        Stay Updated with Exclusive Content and Offers! Subscribe Now for the
-        Latest News and Exciting Updates Delivered Straight to Your Inbox.
+        Stay Updated with Exclusive Content and Offers! Subscribe Now for the Latest News and Exciting Updates Delivered
+        Straight to Your Inbox.
       </p>
     </div>
 
@@ -21,51 +21,47 @@
           required
         />
         <button type="submit" class="submit-button">Subscribe</button>
-        <p class="message success" v-if="isError == 'false'">
-          Thank you for registering your email.
-        </p>
-        <p class="message error" v-if="isError == 'true'">
-          An error occurred, please try again.
-        </p>
+        <p class="message success" v-if="isError == 'false'">Thank you for registering your email.</p>
+        <p class="message error" v-if="isError == 'true'">An error occurred, please try again.</p>
       </form>
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: "SubscribeForm",
+  name: 'SubscribeForm',
   data() {
     return {
-      Form: { email: "" },
-      isError: "",
+      Form: { email: '' },
+      isError: '',
     };
   },
   methods: {
     test() {
       try {
         console.log(this.Form.email);
-        this.isError = "false";
+        this.isError = 'false';
       } catch (e) {
         console.log(e);
-        this.isError = "true";
+        this.isError = 'true';
       }
 
       setTimeout(() => {
-        this.isError = "false";
+        this.isError = 'false';
       }, 4000);
     },
     hideMessage() {
-      this.isError = "";
+      this.isError = '';
     },
   },
 });
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/styles/main";
+@import '@/assets/styles/main';
 
 .container {
   display: flex;
@@ -188,7 +184,8 @@ export default defineComponent({
   .container {
     width: 100%;
     padding: 0px;
-    .subscribe-form, .info-card {
+    .subscribe-form,
+    .info-card {
       padding: 20px;
       border-radius: 0;
     }

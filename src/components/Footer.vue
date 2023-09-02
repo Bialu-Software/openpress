@@ -5,8 +5,8 @@
         <div class="column left">
           <h2 class="title">OpenPress</h2>
           <p class="description">
-            Lörem ipsum pongar valig pede, tisade. Tilåskapet decijål ifall sar
-            pure. Klittra tidögt och soment, viradade utivis. Sebina hedersvåld.
+            This blog is a customized edition of the OpenPress blog, designed and developed by the dedicated team at Bialu
+            Software and their collaborators.
           </p>
         </div>
 
@@ -25,7 +25,7 @@
             <ul class="links">
               <li><a href="#" class="link">Terms of Use</a></li>
               <li><a href="#" class="link">Privacy Policy</a></li>
-              <li><a href="#" class="link">Admin-Panel</a></li>
+              <li><a href="#" class="link">Admin Panel</a></li>
             </ul>
           </div>
         </div>
@@ -42,15 +42,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: "Footer",
+  name: 'Footer',
 });
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/styles/main";
+@import '@/assets/styles/main';
 
 .link {
   text-decoration: none;

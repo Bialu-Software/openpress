@@ -10,14 +10,11 @@
       >
         <div class="content">
           <p class="date">Luboš Polívka • April 8, 2023</p>
-          <h2 class="headline">
-            5 Easy Ways to Boost Your Productivity Today!
-          </h2>
+          <h2 class="headline">5 Easy Ways to Boost Your Productivity Today!</h2>
           <p class="description">
-            In this blog post, we'll share five simple and effective ways to
-            supercharge your productivity and get more done in less time. From
-            organizing your workspace to setting clear goals, these tips are
-            easy to implement and will help you make the most of your day!
+            In this blog post, we'll share five simple and effective ways to supercharge your productivity and get more
+            done in less time. From organizing your workspace to setting clear goals, these tips are easy to implement
+            and will help you make the most of your day!
           </p>
         </div>
       </div>
@@ -26,15 +23,15 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 
 export default defineComponent({
-  name: "LatestPost",
+  name: 'LatestPost',
 });
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/styles/main";
+@import '@/assets/styles/main';
 
 .header {
   display: flex;
@@ -60,7 +57,7 @@ export default defineComponent({
   transition: 0.2s;
 
   &::before {
-    content: "";
+    content: '';
     position: absolute;
     top: 0;
     right: 0;

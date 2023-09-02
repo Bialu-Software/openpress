@@ -16,12 +16,12 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
-import CardPost from "@/components/basics/CardPost.vue";
+import { defineComponent } from 'vue';
+import CardPost from '@/components/basics/CardPost.vue';
 
 export default defineComponent({
-  name: "CardGrid",
-  props: ["postsArray"],
+  name: 'CardGrid',
+  props: ['postsArray'],
   components: {
     CardPost,
   },
@@ -29,7 +29,7 @@ export default defineComponent({
 </script>
 
 <style scoped lang="scss">
-@import "@/assets/styles/main";
+@import '@/assets/styles/main';
 
 .card-container {
   display: grid;
