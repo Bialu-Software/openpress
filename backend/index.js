@@ -29,8 +29,7 @@ if (process.env.SECRET_KEY === undefined || process.env.SECRET_KEY === '') {
   // Update the secret key in the environment variables
   process.env.SECRET_KEY = secretKey;
 
-  console.warn(`\x1b[33;1mWARNING\x1b[0m: server secret key was not set,
-  a random secret key has been generated and saved to the .env file`);
+  console.warn(`\x1b[33;1mWARNING\x1b[0m: server secret key was not set, a random secret key has been generated and saved to the .env file`);
 }
 
 const config = {
