@@ -31,8 +31,8 @@
       <ul class="sort-menu">
         <li>Sort by:</li>
         <li class="item active" ref="item1" @click="changeSort(1)">All</li>
-        <li class="item" ref="item2" @click="changeSort(2)">Oldest</li>
-        <li class="item" ref="item3" @click="changeSort(3)">Newest</li>
+        <li class="item" ref="item2" @click="changeSort(2)">Newest</li>
+        <li class="item" ref="item3" @click="changeSort(3)">Oldest</li>
       </ul>
     </div>
 

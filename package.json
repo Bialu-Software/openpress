@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "concurrently \"npm run serve\" \"node ./backend\"",
+    "start": "concurrently -n client,server \"npm run serve\" \"node ./backend\"",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "syncdb": "node ./backend/db/sync.js"
@@ -14,6 +14,7 @@
     "concurrently": "^8.2.0",
     "core-js": "^3.8.3",
     "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "fs": "^0.0.1-security",
     "sequelize": "^6.32.1",

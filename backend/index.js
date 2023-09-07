@@ -2,13 +2,40 @@ const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const crypto = require('crypto');
-const config = require('../config.json').backend;
+const dotenv = require('dotenv').config();
 
-if (config.secret_key == 'change_this_to_whatever') {
-  const newSecretKey = crypto.randomBytes(32).toString('hex');
-  config.secret_key = newSecretKey;
-  fs.writeFileSync('./config.json', JSON.stringify({ backend: config }, null, 2));
+// Check if the secret key is set
+if (process.env.SECRET_KEY === undefined || process.env.SECRET_KEY === '') {
+  const secretKey = crypto.randomBytes(64).toString('hex');
+
+  // Check if the .env file exists, if it does, add the key into it,
+  // else create it and add the secret key
+  if (fs.existsSync('.env')) {
+    let file = fs.readFileSync('.env', 'utf8');
+
+    // Check if the secret key is already set in the .env file, if it is, replace the line,
+    // else add it
+    if (file.includes('SECRET_KEY')) {
+      file = file.replace(/SECRET_KEY=.*/g, `SECRET_KEY=${secretKey}\n`);
+    } else {
+      file += `\nSECRET_KEY=${secretKey}\n`;
+    }
+
+    fs.writeFileSync('.env', file);
+  } else {
+    fs.writeFileSync('.env', `SECRET_KEY=${secretKey}\n`);
+  }
+
+  // Update the secret key in the environment variables
+  process.env.SECRET_KEY = secretKey;
+
+  console.warn(`\x1b[33;1mWARNING\x1b[0m: server secret key was not set, a random secret key has been generated and saved to the .env file`);
 }
+
+const config = {
+  port: process.env.SERVER_PORT || 3000,
+  secretKey: process.env.SECRET_KEY,
+};
 
 const app = express();
 const routes = require('./routes');
