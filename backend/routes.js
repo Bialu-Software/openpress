@@ -72,21 +72,23 @@ router.post('/addPost', async (req, res) => {
 
 // deletes post from the json and sends response based on if it was deleted or not
 router.get('/delPost', async (req, res) => {
-  if (verify_token(req.body.token, config.secretKey).isValid == true) {
-    res.send('do something');
-  } else {
-    return res.status(500).send('Invalid token');
-  }
-});
+    if (verify_token(req.body.token, config.secret_key).isValid == true) {
+        // check if the outhor of the post is the same as in the post that will be deleted and if not dont delete it.
+        res.send("do something")
+    } else {
+        return res.status(500).send("Invalid token");
+    }
+})
 
 // edit post from the json and sends response based on if it was deleted or not
 router.get('/editPost', async (req, res) => {
-  if (verify_token(req.body.token, config.secretKey).isValid == true) {
-    res.send('do something');
-  } else {
-    return res.status(500).send('Invalid token');
-  }
-});
+    if (verify_token(req.body.token, config.secret_key).isValid == true) {
+        // basically addPost 
+        res.send("do something")
+    } else {
+        return res.status(500).send("Invalid token");
+    }
+})
 
 // sends all emails form the json (needs the token system)
 router.get('/subscriberEmailsGet', async (req, res) => {

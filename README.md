@@ -55,7 +55,8 @@ npm run start
 
 Now if you go to `http://localhost:8080/` in your browser, you should see something like this:
 
-![screenshot of the website](https://github.com/Bialu-Software/openpress/assets/70224036/48174d72-2636-48dd-9ace-e03ca51aff82)
+![screenshots of the web on diffrent devices](https://github.com/Bialu-Software/openpress/assets/70224036/edcb7231-dd11-4de5-9ac5-adcc0f3e40b2)
+
 
 ## 🎈 Usage <a name="usage"></a>
 
