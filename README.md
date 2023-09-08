@@ -14,8 +14,9 @@
 - [Getting Started](#getting_started)
 - [Usage](#usage)
 - [Deployment](#deployment)
+- [Customization](#maintenance)
+- [Maintenance](#maintenance)
 - [Built Using](#built_using)
-- [Maintenance](#aintenance)
 
 ## 🧐 About <a name = "about"></a>
 
@@ -70,7 +71,30 @@ To fully deploy your blog we suggest using a linux system. And to build and mini
 npm run build
 ```
 
-## ⚙ Maintenance <a name = "aintenance"></a>
+## ✨ Customization <a name = "customization"></a>
+
+You can customize your blog in a variety of ways. The easiest way is to change change the css in `./src/assets/styles/main.scss`. By changing the things in the file you will change the appearance of your blog.
+
+### Other ways to customize the project
+
+- Changing the `./backend/routes.js` and adding some new routes you may want. This is the basic template for a route:
+```js
+router.get('/path-to-your-route', async (req, res) => {
+
+    if (true) {
+        res.send("Route is working")
+    } else {
+        return res.status(404).send("Page not found");
+    }
+
+})
+```
+- Adding your own env variable. Just edit or create the `.env` file and add your secret key. (this change may cause logout of all users). See more parameters in `.env.example`
+```
+SECRET_KEY=your-secret-key
+```
+
+## ⚙ Maintenance <a name = "maintenance"></a>
 
 If you want to update the database schema, you will afterwards need to run this command
 
