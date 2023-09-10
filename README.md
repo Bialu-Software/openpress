@@ -34,6 +34,12 @@ To do anything with the project you will need to install Node.js from [this webs
 node -v
 ```
 
+Clone the repository
+
+```
+git clone https://github.com/Bialu-Software/openpress.git
+```
+
 ### Installing
 
 Now you need to go to the project directory and run this command so you have all of the needed packages.
