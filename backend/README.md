@@ -198,10 +198,7 @@ curl -X GET -d "filters={\"key\":\"value\"}&limit=10&page=1" http://localhost:30
 **Body Parameters**:
 
 - `token` (string): A valid authentication token for user authorization.
-- `image_url` (string
-
-): The URL of the post's image.
-
+- `image_url` (string): The URL of the post's image.
 - `headline` (string): The headline or title of the post.
 - `text` (string): The text content of the post.
 - `html` (string): The HTML content of the post (optional).
