@@ -241,4 +241,3 @@ curl -X POST -d "token=valid_token&image_url=post_image_url&headline=post_headli
 ```
 
 </details>
-```
