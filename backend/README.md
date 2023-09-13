@@ -1,67 +1,247 @@
-If you are running this API separately run it from this folder and with command `node index.js`
+# OpenPress API Routes Documentation
 
-## API Documentation
+## Route: `/`
 
-This is the documentation for the blog backend API.
+**Description**: This route serves as the root endpoint for the OpenPress backend. It responds with a message indicating that it's the OpenPress backend.
 
-### Base URL
+<details>
+<summary><strong>Usage (Axios)</strong></summary>
 
-The base URL for all endpoints is: `http://localhost:backend_port/api`
+```javascript
+axios
+  .get('http://localhost:3000/api/v1/')
+  .then((response) => {
+    console.log(response.data); // 'openpress backend :)'
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+```
 
-### Routes
+</details>
 
-- `GET /`
-  - Description: Basic entry page
-  - Response: `blog backend :)`
+<details>
+<summary><strong>Usage (cURL)</strong></summary>
 
-- `POST /login`
-  - Description: Authenticate user and generate an authentication token
-  - Request Body: `{ }`
-  - Response: Authentication token
+```bash
+curl -X GET http://localhost:3000/api/v1/
+```
 
-- `GET /getPosts`
-  - Description: Retrieve posts from the JSON file
-  - Request Body: `{ "page": 1, "posts_per_page": 10, "filters": { "headline": "example", "text": "example", "tags": "#example" } }`
-  - Response: Object containing posts and max_page
+</details>
 
-- `GET /getPost`
-  - Description: Retrieve a specific post by ID or name
-  - Request Body: `{ }`
-  - Response: `backend test`
+## Route: `/login`
 
-- `GET /addPost`
-  - Description: Add a new post to the JSON file
-  - Request Body: `{ "token": "authentication_token" }`
-  - Response: `do something` if the token is valid, or `Invalid token` if the token is invalid
+**Description**: This route handles user login authentication. It expects a username and password in the request body and validates them.
 
-- `GET /delPost`
-  - Description: Delete a post from the JSON file
-  - Request Body: `{ "token": "authentication_token" }`
-  - Response: `do something` if the token is valid, or `Invalid token` if the token is invalid
+**Body Parameters**:
 
-- `GET /editPost`
-  - Description: Edit a post in the JSON file
-  - Request Body: `{ "token": "authentication_token" }`
-  - Response: `do something` if the token is valid, or `Invalid token` if the token is invalid
+- `username` (string): The username of the user trying to log in.
+- `password` (string): The password of the user trying to log in.
 
-- `GET /subscriberEmailsGet`
-  - Description: Retrieve all emails from the emails JSON file
-  - Request Body: `{ "token": "authentication_token" }`
-  - Response: Array of email addresses if the token is valid, or `Invalid token` if the token is invalid
+<details>
+<summary><strong>Usage (Axios)</strong></summary>
 
-- `POST /subscriberEmailsDel`
-  - Description: Delete an email from the emails JSON file
-  - Request Body: `{ "email": "example@example.com" }`
-  - Response: Success message if the email was deleted successfully
+```javascript
+const loginData = {
+  username: 'your_username',
+  password: 'your_password',
+};
 
-- `GET /subscriberEmailsAdd`
-  - Description: Add an email to the emails JSON file
-  - Request Body: `{ "email": "example@example.com" }`
-  - Response: Success message if the email was added successfully
+axios
+  .post('http://localhost:3000/api/v1/login', loginData)
+  .then((response) => {
+    console.log(response.data); // JSON Web Token (JWT) if successful
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+```
 
-- `GET /sendEmails`
-  - Description: Send emails
-  - Request Body: `{ "token": "authentication_token" }`
-  - Response: `Emails sent` if the token is valid, or `Invalid token` if the token is invalid
+</details>
 
-Please note that the actual functionality and implementation of these routes may vary. Make sure to provide the appropriate request bodies and handle responses accordingly.
+<details>
+<summary><strong>Usage (cURL)</strong></summary>
+
+```bash
+curl -X POST -d "username=your_username&password=your_password" http://localhost:3000/api/v1/login
+```
+
+</details>
+
+## Route: `/register`
+
+**Description**: This route handles user registration. It expects a username, password, and email in the request body for user registration.
+
+**Body Parameters**:
+
+- `username` (string): The desired username for the new user.
+- `password` (string): The password for the new user.
+- `email` (string): The email address for the new user.
+
+<details>
+<summary><strong>Usage (Axios)</strong></summary>
+
+```javascript
+const registrationData = {
+  username: 'new_user',
+  password: 'new_password',
+  email: 'new@example.com',
+};
+
+axios
+  .post('http://localhost:3000/api/v1/register', registrationData)
+  .then((response) => {
+    console.log(response.data); // 'Registration successful' if successful
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+```
+
+</details>
+
+<details>
+<summary><strong>Usage (cURL)</strong></summary>
+
+```bash
+curl -X POST -d "username=new_user&password=new_password&email=new@example.com" http://localhost:3000/api/v1/register
+```
+
+</details>
+
+## Route: `/getPosts`
+
+**Description**: This route retrieves a list of posts based on specified filters, limit, and page. It expects optional filters, limit, and page parameters in the request body. If no filters, limit, or page are provided, it defaults to returning 10 posts on page 1.
+
+**Body Parameters**:
+
+- `filters` (object): Optional filters to apply when fetching posts.
+- `limit` (number): Optional. The maximum number of posts to retrieve (default: 10).
+- `page` (number): Optional. The page number of the results to retrieve (default: 1).
+
+<details>
+<summary><strong>Usage (Axios)</strong></summary>
+
+```javascript
+const requestData = {
+  filters: { key: 'value' }, // Optional filters
+  limit: 10, // Optional limit
+  page: 1, // Optional page
+};
+
+axios
+  .get('http://localhost:3000/api/v1/getPosts', { data: requestData })
+  .then((response) => {
+    console.log(response.data); // List of posts based on the provided filters, limit, and page
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+```
+
+</details>
+
+<details>
+<summary><strong>Usage (cURL)</strong></summary>
+
+```bash
+curl -X GET -d "filters={\"key\":\"value\"}&limit=10&page=1" http://localhost:3000/api/v1/getPosts
+```
+
+</details>
+
+## Route: `/getPost`
+
+**Description**: This route retrieves a single post based on specified filters, limit, and page. It expects optional filters, limit, and page parameters in the request body. If no filters, limit, or page are provided, it defaults to returning a single post.
+
+**Body Parameters**:
+
+- `filters` (object): Optional filters to apply when fetching the post.
+- `limit` (number): Optional. The maximum number of posts to retrieve (default: 10).
+- `page` (number): Optional. The page number of the result to retrieve (default: 1).
+
+<details>
+<summary><strong>Usage (Axios)</strong></summary>
+
+```javascript
+const requestData = {
+  filters: { key: 'value' }, // Optional filters
+  limit: 10, // Optional limit
+  page: 1, // Optional page
+};
+
+axios
+  .get('http://localhost:3000/api/v1/getPost', { data: requestData })
+  .then((response) => {
+    console.log(response.data); // Single post based on the provided filters, limit, and page
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+```
+
+</details>
+
+<details>
+<summary><strong>Usage (cURL)</strong></summary>
+
+```bash
+curl -X GET -d "filters={\"key\":\"value\"}&limit=10&page=1" http://localhost:3000/api/v1/getPost
+```
+
+</details>
+
+## Route: `/addPost`
+
+**Description**: This route allows authenticated users to add a new post. It expects a valid authentication token in the request body for authorization.
+
+**Body Parameters**:
+
+- `token` (string): A valid authentication token for user authorization.
+- `image_url` (string
+
+): The URL of the post's image.
+
+- `headline` (string): The headline or title of the post.
+- `text` (string): The text content of the post.
+- `html` (string): The HTML content of the post (optional).
+- `author` (string): The author of the post.
+- `tags` (array): An array of tags associated with the post.
+- `timestamp` (string): The timestamp for the post's creation.
+
+<details>
+<summary><strong>Usage (Axios)</strong></summary>
+
+```javascript
+const postData = {
+  token: 'valid_token', // Valid authentication token
+  image_url: 'post_image_url',
+  headline: 'post_headline',
+  text: 'post_text',
+  html: 'post_html', // Optional HTML content
+  author: 'post_author',
+  tags: ['tag1', 'tag2'], // Array of tags
+  timestamp: 'post_timestamp',
+};
+
+axios
+  .post('http://localhost:3000/api/v1/addPost', postData)
+  .then((response) => {
+    console.log(response.data); // 'Post successfully added' if successful
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+```
+
+</details>
+
+<details>
+<summary><strong>Usage (cURL)</strong></summary>
+
+```bash
+curl -X POST -d "token=valid_token&image_url=post_image_url&headline=post_headline&text=post_text&html=post_html&author=post_author&tags=[\"tag1\",\"tag2\"]&timestamp=post_timestamp" http://localhost:3000/api/v1/addPost
+```
+
+</details>
+```
