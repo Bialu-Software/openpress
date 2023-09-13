@@ -9,7 +9,7 @@
 
 ```javascript
 axios
-  .get('http://localhost:3000/api/v1/')
+  .get('http://localhost:3000/api/')
   .then((response) => {
     console.log(response.data); // 'openpress backend :)'
   })
@@ -24,7 +24,7 @@ axios
 <summary><strong>Usage (cURL)</strong></summary>
 
 ```bash
-curl -X GET http://localhost:3000/api/v1/
+curl -X GET http://localhost:3000/api/
 ```
 
 </details>
@@ -48,7 +48,7 @@ const loginData = {
 };
 
 axios
-  .post('http://localhost:3000/api/v1/login', loginData)
+  .post('http://localhost:3000/api/login', loginData)
   .then((response) => {
     console.log(response.data); // JSON Web Token (JWT) if successful
   })
@@ -63,7 +63,7 @@ axios
 <summary><strong>Usage (cURL)</strong></summary>
 
 ```bash
-curl -X POST -d "username=your_username&password=your_password" http://localhost:3000/api/v1/login
+curl -X POST -d "username=your_username&password=your_password" http://localhost:3000/api/login
 ```
 
 </details>
@@ -89,7 +89,7 @@ const registrationData = {
 };
 
 axios
-  .post('http://localhost:3000/api/v1/register', registrationData)
+  .post('http://localhost:3000/api/register', registrationData)
   .then((response) => {
     console.log(response.data); // 'Registration successful' if successful
   })
@@ -104,7 +104,7 @@ axios
 <summary><strong>Usage (cURL)</strong></summary>
 
 ```bash
-curl -X POST -d "username=new_user&password=new_password&email=new@example.com" http://localhost:3000/api/v1/register
+curl -X POST -d "username=new_user&password=new_password&email=new@example.com" http://localhost:3000/api/register
 ```
 
 </details>
@@ -130,7 +130,7 @@ const requestData = {
 };
 
 axios
-  .get('http://localhost:3000/api/v1/getPosts', { data: requestData })
+  .get('http://localhost:3000/api/getPosts', { data: requestData })
   .then((response) => {
     console.log(response.data); // List of posts based on the provided filters, limit, and page
   })
@@ -145,7 +145,7 @@ axios
 <summary><strong>Usage (cURL)</strong></summary>
 
 ```bash
-curl -X GET -d "filters={\"key\":\"value\"}&limit=10&page=1" http://localhost:3000/api/v1/getPosts
+curl -X GET -d "filters={\"key\":\"value\"}&limit=10&page=1" http://localhost:3000/api/getPosts
 ```
 
 </details>
@@ -171,7 +171,7 @@ const requestData = {
 };
 
 axios
-  .get('http://localhost:3000/api/v1/getPost', { data: requestData })
+  .get('http://localhost:3000/api/getPost', { data: requestData })
   .then((response) => {
     console.log(response.data); // Single post based on the provided filters, limit, and page
   })
@@ -186,7 +186,7 @@ axios
 <summary><strong>Usage (cURL)</strong></summary>
 
 ```bash
-curl -X GET -d "filters={\"key\":\"value\"}&limit=10&page=1" http://localhost:3000/api/v1/getPost
+curl -X GET -d "filters={\"key\":\"value\"}&limit=10&page=1" http://localhost:3000/api/getPost
 ```
 
 </details>
@@ -222,7 +222,7 @@ const postData = {
 };
 
 axios
-  .post('http://localhost:3000/api/v1/addPost', postData)
+  .post('http://localhost:3000/api/addPost', postData)
   .then((response) => {
     console.log(response.data); // 'Post successfully added' if successful
   })
@@ -237,7 +237,7 @@ axios
 <summary><strong>Usage (cURL)</strong></summary>
 
 ```bash
-curl -X POST -d "token=valid_token&image_url=post_image_url&headline=post_headline&text=post_text&html=post_html&author=post_author&tags=[\"tag1\",\"tag2\"]&timestamp=post_timestamp" http://localhost:3000/api/v1/addPost
+curl -X POST -d "token=valid_token&image_url=post_image_url&headline=post_headline&text=post_text&html=post_html&author=post_author&tags=[\"tag1\",\"tag2\"]&timestamp=post_timestamp" http://localhost:3000/api/addPost
 ```
 
 </details>
