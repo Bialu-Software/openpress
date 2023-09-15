@@ -6,7 +6,7 @@ const { generate_token, verify_token } = require('./encryption.js');
 const { User, Post } = require('./helper');
 
 const config = {
-  secretKey: process.env.SECRET_KEY,
+  secret_key: process.env.SECRET_KEY,
 };
 
 const router = express.Router();
@@ -45,7 +45,7 @@ router.post('/login', async (req, res) => {
     let logged_user = (await User.fetch_by_username((username = req.body.username))).dataValues;
     let token = generate_token(
       { username: logged_user.username, id: logged_user.userid, admin: false },
-      config.secretKey,
+      config.secret_key,
     );
     return res.send(token);
   } else {
@@ -139,7 +139,7 @@ router.get('/getPost', async (req, res) => {
  *   - If the token is invalid, it returns a 500 Internal Server Error with 'Invalid token'.
  */
 router.post('/addPost', async (req, res) => {
-  if (verify_token(req.body.token, config.secretKey).isValid == true) {
+  if (verify_token(req.body.token, config.secret_key).isValid == true) {
     await Post.create(
       req.body.image_url,
       req.body.headline,
@@ -155,33 +155,75 @@ router.post('/addPost', async (req, res) => {
   }
 });
 
+/**
+ * Route: POST /delPost
+ * 
+ * Description: This route allows authenticated users to delete a post by its ID.
+ *              It expects a valid authentication token in the request body for authorization.
+ *              The user must be the author of the post to delete it.
+ * 
+ * Body Parameters:
+ *   - token (string): A valid authentication token for user authorization.
+ *   - id (number): The ID of the post to be deleted.
+ * 
+ * Output:
+ *   - If the token is valid and the user is the author of the post, it responds with 'Post successfully deleted'.
+ *   - If the token is invalid, it returns a 500 Internal Server Error with 'Invalid token'.
+ *   - If the post doesn't exist, it returns a 500 Internal Server Error with "Post doesn't exist".
+ *   - If the user is not the author of the post, it returns a 500 Internal Server Error with "This post can be deleted only by its author".
+ */
+router.get('/delPost', async (req, res) => {
+
+  let user = verify_token(req.body.token, config.secret_key)
+  let post = await Post.fetch_by_id(req.body.id)
+
+  if (user.isValid == true) {
+
+    if (post !== null) {
+
+      if (post.author == user.payload.id) {
+
+        await Post.delete_by_id(req.body.id);
+        res.send("Post successfully deleted")
+
+      } else { return res.status(500).send("This post can be deleted only by its author"); }
+
+    } else { return res.status(500).send("Post doesn't exist"); }
+
+  } else { return res.status(500).send("Invalid token"); }
+
+})
+
 //
 // TODO FROM NOW ON
 //
 
-// deletes post from the json and sends response based on if it was deleted or not
-router.get('/delPost', async (req, res) => {
-  if (verify_token(req.body.token, config.secret_key).isValid == true) {
-    // check if the outhor of the post is the same as in the post that will be deleted and if not dont delete it.
-    res.send("do something")
-  } else {
-    return res.status(500).send("Invalid token");
-  }
-})
-
 // edit post from the json and sends response based on if it was deleted or not
 router.get('/editPost', async (req, res) => {
-  if (verify_token(req.body.token, config.secret_key).isValid == true) {
-    // basically addPost 
-    res.send("do something")
-  } else {
-    return res.status(500).send("Invalid token");
-  }
+
+  let user = verify_token(req.body.token, config.secret_key)
+  let post = await Post.fetch_by_id(req.body.id)
+
+  if (user.isValid == true) {
+
+    if (post !== null) {
+
+      if (post.author == user.payload.id) {
+
+        // EDIT THE POST HERE
+        res.send("Post successfully edited")
+
+      } else { return res.status(500).send("This post can be edited only by its author"); }
+
+    } else { return res.status(500).send("Post doesn't exist"); }
+
+  } else { return res.status(500).send("Invalid token"); }
+
 })
 
 // sends all emails form the json (needs the token system)
 router.get('/subscriberEmailsGet', async (req, res) => {
-  if (verify_token(req.body.token, config.secretKey).isValid == true) {
+  if (verify_token(req.body.token, config.secret_keyy).isValid == true) {
     fs.readFile('./data/emails.json', 'utf8', (err, data) => {
       if (err) return res.status(500).send('Failed to read emails file');
 
@@ -225,7 +267,7 @@ router.get('/subscriberEmailsAdd', async (req, res) => {
 });
 
 router.get('/sendEmails', async (req, res) => {
-  if (verify_token(req.body.token, config.secretKey).isValid == true) {
+  if (verify_token(req.body.token, config.secret_key).isValid == true) {
     res.send('Emails sent');
   } else {
     return res.status(500).send('Invalid token');

@@ -55,7 +55,7 @@ axios
   .catch((error) => {
     console.error(error);
   });
-```
+  ```
 
 </details>
 
@@ -96,7 +96,7 @@ axios
   .catch((error) => {
     console.error(error);
   });
-```
+  ```
 
 </details>
 
@@ -137,7 +137,7 @@ axios
   .catch((error) => {
     console.error(error);
   });
-```
+  ```
 
 </details>
 
@@ -178,7 +178,7 @@ axios
   .catch((error) => {
     console.error(error);
   });
-```
+  ```
 
 </details>
 
@@ -229,7 +229,7 @@ axios
   .catch((error) => {
     console.error(error);
   });
-```
+  ```
 
 </details>
 
@@ -238,6 +238,45 @@ axios
 
 ```bash
 curl -X POST -d "token=valid_token&image_url=post_image_url&headline=post_headline&text=post_text&html=post_html&author=post_author&tags=[\"tag1\",\"tag2\"]&timestamp=post_timestamp" http://localhost:3000/api/addPost
+```
+
+</details>
+
+## Route: `/delPost`
+
+**Description**: This route allows authenticated users to delete a post by its ID. It expects a valid authentication token in the request body for authorization. The user must be the author of the post to delete it.
+
+**Body Parameters**:
+
+- `token` (string): A valid authentication token for user authorization.
+- `id` (number): The ID of the post to be deleted.
+
+<details>
+<summary><strong>Usage (Axios)</strong></summary>
+
+```javascript
+const delPostData = {
+  token: 'valid_token', // Valid authentication token
+  id: 12345, // ID of the post to delete
+};
+
+axios
+  .post('http://localhost:3000/api/delPost', delPostData)
+  .then((response) => {
+    console.log(response.data); // 'Post successfully deleted' if successful
+  })
+  .catch((error) => {
+    console.error(error);
+  });
+  ```
+
+</details>
+
+<details>
+<summary><strong>Usage (cURL)</strong></summary>
+
+```bash
+curl -X POST -d "token=valid_token&id=12345" http://localhost:3000/api/delPost
 ```
 
 </details>

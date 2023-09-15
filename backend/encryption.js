@@ -7,20 +7,20 @@ function encrypt_email() {}
 
 function decrypt_email() {}
 
-function generate_token(payload, secretKey) {
+function generate_token(payload, secret_key) {
   /*
   Will generate a HMAC SHA512 JWT token from the payload and provided key
   */
   payload.timestamp = Date.now();
   const encodedPayload = Buffer.from(JSON.stringify(payload)).toString('base64');
-  const hmac = crypto.createHmac('sha512', secretKey);
+  const hmac = crypto.createHmac('sha512', secret_key);
   hmac.update(encodedPayload);
   const signature = hmac.digest('base64');
   const jwt = `${encodedPayload}.${signature}`;
   return jwt;
 }
 
-function verify_token(jwt, secretKey) {
+function verify_token(jwt, secret_key) {
   /*
   Will verify the signature of a HMAC SHA512 JWT token with the provided key
   If the return value isValid is false, it means this token has been manipulated with and should not be trusted at all.
@@ -28,7 +28,7 @@ function verify_token(jwt, secretKey) {
   */
   try {
     const [encodedPayload, signature] = jwt.split('.');
-    const hmac = crypto.createHmac('sha512', secretKey);
+    const hmac = crypto.createHmac('sha512', secret_key);
     hmac.update(encodedPayload);
     const calculatedSignature = hmac.digest('base64');
     const isSignatureValid = signature === calculatedSignature;
