@@ -350,6 +350,21 @@ class Email {
       return false;
     }
   }
+
+  static async fetch_all(limit = 1000, page = 1) {
+    /*
+     * Queries the database for all emails.
+     * Use the limit and page arguments to set how many rows to return and which page to return.
+     */
+    const offset = (page - 1) * limit;
+
+    const emails = await models.email.findAll({
+      limit,
+      offset,
+    });
+
+    return emails;
+  }
 }
 
 module.exports = {
