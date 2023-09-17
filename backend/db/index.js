@@ -12,6 +12,7 @@ const sequelize = new Sequelize({
 });
 
 const modelDefiners = [
+  require('./models/mail.model'),
   require('./models/user.model'),
   require('./models/post.model'),
   // Add more models here...
