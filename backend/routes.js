@@ -1,5 +1,4 @@
 const express = require('express');
-const fs = require('fs');
 
 const { generate_token, verify_token } = require('./encryption.js');
 
@@ -18,12 +17,12 @@ const router = express.Router();
  * Description: This route serves as the root endpoint for the OpenPress backend.
  *              It responds with a message indicating that it's the OpenPress backend.
  * 
- * Body Parameters: None
+ * Request Method: GET
  * 
- * Output: A simple text response 'openpress backend :)' indicating the OpenPress backend.
+ * Output: A simple text response 'OpenPress backend.' indicating the OpenPress backend.
  */
 router.get('/', async (req, res) => {
-  return res.send('openpress backend :)');
+  return res.status(200).send('OpenPress backend.');
 });
 
 /**
@@ -32,11 +31,13 @@ router.get('/', async (req, res) => {
  * Description: This route handles user login authentication.
  *              It expects a username and password in the request body and validates them.
  * 
- * Body Parameters:
+ * Request Method: POST
+ * 
+ * Request Body:
  *   - username (string): The username of the user trying to log in.
  *   - password (string): The password of the user trying to log in.
  * 
- * Output:
+ * Response:
  *   - If authentication is successful, it returns a JSON Web Token (JWT) containing user information.
  *   - If authentication fails, it returns a 401 Unauthorized status with an error message.
  */
@@ -47,9 +48,9 @@ router.post('/login', async (req, res) => {
       { username: logged_user.username, id: logged_user.userid, admin: false },
       config.secret_key,
     );
-    return res.send(token);
+    return res.status(200).json({ token });
   } else {
-    return res.status(401).send('Invalid username or password');
+    return res.status(401).send('Authentication failed. Invalid username or password.');
   }
 });
 
@@ -59,12 +60,14 @@ router.post('/login', async (req, res) => {
  * Description: This route handles user registration.
  *              It expects a username, password, and email in the request body for user registration.
  * 
- * Body Parameters:
+ * Request Method: POST
+ * 
+ * Request Body:
  *   - username (string): The desired username for the new user.
  *   - password (string): The password for the new user.
  *   - email (string): The email address for the new user.
  * 
- * Output:
+ * Response:
  *   - If registration is successful, it responds with a 201 Created status.
  *   - If registration fails, it responds with a 400 Bad Request status.
  */
@@ -72,7 +75,7 @@ router.post('/register', async (req, res) => {
   // if (await User.register((username = req.body.username), (password = req.body.password), (email = req.body.email))) {
   // return res.status(201).json({ message: 'Registration successful' });
   // } else {
-  return res.status(400).send('Registration was not successful');
+  return res.status(400).send('Registration failed. Please check your input.');
   // }
 });
 
@@ -83,23 +86,25 @@ router.post('/register', async (req, res) => {
  *              It expects optional filters, limit, and page parameters in the request body.
  *              If no filters, limit, or page are provided, it defaults to returning 10 posts on page 1.
  * 
- * Body Parameters:
+ * Request Method: GET
+ * 
+ * Request Body:
  *   - filters (object): Optional filters to apply when fetching posts.
  *   - limit (number): Optional. The maximum number of posts to retrieve (default: 10).
  *   - page (number): Optional. The page number of the results to retrieve (default: 1).
  * 
- * Output:
+ * Response:
  *   - A JSON response containing a list of posts based on the provided filters, limit, and page.
  */
 router.get('/getPosts', async (req, res) => {
-  let limit = req.body.limit ? limit : 10;
+  let limit = req.body.limit ? req.body.limit : 10;
   let page = req.body.page ? req.body.page : 1;
   let filters;
 
   if (req.body.filters === undefined) { filters = { headline: "" } }
   else if (typeof req.body.filters == "object") { filters = Object.keys(req.body.filters).length == 0 ? { headline: "" } : req.body.filters }
 
-  return res.send(await Post.fetch_many_by_filter(filters, limit, page));
+  return res.status(200).json(await Post.fetch_many_by_filter(filters, limit, page));
 });
 
 /**
@@ -109,23 +114,25 @@ router.get('/getPosts', async (req, res) => {
  *              It expects optional filters, limit, and page parameters in the request body.
  *              If no filters, limit, or page are provided, it defaults to returning a single post.
  * 
- * Body Parameters:
+ * Request Method: GET
+ * 
+ * Request Body:
  *   - filters (object): Optional filters to apply when fetching the post.
  *   - limit (number): Optional. The maximum number of posts to retrieve (default: 10).
  *   - page (number): Optional. The page number of the result to retrieve (default: 1).
  * 
- * Output:
+ * Response:
  *   - A JSON response containing the post that matches the provided filters, limit, and page.
  */
 router.get('/getPost', async (req, res) => {
-  let limit = req.body.limit ? limit : 10;
+  let limit = req.body.limit ? req.body.limit : 10;
   let page = req.body.page ? req.body.page : 1;
   let filters;
 
   if (req.body.filters === undefined) { filters = { headline: "" } }
   else if (typeof req.body.filters == "object") { filters = Object.keys(req.body.filters).length == 0 ? { headline: "" } : req.body.filters }
 
-  return res.send(await Post.fetch_one_by_filter(filters, limit, page));
+  return res.status(200).json(await Post.fetch_one_by_filter(filters, limit, page));
 });
 
 /**
@@ -134,7 +141,9 @@ router.get('/getPost', async (req, res) => {
  * Description: This route allows authenticated users to add a new post.
  *              It expects a valid authentication token in the request body for authorization.
  * 
- * Body Parameters:
+ * Request Method: POST
+ * 
+ * Request Body:
  *   - token (string): A valid authentication token for user authorization.
  *   - image_url (string): The URL of the post's image.
  *   - headline (string): The headline or title of the post.
@@ -144,7 +153,7 @@ router.get('/getPost', async (req, res) => {
  *   - tags (array): An array of tags associated with the post.
  *   - timestamp (string): The timestamp for the post's creation.
  * 
- * Output:
+ * Response:
  *   - If the token is valid, it responds with 'Post successfully added'.
  *   - If the token is invalid, it returns a 500 Internal Server Error with 'Invalid token'.
  */
@@ -160,7 +169,7 @@ router.post('/addPost', async (req, res) => {
       req.body.tags,
       req.body.timestamp
     );
-    res.send('Post successfully added');
+    res.status(201).send('Post successfully added');
 
   } else {
     return res.status(500).send('Invalid token');
@@ -174,17 +183,19 @@ router.post('/addPost', async (req, res) => {
  *              It expects a valid authentication token in the request body for authorization.
  *              The user must be the author of the post to delete it.
  * 
- * Body Parameters:
+ * Request Method: POST
+ * 
+ * Request Body:
  *   - token (string): A valid authentication token for user authorization.
  *   - id (number): The ID of the post to be deleted.
  * 
- * Output:
+ * Response:
  *   - If the token is valid and the user is the author of the post, it responds with 'Post successfully deleted'.
  *   - If the token is invalid, it returns a 500 Internal Server Error with 'Invalid token'.
  *   - If the post doesn't exist, it returns a 500 Internal Server Error with "Post doesn't exist".
  *   - If the user is not the author of the post, it returns a 500 Internal Server Error with "This post can be deleted only by its author".
  */
-router.get('/delPost', async (req, res) => {
+router.post('/delPost', async (req, res) => {
 
   let user = verify_token(req.body.token, config.secret_key)
   let post = await Post.fetch_by_id(req.body.id)
@@ -196,7 +207,7 @@ router.get('/delPost', async (req, res) => {
       if (post.author == user.payload.id) {
 
         await Post.delete_by_id(req.body.id);
-        res.send("Post successfully deleted")
+        res.status(200).send("Post successfully deleted")
 
       } else { return res.status(500).send("This post can be deleted only by its author"); }
 
@@ -206,8 +217,8 @@ router.get('/delPost', async (req, res) => {
 
 })
 
-// edit post from the json and sends response based on if it was deleted or not
-router.get('/editPost', async (req, res) => {
+// edit post from the JSON and sends a response based on if it was edited or not
+router.post('/editPost', async (req, res) => {
 
   let user = verify_token(req.body.token, config.secret_key)
   let post = await Post.fetch_by_id(req.body.id)
@@ -228,7 +239,7 @@ router.get('/editPost', async (req, res) => {
           req.body.tags,
           req.body.timestamp
         );
-        res.send("Post successfully edited")
+        res.status(200).send("Post successfully edited")
 
       } else { return res.status(500).send("This post can be edited only by its author"); }
 
@@ -238,36 +249,36 @@ router.get('/editPost', async (req, res) => {
 
 })
 
-// sends all emails form the json (needs the token system)
+// Sends all emails from the JSON (needs the token system)
 router.get('/subscriberEmailsGet', async (req, res) => {
   if (verify_token(req.body.token, config.secret_key).isValid == true) {
 
     let limit = req.body.limit ? limit : 1000;
     let page = req.body.page ? req.body.page : 1;
 
-    res.send(await Email.fetch_all(limit, page));
+    res.status(200).json(await Email.fetch_all(limit, page));
 
   } else {
     return res.status(500).send('Invalid token');
   }
 });
 
-router.get('/subscriberEmailsDel', async (req, res) => {
+router.post('/subscriberEmailsDel', async (req, res) => {
 
   await Email.delete_by_email(req.body.email)
-  res.send('Email successfully unsubscribed');
+  res.status(200).send('Email successfully unsubscribed');
 
 });
 
-router.get('/subscriberEmailsAdd', async (req, res) => {
+router.post('/subscriberEmailsAdd', async (req, res) => {
 
   await Email.new(req.body.email, req.body.timestamp)
-  res.send('Email successfully subscribed');
+  res.status(200).send('Email successfully subscribed');
 
 });
 
 // Will send emails (probably with node-mail or something)
-// router.get('/sendEmails', async (req, res) => {
+// router.post('/sendEmails', async (req, res) => {
 
 // });
 

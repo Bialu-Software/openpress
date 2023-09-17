@@ -1,3 +1,5 @@
+# OUTDATED!
+
 # OpenPress API Routes Documentation
 
 ## Route: `/`
