@@ -64,6 +64,13 @@ Now if you go to `http://localhost:8080/` in your browser, you should see someth
 
 ![screenshots of the web on diffrent devices](https://github.com/Bialu-Software/openpress/assets/70224036/edcb7231-dd11-4de5-9ac5-adcc0f3e40b2)
 
+### Registering
+
+In order to use the project you will need to register a profile. You can do that with this command:
+
+```
+node ./backend/register.js <username> <password> <email>
+```
 
 ## 🎈 Usage <a name="usage"></a>
 
