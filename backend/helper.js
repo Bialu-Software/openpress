@@ -41,7 +41,7 @@ class User {
     ! Returns false if we fail, otherwise true if we succeed
     */
     try {
-      await models.user.destroy({ where: { id: uid } });
+      await models.user.destroy({ where: { userid: uid } });
       return true;
     } catch (err) {
       return false;
@@ -195,7 +195,69 @@ class Post {
   }
 }
 
+class Email {
+  static async fetch_by_id(id) {
+    /*
+    Queries the database for the mail with the specified id
+    !Returns null if a mail with this ID does not exist
+    */
+    const email = await models.email.findByPk(id);
+    return email;
+  }
+  static async fetch_by_email(q_email) {
+    /*
+    Queries the database for the specified mail
+    !Returns null if this mail doesn't exist in the emails table
+    */
+    const email = await models.email.findOne({
+      where: {
+        email: q_email,
+      },
+    });
+    return email;
+  }
+  static async delete_by_id(uid) {
+    /*
+    Attempts to drop the row with the specified id.
+    ! Returns false if we fail, otherwise true if we succeed
+    */
+    try {
+      await models.email.destroy({ where: { mailid: uid } });
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }
+  static async delete_by_email(q_email) {
+    /*
+    Attempts to drop the row with the specified email.
+    ! Returns false if we fail, otherwise true if we succeed
+    */
+    const email = await Email.fetch_by_email(q_email);
+    if (!email) {
+      return false;
+    }
+    return await Email.delete_by_id(email.mailid);
+  }
+  static async new(i_email, i_timestamp) {
+    /*
+    Saves a new email
+    Returns false if an error occoures, otherwise true if we succeed.
+    */
+    try {
+      await models.email.create({
+        email: i_email,
+        timestamp: i_timestamp,
+      });
+      return true;
+    } catch (err) {
+      return false;
+    }
+  }
+}
+
 module.exports = {
   User,
   Post,
+  Email,
 };
