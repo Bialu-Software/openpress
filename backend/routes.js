@@ -3,7 +3,7 @@ const fs = require('fs');
 
 const { generate_token, verify_token } = require('./encryption.js');
 
-const { User, Post } = require('./helper');
+const { User, Post, Email } = require('./helper');
 
 const config = {
   secret_key: process.env.SECRET_KEY,
@@ -69,11 +69,11 @@ router.post('/login', async (req, res) => {
  *   - If registration fails, it responds with a 400 Bad Request status.
  */
 router.post('/register', async (req, res) => {
-  if (await User.register((username = req.body.username), (password = req.body.password), (email = req.body.email))) {
-    return res.status(201).json({ message: 'Registration successful' });
-  } else {
-    return res.status(400).send('Registration was not successful');
-  }
+  // if (await User.register((username = req.body.username), (password = req.body.password), (email = req.body.email))) {
+  // return res.status(201).json({ message: 'Registration successful' });
+  // } else {
+  return res.status(400).send('Registration was not successful');
+  // }
 });
 
 /**
@@ -94,7 +94,12 @@ router.post('/register', async (req, res) => {
 router.get('/getPosts', async (req, res) => {
   let limit = req.body.limit ? limit : 10;
   let page = req.body.page ? req.body.page : 1;
-  return res.send(await Post.fetch_many_by_filter(req.body.filters, limit, page));
+  let filters;
+
+  if (req.body.filters === undefined) { filters = { headline: "" } }
+  else if (typeof req.body.filters == "object") { filters = Object.keys(req.body.filters).length == 0 ? { headline: "" } : req.body.filters }
+
+  return res.send(await Post.fetch_many_by_filter(filters, limit, page));
 });
 
 /**
@@ -115,7 +120,12 @@ router.get('/getPosts', async (req, res) => {
 router.get('/getPost', async (req, res) => {
   let limit = req.body.limit ? limit : 10;
   let page = req.body.page ? req.body.page : 1;
-  return res.send(await Post.fetch_one_by_filter(req.body.filters, limit, page));
+  let filters;
+
+  if (req.body.filters === undefined) { filters = { headline: "" } }
+  else if (typeof req.body.filters == "object") { filters = Object.keys(req.body.filters).length == 0 ? { headline: "" } : req.body.filters }
+
+  return res.send(await Post.fetch_one_by_filter(filters, limit, page));
 });
 
 /**
@@ -140,6 +150,7 @@ router.get('/getPost', async (req, res) => {
  */
 router.post('/addPost', async (req, res) => {
   if (verify_token(req.body.token, config.secret_key).isValid == true) {
+
     await Post.create(
       req.body.image_url,
       req.body.headline,
@@ -147,9 +158,10 @@ router.post('/addPost', async (req, res) => {
       req.body.html,
       req.body.author,
       req.body.tags,
-      req.body.timestamp,
+      req.body.timestamp
     );
     res.send('Post successfully added');
+
   } else {
     return res.status(500).send('Invalid token');
   }
@@ -194,10 +206,6 @@ router.get('/delPost', async (req, res) => {
 
 })
 
-//
-// TODO FROM NOW ON
-//
-
 // edit post from the json and sends response based on if it was deleted or not
 router.get('/editPost', async (req, res) => {
 
@@ -210,7 +218,16 @@ router.get('/editPost', async (req, res) => {
 
       if (post.author == user.payload.id) {
 
-        // EDIT THE POST HERE
+        await Post.update(
+          req.body.id,
+          req.body.image_url,
+          req.body.headline,
+          req.body.text,
+          req.body.html,
+          req.body.author,
+          req.body.tags,
+          req.body.timestamp
+        );
         res.send("Post successfully edited")
 
       } else { return res.status(500).send("This post can be edited only by its author"); }
@@ -223,55 +240,35 @@ router.get('/editPost', async (req, res) => {
 
 // sends all emails form the json (needs the token system)
 router.get('/subscriberEmailsGet', async (req, res) => {
-  if (verify_token(req.body.token, config.secret_keyy).isValid == true) {
-    fs.readFile('./data/emails.json', 'utf8', (err, data) => {
-      if (err) return res.status(500).send('Failed to read emails file');
+  if (verify_token(req.body.token, config.secret_key).isValid == true) {
 
-      const jsonArray = JSON.parse(data);
-      res.send(jsonArray);
-    });
+    let limit = req.body.limit ? limit : 1000;
+    let page = req.body.page ? req.body.page : 1;
+
+    res.send(await Email.fetch_all(limit, page));
+
   } else {
     return res.status(500).send('Invalid token');
   }
 });
 
-router.post('/subscriberEmailsDel', async (req, res) => {
-  const email = req.body.email;
+router.get('/subscriberEmailsDel', async (req, res) => {
 
-  fs.readFile('./data/emails.json', 'utf8', (err, data) => {
-    if (err) return res.status(500).send('Failed to read emails file');
+  await Email.delete_by_email(req.body.email)
+  res.send('Email successfully unsubscribed');
 
-    const jsonArray = JSON.parse(data).filter((item) => item !== email);
-
-    fs.writeFile('./data/emails.json', JSON.stringify(jsonArray), 'utf8', (err) => {
-      if (err) return res.status(500).send('Failed to update emails file');
-      res.send('Email was successfully deleted');
-    });
-  });
 });
 
 router.get('/subscriberEmailsAdd', async (req, res) => {
-  const email = req.body.email;
 
-  fs.readFile('./data/emails.json', 'utf8', (err, data) => {
-    if (err) return res.status(500).send('Failed to read emails file');
+  await Email.new(req.body.email, req.body.timestamp)
+  res.send('Email successfully subscribed');
 
-    const jsonArray = JSON.parse(data);
-    jsonArray.push(email);
-
-    fs.writeFile('./data/emails.json', JSON.stringify(jsonArray), 'utf8', (err) => {
-      if (err) return res.status(500).send('Failed to write to emails file');
-      res.send('Email was successfully added to the email list');
-    });
-  });
 });
 
-router.get('/sendEmails', async (req, res) => {
-  if (verify_token(req.body.token, config.secret_key).isValid == true) {
-    res.send('Emails sent');
-  } else {
-    return res.status(500).send('Invalid token');
-  }
-});
+// Will send emails (probably with node-mail or something)
+// router.get('/sendEmails', async (req, res) => {
+
+// });
 
 module.exports = router;
