@@ -177,13 +177,13 @@ router.post('/addPost', async (req, res) => {
 });
 
 /**
- * Route: POST /delPost
+ * Route: DELETE /delPost
  * 
  * Description: This route allows authenticated users to delete a post by its ID.
  *              It expects a valid authentication token in the request body for authorization.
  *              The user must be the author of the post to delete it.
  * 
- * Request Method: POST
+ * Request Method: DELETE
  * 
  * Request Body:
  *   - token (string): A valid authentication token for user authorization.
@@ -195,7 +195,7 @@ router.post('/addPost', async (req, res) => {
  *   - If the post doesn't exist, it returns a 500 Internal Server Error with "Post doesn't exist".
  *   - If the user is not the author of the post, it returns a 500 Internal Server Error with "This post can be deleted only by its author".
  */
-router.post('/delPost', async (req, res) => {
+router.delete('/delPost', async (req, res) => {
 
   let user = verify_token(req.body.token, config.secret_key)
   let post = await Post.fetch_by_id(req.body.id)
@@ -263,7 +263,7 @@ router.get('/subscriberEmailsGet', async (req, res) => {
   }
 });
 
-router.post('/subscriberEmailsDel', async (req, res) => {
+router.delete('/subscriberEmailsDel', async (req, res) => {
 
   await Email.delete_by_email(req.body.email)
   res.status(200).send('Email successfully unsubscribed');
