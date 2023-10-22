@@ -3,8 +3,8 @@
     <div class="info-card">
       <h3 class="info-title">Stay up to date!</h3>
       <p class="info-description">
-        Stay Updated with Exclusive Content and Offers! Subscribe Now for the Latest News and Exciting Updates Delivered
-        Straight to Your Inbox.
+        Stay updated with exclusive content and offers! Subscribe now for the latest news and exciting updates delivered
+        straight to your inbox.
       </p>
     </div>
 
