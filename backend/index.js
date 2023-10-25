@@ -2,8 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const crypto = require('crypto');
-const dotenv = require('dotenv').config();
-const path = require('path'); // Import the 'path' module
 
 // Check if the secret key is set
 if (process.env.SECRET_KEY === undefined || process.env.SECRET_KEY === '') {
@@ -43,13 +41,8 @@ const routes = require('./routes');
 
 app.use(cors());
 app.use(express.json());
-
-// Serve static files from the 'dist' folder for routes that don't match '/api'
-app.use(express.static(path.join(__dirname, 'dist'));
-
 app.use('/api', routes);
 
 app.listen(config.port, () => {
   console.log(`Backend running on http://localhost:${config.port}/api/`);
-  console.log(`Serving dist on http://localhost:${config.port}/*`);
 });
