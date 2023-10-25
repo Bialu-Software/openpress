@@ -57,7 +57,7 @@ npm run syncdb
 After is everything installed we can run it:
 
 ```
-npm run start
+npm run start-dev
 ```
 
 Now if you go to `http://localhost:8080/` in your browser, you should see something like this:
@@ -82,6 +82,12 @@ To fully deploy your blog we suggest using a linux system. And to build and mini
 
 ```
 npm run build
+```
+
+Now just run the build with the backend:
+
+```
+npm run start-build
 ```
 
 ## ✨ Customization <a name = "customization"></a>

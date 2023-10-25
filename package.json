@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "concurrently -n client,server \"npm run serve\" \"node ./backend\"",
+    "start-dev": "concurrently -n client,server \"npm run serve\" \"node ./backend\"",
+    "start-build": "concurrently -n client,server \"node ./backend/run_build.js\" \"node ./backend\"",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "syncdb": "node ./backend/db/sync.js"

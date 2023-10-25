@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 const fs = require('fs');
 const crypto = require('crypto');
-const dotenv = require('dotenv').config();
 
 // Check if the secret key is set
 if (process.env.SECRET_KEY === undefined || process.env.SECRET_KEY === '') {
