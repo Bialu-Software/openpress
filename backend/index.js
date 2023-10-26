@@ -19,7 +19,7 @@ if (!process.env.SECRET_KEY) {
 }
 
 const config = {
-  port: process.env.SERVER_PORT || 3000,
+  port: process.env.BACKEND_PORT || 3000,
   secret_key: process.env.SECRET_KEY,
 };
 
