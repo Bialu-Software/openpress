@@ -12,10 +12,10 @@
 
 - [About](#about)
 - [Getting Started](#getting_started)
-- [Usage](#usage)
 - [Deployment](#deployment)
 - [Customization](#maintenance)
 - [Maintenance](#maintenance)
+- [Usage](#usage)
 - [Built Using](#built_using)
 
 ## 🧐 About <a name = "about"></a>
@@ -72,10 +72,6 @@ In order to use the project you will need to register a profile. You can do that
 node ./backend/register.js <username> <password> <email>
 ```
 
-## 🎈 Usage <a name="usage"></a>
-
-This project is not intended for commercial use but nothing is stopping you :)
-
 ## 🚀 Deployment <a name = "deployment"></a>
 
 To fully deploy your blog we suggest using a linux system. And to build and minify the project use:
@@ -121,6 +117,9 @@ If you want to update the database schema, you will afterwards need to run this 
 npm run syncdb
 ```
 
+## 🎈 Usage <a name="usage"></a>
+
+This project is not intended for commercial use but nothing is stopping you :)
 
 ## ⛏️ Built Using <a name = "built_using"></a>
 
