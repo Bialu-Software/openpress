@@ -1,13 +1,9 @@
 <template>
   <head>
-    <!-- Basic OG Meta Tags -->
-    <meta property="og:title" content="{{ post.headline }}" />
-    <meta property="og:description" content="{{ post.text }}" />
-    <meta property="og:image" content="{{ post.imageUrl }}" />
-  
-    <!-- Article-Specific OG Meta Tags (if applicable) -->
-    <meta property="article:published_time" content="{{ post.timestamp }}" />
-    <meta property="article:author" content="{{ post.author }}" />
+    <meta property="og:title" content={{ post.headline }} />
+    <meta property="og:description" content={{ post.text }} />
+    <meta property="og:image" content={{ post.imageUrl }} />
+    <meta property="article:author" content={{ post.author }} />
   </head>
 
   <Navbar></Navbar>
