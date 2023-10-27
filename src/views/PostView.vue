@@ -1,9 +1,9 @@
 <template>
   <head>
-    <meta property="og:title" content={{ post.headline }} />
-    <meta property="og:description" content={{ post.text }} />
-    <meta property="og:image" content={{ post.imageUrl }} />
-    <meta property="article:author" content={{ post.author }} />
+    <meta property="og:title" :content="post.headline" />
+    <meta property="og:description" :content="post.text" />
+    <meta property="og:image" :content="post.imageUrl" />
+    <meta property="article:author" :content="post.author" />
   </head>
 
   <Navbar></Navbar>
