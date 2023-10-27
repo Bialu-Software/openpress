@@ -1,10 +1,4 @@
 <template>
-  <head>
-    <meta property="og:title" :content="post.headline" />
-    <meta property="og:description" :content="post.text" />
-    <meta property="og:image" :content="post.imageUrl" />
-    <meta property="article:author" :content="post.author" />
-  </head>
 
   <Navbar></Navbar>
 
@@ -29,12 +23,8 @@
     <img :src="post.imageUrl" class="post-img" alt="Post image" draggable="false" />
     <div class="under-img">
       <div class="author">
-        <img
-          src="https://media.extra.cz/static/img/2020/12/c39c180-103863-sym6-2500.jpg"
-          class="author-img"
-          alt="Author profile image"
-          draggable="false"
-        />
+        <img src="https://media.extra.cz/static/img/2020/12/c39c180-103863-sym6-2500.jpg" class="author-img"
+          alt="Author profile image" draggable="false" />
         <div class="info">
           <p class="info-text">Written By</p>
           <h4 class="info-value">{{ post.author }}</h4>
@@ -81,10 +71,12 @@
   <SubscribeForm id="subscribe-form" class="section"></SubscribeForm>
 
   <Footer class="section"></Footer>
+  
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import { useSeoMeta } from '@unhead/vue'
 import CardGrid from '@/components/basics/CardGrid.vue';
 import Footer from '@/components/Footer.vue';
 import Navbar from '@/components/Navbar.vue';
@@ -116,7 +108,6 @@ export default defineComponent({
     };
   },
   mounted() {
-    document.title = 'OpenPress | Post';
 
     const updatedPosts = posts.map((post) => {
       const postAuthorId = post.author;
@@ -152,8 +143,18 @@ export default defineComponent({
 
       this.post = updatedPost;
     }
+
+    // OG Meta tags. https://unhead.unjs.io/setup/vue/installation and https://unhead.unjs.io/usage/composables/use-seo-meta
+    useSeoMeta({
+      title: this.post.headline,
+      description: this.post.text,
+      ogDescription: this.post.text,
+      ogTitle: this.post.headline,
+      ogImage: this.post.imageUrl,
+    })
   },
 });
+
 </script>
 
 <style lang="scss" scoped>
@@ -165,6 +166,7 @@ export default defineComponent({
   font-weight: 800;
   color: $headline-color;
 }
+
 .content {
   * {
     color: $text-color;
@@ -371,9 +373,11 @@ export default defineComponent({
   #footer {
     padding: 0;
   }
+
   .section {
     // width: 100%;
     padding: 0;
+
     .section-title {
       padding-left: 20px;
     }

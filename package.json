@@ -10,6 +10,7 @@
     "syncdb": "node ./backend/db/sync.js"
   },
   "dependencies": {
+    "@unhead/vue": "^1.7.4",
     "bcrypt": "^5.1.1",
     "bootstrap-icons": "^1.10.5",
     "concurrently": "^8.2.0",
