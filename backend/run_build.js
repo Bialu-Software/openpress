@@ -26,7 +26,8 @@ app.get('*', async (req, res) => {
       const defaultMetaTags = `
         <meta property="og:title" content="OpenPress">
         <meta property="og:description" content="✨Fully open-source and customizable blog written in vuejs and nodejs">
-        <meta property="og:image" content="https://user-images.githubusercontent.com/70224036/266075141-edcb7231-dd11-4de5-9ac5-adcc0f3e40b2.png">
+        <meta property="og:image" content="https://repository-images.githubusercontent.com/625324075/889fecd0-b5b1-43e2-a97c-02d57d0ed394">
+        <meta name="twitter:image:src" content="https://repository-images.githubusercontent.com/625324075/889fecd0-b5b1-43e2-a97c-02d57d0ed394"/>
       `;
 
       if (!postId) {
@@ -44,6 +45,7 @@ app.get('*', async (req, res) => {
               `<meta property="og:title" content="${post.headline}">` +
               `<meta property="og:description" content="${post.text}">` +
               `<meta property="og:image" content="${post.imageUrl}">`
+              `<meta name="twitter:image:src" content="${post.imageUrl}">`
           );
         } else {
           // If the post is not found, set default meta tags
