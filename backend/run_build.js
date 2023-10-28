@@ -7,7 +7,7 @@ const app = express();
 const port = process.env.PRODUCTION_PORT || 80;
 
 // Serve static files from the 'dist' folder
-app.use(express.static(path.join(__dirname, '../dist'));
+app.use(express.static(path.join(__dirname, '../dist')));
 
 // Handle all routes and serve the main index.html file
 app.get('*', async (req, res) => {
