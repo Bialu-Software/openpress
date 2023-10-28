@@ -19,6 +19,8 @@ if (!process.env.SECRET_KEY) {
 }
 
 const config = {
+  frontend_production_port: process.env.PRODUCTION_PORT || 80,
+  frontend_development_port: process.env.DEVELOPMENT_PORT || 8080,
   port: process.env.BACKEND_PORT || 3000,
   secret_key: process.env.SECRET_KEY,
 };
@@ -26,7 +28,10 @@ const config = {
 const app = express();
 const routes = require('./routes');
 
-app.use(cors());
+app.use(cors({
+  origin: [`http://0.0.0.0:${config.frontend_production_port}`, `http://0.0.0.0:${config.frontend_development_port}`, `http://localhost:${config.frontend_production_port}`, `http://localhost:${config.frontend_development_port}`],
+  credentials: true
+}));
 app.use(express.json());
 app.use('/api', routes);
 
