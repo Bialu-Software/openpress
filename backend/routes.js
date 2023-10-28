@@ -1,12 +1,9 @@
 const express = require('express');
 
 const { generate_token, verify_token } = require('./encryption.js');
-
 const { User, Post, Email } = require('./helper');
 
-const config = {
-  secret_key: process.env.SECRET_KEY,
-};
+const config = { secret_key: process.env.SECRET_KEY };
 
 const router = express.Router();
 
@@ -22,7 +19,9 @@ const router = express.Router();
  * Output: A simple text response 'OpenPress backend.' indicating the OpenPress backend.
  */
 router.get('/', async (req, res) => {
+  
   return res.status(200).send('OpenPress backend.');
+  
 });
 
 /**
@@ -42,16 +41,17 @@ router.get('/', async (req, res) => {
  *   - If authentication fails, it returns a 401 Unauthorized status with an error message.
  */
 router.post('/login', async (req, res) => {
-  if (req.body.username && req.body.password && await User.login((username = req.body.username), (password = req.body.password))) {
-    let logged_user = (await User.fetch_by_username((username = req.body.username))).dataValues;
-    let token = generate_token(
-      { username: logged_user.username, id: logged_user.userid, admin: false },
-      config.secret_key,
-    );
-    return res.status(200).json({ token });
-  } else {
-    return res.status(401).send('Authentication failed. Invalid username or password.');
-  }
+  
+  if (!req.body.username || !req.body.password) { return res.status(401).send('Authentication failed. Missing username or password.'); }
+  if (await User.login((username = req.body.username), (password = req.body.password)) == false) { return res.status(401).send('Authentication failed. Invalid username or password.'); }
+    
+  const logged_user = (await User.fetch_by_username((username = req.body.username))).dataValues;
+  const token = generate_token(
+    { username: logged_user.username, id: logged_user.userid, admin: false },
+    config.secret_key,
+  );
+  return res.status(200).json({ token });
+  
 });
 
 /**
@@ -72,11 +72,13 @@ router.post('/login', async (req, res) => {
  *   - If registration fails, it responds with a 400 Bad Request status.
  */
 router.post('/register', async (req, res) => {
+  
   // if (await User.register((username = req.body.username), (password = req.body.password), (email = req.body.email))) {
   // return res.status(201).json({ message: 'Registration successful' });
   // } else {
   return res.status(400).send('Registration failed. Please check your input.');
   // }
+  
 });
 
 /**
@@ -97,14 +99,16 @@ router.post('/register', async (req, res) => {
  *   - A JSON response containing a list of posts based on the provided filters, limit, and page.
  */
 router.get('/getPosts', async (req, res) => {
-  let limit = req.body.limit ? req.body.limit : 10;
-  let page = req.body.page ? req.body.page : 1;
+  
+  const limit = req.body.limit ? req.body.limit : 10;
+  const page = req.body.page ? req.body.page : 1;
   let filters;
 
   if (req.body.filters === undefined) { filters = { headline: "" } }
   else if (typeof req.body.filters == "object") { filters = Object.keys(req.body.filters).length == 0 ? { headline: "" } : req.body.filters }
 
   return res.status(200).json(await Post.fetch_many_by_filter(filters, limit, page));
+  
 });
 
 /**
@@ -125,14 +129,16 @@ router.get('/getPosts', async (req, res) => {
  *   - A JSON response containing the post that matches the provided filters, limit, and page.
  */
 router.get('/getPost', async (req, res) => {
-  let limit = req.body.limit ? req.body.limit : 10;
-  let page = req.body.page ? req.body.page : 1;
+  
+  const limit = req.body.limit ? req.body.limit : 10;
+  const page = req.body.page ? req.body.page : 1;
   let filters;
 
   if (req.body.filters === undefined) { filters = { headline: "" } }
   else if (typeof req.body.filters == "object") { filters = Object.keys(req.body.filters).length == 0 ? { headline: "" } : req.body.filters }
 
   return res.status(200).json(await Post.fetch_one_by_filter(filters, limit, page));
+  
 });
 
 /**
@@ -158,22 +164,20 @@ router.get('/getPost', async (req, res) => {
  *   - If the token is invalid, it returns a 500 Internal Server Error with 'Invalid token'.
  */
 router.post('/addPost', async (req, res) => {
-  if (verify_token(req.body.token, config.secret_key).isValid == true) {
+  
+  if (verify_token(req.body.token, config.secret_key).isValid == false) { return res.status(500).send('Invalid token'); }
 
-    await Post.create(
-      req.body.image_url,
-      req.body.headline,
-      req.body.text,
-      req.body.html,
-      req.body.author,
-      req.body.tags,
-      req.body.timestamp
-    );
-    res.status(201).send('Post successfully added');
-
-  } else {
-    return res.status(500).send('Invalid token');
-  }
+  await Post.create(
+    req.body.image_url,
+    req.body.headline,
+    req.body.text,
+    req.body.html,
+    req.body.author,
+    req.body.tags,
+    req.body.timestamp
+  );
+  res.status(201).send('Post successfully added');
+  
 });
 
 /**
@@ -196,71 +200,53 @@ router.post('/addPost', async (req, res) => {
  *   - If the user is not the author of the post, it returns a 500 Internal Server Error with "This post can be deleted only by its author".
  */
 router.delete('/delPost', async (req, res) => {
+  
+  const user = verify_token(req.body.token, config.secret_key)
+  const post = await Post.fetch_by_id(req.body.id)
 
-  let user = verify_token(req.body.token, config.secret_key)
-  let post = await Post.fetch_by_id(req.body.id)
+  if (user.isValid == false) { return res.status(500).send('Invalid token'); }
+  if (post == null) { return res.status(500).send("Post doesn't exist"); }
+  if (post.author !== user.payload.id) { return res.status(500).send("This post can be deleted only by its author"); }
 
-  if (user.isValid == true) {
-
-    if (post !== null) {
-
-      if (post.author == user.payload.id) {
-
-        await Post.delete_by_id(req.body.id);
-        res.status(200).send("Post successfully deleted")
-
-      } else { return res.status(500).send("This post can be deleted only by its author"); }
-
-    } else { return res.status(500).send("Post doesn't exist"); }
-
-  } else { return res.status(500).send("Invalid token"); }
+  await Post.delete_by_id(req.body.id);
+  res.status(200).send("Post successfully deleted")
 
 })
 
 // edit post from the JSON and sends a response based on if it was edited or not
 router.post('/editPost', async (req, res) => {
 
-  let user = verify_token(req.body.token, config.secret_key)
-  let post = await Post.fetch_by_id(req.body.id)
+  const user = verify_token(req.body.token, config.secret_key)
+  const post = await Post.fetch_by_id(req.body.id)
 
-  if (user.isValid == true) {
+  if (user.isValid == false) { return res.status(500).send('Invalid token'); }
+  if (post == null) { return res.status(500).send("Post doesn't exist"); }
+  if (post.author !== user.payload.id) { return res.status(500).send("This post can be edited only by its author"); }
 
-    if (post !== null) {
-
-      if (post.author == user.payload.id) {
-
-        await Post.update(
-          req.body.id,
-          req.body.image_url,
-          req.body.headline,
-          req.body.text,
-          req.body.html,
-          req.body.author,
-          req.body.tags,
-          req.body.timestamp
-        );
-        res.status(200).send("Post successfully edited")
-
-      } else { return res.status(500).send("This post can be edited only by its author"); }
-
-    } else { return res.status(500).send("Post doesn't exist"); }
-
-  } else { return res.status(500).send("Invalid token"); }
+  await Post.update(
+    req.body.id,
+    req.body.image_url,
+    req.body.headline,
+    req.body.text,
+    req.body.html,
+    req.body.author,
+    req.body.tags,
+    req.body.timestamp
+  );
+  res.status(200).send("Post successfully edited")
 
 })
 
 // Sends all emails from the JSON (needs the token system)
 router.get('/subscriberEmailsGet', async (req, res) => {
-  if (verify_token(req.body.token, config.secret_key).isValid == true) {
 
-    let limit = req.body.limit ? limit : 1000;
-    let page = req.body.page ? req.body.page : 1;
+  const limit = req.body.limit ? limit : 1000;
+  const page = req.body.page ? req.body.page : 1;
 
-    res.status(200).json(await Email.fetch_all(limit, page));
+  if (verify_token(req.body.token, config.secret_key).isValid == false) { return res.status(500).send('Invalid token'); }
 
-  } else {
-    return res.status(500).send('Invalid token');
-  }
+  res.status(200).json(await Email.fetch_all(limit, page));
+
 });
 
 router.delete('/subscriberEmailsDel', async (req, res) => {
