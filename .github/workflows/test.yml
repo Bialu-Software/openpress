@@ -20,6 +20,9 @@ jobs:
       - name: Install dependencies
         run: npm install
 
+      - name: Set env for production port
+        run: echo "PRODUCTION_PORT=8080" >> $GITHUB_ENV
+
       - name: Build and serve Vue project
         run: |
           npm run build
