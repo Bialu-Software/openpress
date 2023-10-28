@@ -42,7 +42,7 @@ router.get('/', async (req, res) => {
  *   - If authentication fails, it returns a 401 Unauthorized status with an error message.
  */
 router.post('/login', async (req, res) => {
-  if (await User.login((username = req.body.username), (password = req.body.password))) {
+  if (req.body.username && req.body.password && await User.login((username = req.body.username), (password = req.body.password))) {
     let logged_user = (await User.fetch_by_username((username = req.body.username))).dataValues;
     let token = generate_token(
       { username: logged_user.username, id: logged_user.userid, admin: false },
