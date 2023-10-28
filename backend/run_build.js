@@ -16,29 +16,27 @@ app.get('*', async (req, res) => {
   // Read the index.html file
   fs.readFile(indexPath, 'utf-8', async (err, data) => {
     if (err) {
-      console.error("Error reading index.html:", err);
       return res.status(500).send('Internal Server Error');
     }
 
     try {
       const postId = req.query.id; // Get the post ID from the query parameters
 
+      // Define default meta tags
+      const defaultMetaTags = `
+        <meta property="og:title" content="OpenPress">
+        <meta property="og:description" content="✨Fully open-source and customizable blog written in vuejs and nodejs">
+        <meta property="og:image" content="https://user-images.githubusercontent.com/70224036/256013846-8d289c62-1e3f-4404-a5cc-7a2b1dca20ab.png">
+      `;
+
       if (!postId) {
-        console.log("No postId provided, setting default meta tags.");
         // If there's no postId, set default meta tags
-        data = data.replace(
-          '<head>',
-          '<head>' +
-            '<meta property="og:title" content="OpenPress">' +
-            '<meta property="og:description" content="✨Fully open-source and customizable blog written in vuejs and nodejs">' +
-            '<meta property="og:image" content="https://user-images.githubusercontent.com/70224036/256013846-8d289c62-1e3f-4404-a5cc-7a2b1dca20ab.png">'
-        );
+        data = data.replace('<head>', '<head>' + defaultMetaTags);
       } else {
-        console.log("Fetching post data from the database...");
+        // Use your utility function to fetch the post from the database based on the ID
         const post = await Post.fetch_by_id(postId);
 
         if (post) {
-          console.log("Got post data:", post);
           // Modify the data to include dynamic meta tags based on the post data
           data = data.replace(
             '<head>',
@@ -48,7 +46,8 @@ app.get('*', async (req, res) => {
               `<meta property="og:image" content="${post.imageUrl}">`
           );
         } else {
-          console.log("Post not found in the database.");
+          // If the post is not found, set default meta tags
+          data = data.replace('<head>', '<head>' + defaultMetaTags);
         }
       }
 
