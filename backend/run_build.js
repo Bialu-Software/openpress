@@ -26,7 +26,7 @@ app.get('*', async (req, res) => {
       const defaultMetaTags = `
         <meta property="og:title" content="OpenPress">
         <meta property="og:description" content="✨Fully open-source and customizable blog written in vuejs and nodejs">
-        <meta property="og:image" content="https://user-images.githubusercontent.com/70224036/256013846-8d289c62-1e3f-4404-a5cc-7a2b1dca20ab.png">
+        <meta property="og:image" content="https://user-images.githubusercontent.com/70224036/266075141-edcb7231-dd11-4de5-9ac5-adcc0f3e40b2.png">
       `;
 
       if (!postId) {
