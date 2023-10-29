@@ -68,7 +68,6 @@ export default defineComponent({
       SavedPosts.setItem(id);
       this.savedPostIndex = SavedPosts.checkPost(id);
     },
-
     sharePost(id: number | undefined, headline: string | undefined) {
       const shareData = {
         title: `Share the "${headline}" post`,

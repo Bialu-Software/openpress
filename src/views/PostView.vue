@@ -9,7 +9,7 @@
       Oops! The requested blog post was not found. The post does not seem to exist. Sorry for the inconvenience. While
       we investigate whether this is an error, please check out our other engaging content.
       <br /><br />
-      Link back to the home page: <a href="/">Link</a>
+      <a href="/">Link back to the home page</a>  
     </p>
   </div>
   <div id="post-content" class="section" v-else>
@@ -312,15 +312,28 @@ export default defineComponent({
 }
 
 #post-content:is(.error) {
+  padding-top: 90px;
+  padding-bottom: 90px;
+  margin-top: -90px;
+  background-color: $main-background-color;
   gap: 20px;
 
   i {
+    color: $headline-color;
     font-size: 70px;
+  }
+
+  h1 {
+    color: $headline-color;
+  }
+
+  p {
+    color: $text-color;
   }
 
   a {
     text-transform: uppercase;
-    color: #8b94ff;
+    color: $main-color;
     font-weight: 700;
     text-decoration: none;
     transition: 0.2s;

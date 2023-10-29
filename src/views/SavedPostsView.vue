@@ -94,7 +94,8 @@ export default defineComponent({
 
       for (let index = 0; index < savedPostsArray.length; index++) {
         const post = posts.find((post: any) => post.id == Number(savedPostsArray[index]));
-        savedPostsArray[index] = post;
+        if (post !== undefined) { savedPostsArray[index] = post; }
+        if (post == undefined) { savedPostsArray.splice(index, 1); index--; }
       }
 
       savedPostsArray = savedPostsArray.map((post: { author: any; }) => {
