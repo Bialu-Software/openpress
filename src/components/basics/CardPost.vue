@@ -31,7 +31,7 @@
         </p>
 
         <div class="action-icons">
-          <i class="bi bi-share" @click="sharePost(id)"></i>
+          <i class="bi bi-share" @click="sharePost(id, headline)"></i>
           <i class="bi bi-bookmark bookmark" @click="setItem(id)" v-if="savedPostIndex === -1"></i>
           <i class="bi bi-bookmark-fill" @click="setItem(id)" v-else></i>
         </div>
@@ -69,10 +69,10 @@ export default defineComponent({
       this.savedPostIndex = SavedPosts.checkPost(id);
     },
 
-    sharePost(id: number | undefined) {
+    sharePost(id: number | undefined, headline: string | undefined) {
       const shareData = {
-        title: 'Share this post',
-        text: 'Check out this post',
+        title: `Share the "${headline}" post`,
+        text: "Check out this post",
         url: window.location.origin + '/post?id=' + id,
       };
   
