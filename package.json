@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "start-dev": "concurrently -n client,server \"npm run serve\" \"node ./backend\"",
+    "start-dev-nodemon": "concurrently -n client,server \"npm run serve\" \"nodemon ./backend\"",
     "start-build": "concurrently -n client,server \"node ./backend/run_build.js\" \"node ./backend\"",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",

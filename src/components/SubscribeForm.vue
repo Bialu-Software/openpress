@@ -121,7 +121,7 @@ export default defineComponent({
         outline: none;
         border-radius: 5px;
         border: $subscribeForm-input-border;
-        padding: 15px;
+        padding: 10px 20px;
         font-size: 16px;
         background: transparent;
         transition: 0.2s;
@@ -136,7 +136,7 @@ export default defineComponent({
       .submit-button {
         outline: none;
         border-radius: 5px;
-        padding: 15px;
+        padding: 10px 20px;
         font-size: 16px;
         background: $main-color;
         border: none;

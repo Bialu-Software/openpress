@@ -19,9 +19,9 @@ const router = express.Router();
  * Output: A simple text response 'OpenPress backend.' indicating the OpenPress backend.
  */
 router.get('/', async (req, res) => {
-  
+
   return res.status(200).send('OpenPress backend.');
-  
+
 });
 
 /**
@@ -41,17 +41,17 @@ router.get('/', async (req, res) => {
  *   - If authentication fails, it returns a 401 Unauthorized status with an error message.
  */
 router.post('/login', async (req, res) => {
-  
+
   if (!req.body.username || !req.body.password) { return res.status(401).send('Authentication failed. Missing username or password.'); }
   if (await User.login((username = req.body.username), (password = req.body.password)) == false) { return res.status(401).send('Authentication failed. Invalid username or password.'); }
-    
+
   const logged_user = (await User.fetch_by_username((username = req.body.username))).dataValues;
   const token = generate_token(
     { username: logged_user.username, id: logged_user.userid, admin: false },
     config.secret_key,
   );
   return res.status(200).json({ token });
-  
+
 });
 
 /**
@@ -72,14 +72,47 @@ router.post('/login', async (req, res) => {
  *   - If registration fails, it responds with a 400 Bad Request status.
  */
 router.post('/register', async (req, res) => {
-  
+
   // if (await User.register((username = req.body.username), (password = req.body.password), (email = req.body.email))) {
   // return res.status(201).json({ message: 'Registration successful' });
   // } else {
   return res.status(400).send('Registration failed. Please check your input.');
   // }
+
+});
+
+/**
+ * Route: POST /contact
+ * 
+ * Description: This route handles contact form submissions.
+ *              It expects sender's name, email, and message in the request body and processes them.
+ * 
+ * Request Method: POST
+ * 
+ * Request Body:
+ *   - name (string): The name of the sender.
+ *   - email (string): The email of the sender.
+ *   - message (string): The message sent by the sender.
+ * 
+ * Response:
+ *   - If contact form submission is successful, it returns a success message.
+ *   - If there's an error, it returns a 400 Bad Request status with an error message.
+ */
+router.post('/contact', async (req, res) => {
+
+  if (!req.body.name || !req.body.email || !req.body.message) { return res.status(400).send('Invalid request. Name, email, and message are required.'); }
+
+  try {
+    // handle the submission
+    return res.status(200).send('Contact form submitted successfully.');
+
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send('Internal server error. Unable to process the contact form.');
+  }
   
 });
+
 
 /**
  * Route: GET /getPosts
@@ -99,7 +132,7 @@ router.post('/register', async (req, res) => {
  *   - A JSON response containing a list of posts based on the provided filters, limit, and page.
  */
 router.get('/getPosts', async (req, res) => {
-  
+
   const limit = req.body.limit ? req.body.limit : 10;
   const page = req.body.page ? req.body.page : 1;
   let filters;
@@ -108,7 +141,7 @@ router.get('/getPosts', async (req, res) => {
   else if (typeof req.body.filters == "object") { filters = Object.keys(req.body.filters).length == 0 ? { headline: "" } : req.body.filters }
 
   return res.status(200).json(await Post.fetch_many_by_filter(filters, limit, page));
-  
+
 });
 
 /**
@@ -129,7 +162,7 @@ router.get('/getPosts', async (req, res) => {
  *   - A JSON response containing the post that matches the provided filters, limit, and page.
  */
 router.get('/getPost', async (req, res) => {
-  
+
   const limit = req.body.limit ? req.body.limit : 10;
   const page = req.body.page ? req.body.page : 1;
   let filters;
@@ -138,7 +171,7 @@ router.get('/getPost', async (req, res) => {
   else if (typeof req.body.filters == "object") { filters = Object.keys(req.body.filters).length == 0 ? { headline: "" } : req.body.filters }
 
   return res.status(200).json(await Post.fetch_one_by_filter(filters, limit, page));
-  
+
 });
 
 /**
@@ -164,7 +197,7 @@ router.get('/getPost', async (req, res) => {
  *   - If the token is invalid, it returns a 500 Internal Server Error with 'Invalid token'.
  */
 router.post('/addPost', async (req, res) => {
-  
+
   if (verify_token(req.body.token, config.secret_key).isValid == false) { return res.status(500).send('Invalid token'); }
 
   await Post.create(
@@ -177,7 +210,7 @@ router.post('/addPost', async (req, res) => {
     req.body.timestamp
   );
   res.status(201).send('Post successfully added');
-  
+
 });
 
 /**
@@ -200,7 +233,7 @@ router.post('/addPost', async (req, res) => {
  *   - If the user is not the author of the post, it returns a 500 Internal Server Error with "This post can be deleted only by its author".
  */
 router.delete('/delPost', async (req, res) => {
-  
+
   const user = verify_token(req.body.token, config.secret_key)
   const post = await Post.fetch_by_id(req.body.id)
 

@@ -17,7 +17,7 @@ export default defineComponent({
 });
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 @import '@/assets/styles/main';
 .search-bar {
   position: relative;
@@ -45,23 +45,7 @@ export default defineComponent({
   }
 
   .search-button {
-    padding: 10px 20px;
-    border-radius: 5px;
-    outline: none;
-    border: none;
-    font-size: 15px;
-    background: $main-color;
-    color: $searchBar-button-color;
     display: flex;
-    flex-direction: row;
-    gap: 10px;
-    transition: 0.2s;
-    cursor: pointer;
-    font-weight: bold;
-
-    &:hover {
-      background: $searchBar-button-background-hover;
-    }
   }
 }
 
