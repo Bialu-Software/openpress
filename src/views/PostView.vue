@@ -155,7 +155,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 @import '@/assets/styles/main';
-@import url('../assets/styles/codePostFormater.scss');
+@import '@/assets/styles/codePostFormater.scss';
 
 .section-title {
   font-size: 30px;
@@ -188,11 +188,10 @@ export default defineComponent({
 code {
   color: $card-text-color;
   display: block;
-  white-space: normal;
+  white-space: pre-wrap;
   font-family: "Courier New", Courier, monospace;
   word-wrap: break-word;
 }
-
 
 
 }
