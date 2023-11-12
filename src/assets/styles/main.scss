@@ -1,39 +1,38 @@
-// This is the default white style
-
+// Default OpenPress dark theme
 
 // Basic ----------------------------------------------------------------------------------
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 .section {
-    padding-left: 150px;
-    padding-right: 150px;
+  padding-left: 150px;
+  padding-right: 150px;
 }
 
 $main-background-color: #1b1b1b;
 $main-color: #da9b3d;
-$logo-image: "@/assets/images/logo.png";
-$logo-name: "OpenPress";
+$logo-image: '@/assets/images/logo.png';
+$logo-name: 'OpenPress';
 $logo-name-color: #ffffff;
 $headline-color: #ffffff;
 $text-color: #d5d5d5;
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap'); // Importing Montserrat (bold, medium)
-$font-family: "Montserrat", Helvetica, Arial, sans-serif;
+$font-family: 'Montserrat', Helvetica, Arial, sans-serif;
 
 // LatestPost Card -------------------------------------------------------------------------
 $latestPost-background-gradient: linear-gradient(0, rgba(0, 0, 0, 0.75) 0%, rgba(0, 0, 0, 0) 100%);
 $latestPost-background: rgba(0, 0, 0, 0.6);
 $latestPost-border-radius: 10px;
-$latestPost-headline-color: #FFFFFF;
-$latestPost-description-color: #E2E2E2;
+$latestPost-headline-color: #ffffff;
+$latestPost-description-color: #e2e2e2;
 
 // SearchBar ----------------------------------------------------------------------------------
 $searchBar-background-color: #383838;
 $searchBar-input-border-color: #2a2a2a;
 $searchBar-input-color: #ffffff;
-$searchBar-button-color: #FFFFFF;
+$searchBar-button-color: #ffffff;
 $searchBar-button-background-hover: #f2ac43;
 $searchBar-border-radius: 8px;
 
@@ -46,7 +45,6 @@ $card-text-color: #dadada;
 $card-icon-color: #ffffff;
 $card-tag-color: #936929;
 
-
 // Card grid ----------------------------------------------------------------------------------
 $grid-gap: 22px;
 
@@ -57,22 +55,23 @@ $navbar-links-color: #acacac;
 $navbar-links-hover-color: #e2e2e2;
 $navbar-link-active-color: #da9b3d;
 
-
 // SubscribeForm ----------------------------------------------------------------------------------
 $subscribeForm-card-background: #383838;
 $subscribeForm-headline-color: #ffffff;
 $subscribeForm-input-border: 1px solid #292929;
 $subscribeForm-text-color: #dadada;
-$subscribeForm-button-color: #FFFFFF;
+$subscribeForm-button-color: #ffffff;
 $subscribeForm-button-background-hover: #f2ac43;
 $subscribeForm-icon-color: #ffffff;
-$subscribeForm-error-color: #F5365C;
+$subscribeForm-error-color: #f5365c;
 $subscribeForm-border-radius: 8px;
 
 // Footer ----------------------------------------------------------------------------------
 $footer-color: #383838;
 $footer-title-color: #ffffff;
 $footer-copyright-link-color: #ffffff;
-$footer-text-color: #E2E2E2;
+$footer-text-color: #e2e2e2;
 $footer-link-hover-color: #ffffff;
-$footer-line-background: #E2E2E2;
+$footer-line-background: #e2e2e2;
+
+

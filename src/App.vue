@@ -5,6 +5,11 @@
 <style lang="scss">
 @import '@/assets/styles/main';
 
+#app {
+  font-family: $font-family;
+  line-height: 1.3;
+}
+
 body {
   background-color: $main-background-color;
 }
@@ -38,7 +43,8 @@ button {
   }
 }
 
-input, textarea {
+input,
+textarea {
   position: relative;
   border-radius: $searchBar-border-radius;
   border: 1px solid $searchBar-input-border-color;
@@ -47,8 +53,4 @@ input, textarea {
   padding: 15px;
 }
 
-#app {
-  font-family: $font-family;
-  line-height: 1.3;
-}
 </style>
