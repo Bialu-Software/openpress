@@ -1,5 +1,4 @@
 <template>
-
   <Navbar></Navbar>
 
   <div id="post-content" class="section error" v-if="!post.id">
@@ -9,7 +8,7 @@
       Oops! The requested blog post was not found. The post does not seem to exist. Sorry for the inconvenience. While
       we investigate whether this is an error, please check out our other engaging content.
       <br /><br />
-      <a href="/">Link back to the home page</a>  
+      <a href="/">Link back to the home page</a>
     </p>
   </div>
   <div id="post-content" class="section" v-else>
@@ -43,9 +42,7 @@
       </div>
     </div>
 
-    <div class="content">
-      <div v-html="post.html"></div>
-    </div>
+    <div v-html="post.html" class="content"></div>
 
     <div class="post-footer">
       <div class="tags">
@@ -71,7 +68,6 @@
   <SubscribeForm id="subscribe-form" class="section"></SubscribeForm>
 
   <Footer class="section"></Footer>
-  
 </template>
 
 <script lang="ts">
@@ -167,10 +163,38 @@ export default defineComponent({
   color: $headline-color;
 }
 
-.content {
-  * {
-    color: $text-color;
+:deep(.content) {
+  h1 {
+    margin-bottom: 30px;
   }
+
+  h2 {
+    margin-bottom: 25px;
+  }
+
+  p {
+    margin-bottom: 20px;
+  }
+
+  pre {
+  background-color: $card-background-color;
+  padding: 20px;
+  border-radius: $card-border-radius;
+  max-width: 100%;
+  overflow-x: auto;
+  margin-bottom: 20px;
+}
+
+code {
+  color: $card-text-color;
+  display: block;
+  white-space: normal;
+  font-family: "Courier New", Courier, monospace;
+  word-wrap: break-word;
+}
+
+
+
 }
 
 #post-content {
