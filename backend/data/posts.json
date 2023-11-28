@@ -138,5 +138,20 @@
             "#optimism"
         ],
         "timestamp": 1684778447
-    }
+    },
+    {
+        "id": 11,
+        "imageUrl": "https://www.codemotion.com/magazine/wp-content/uploads/2022/08/VueJS-e1659695444607.jpg",
+        "headline": "Vue.js Beginner Starter Tutorial: A Comprehensive Guide",
+        "text": "Embark on your Vue.js journey with this in-depth beginner starter tutorial. Explore the fundamental concepts and best practices to kickstart your web development using Vue.js. Let's dive into the world of Vue.js excellence!",
+        "html": "<h2>Chapter 1: Introduction to Vue.js</h2><p>Vue.js is a progressive JavaScript framework that makes building interactive user interfaces a breeze. In this tutorial, we'll cover the basics and set up a simple Vue.js project.</p><pre><code>// Example Vue.js component\n&lt;template&gt;\n  &lt;div&gt;\n    {{ message }}\n  &lt;/div&gt;\n&lt;/template&gt;\n\n&lt;script&gt;\nexport default {\n  data() {\n    return {\n      message: 'Hello, Vue.js!'\n    };\n  }\n};\n&lt;/script&gt;</code></pre><h2>Chapter 2: Vue.js Components</h2><p>Learn about Vue.js components and how they enable you to build modular and reusable code. Dive into the component lifecycle and explore the power of props and events.</p><pre><code>// Example component with props and events\n&lt;template&gt;\n  &lt;button @click=\"handleClick\"&gt;{{ buttonText }}&lt;/button&gt;\n&lt;/template&gt;\n\n&lt;script&gt;\nexport default {\n  props: ['buttonText'],\n  methods: {\n    handleClick() {\n      this.$emit('buttonClick');\n    }\n  }\n};\n&lt;/script&gt;</code></pre><h2>Chapter 3: Vue.js Directives</h2><p>Discover Vue.js directives like v-bind and v-if to dynamically manipulate the DOM. Understand how directives enhance the reactivity of your Vue.js applications.</p><pre><code>&lt;template&gt;\n  &lt;img v-bind:src=\"imageUrl\" alt=\"Vue.js Image\" v-if=\"showImage\" /&gt;\n&lt;/template&gt;\n\n&lt;script&gt;\nexport default {\n  data() {\n    return {\n      imageUrl: 'your-image-url.jpg',\n      showImage: true\n    };\n  }\n};\n&lt;/script&gt;</code></pre><h2>Chapter 4: Vue.js Routing</h2><p>Delve into Vue Router to create navigation in your single-page applications. Learn how to set up routes, navigate between views, and manage state.</p><pre><code>// Example Vue Router setup\nimport Vue from 'vue';\nimport VueRouter from 'vue-router';\n\nVue.use(VueRouter);\n\nconst routes = [\n  { path: '/', component: Home },\n  { path: '/about', component: About }\n];\n\nconst router = new VueRouter({ routes });\n\nexport default router;</code></pre><h2>Chapter 5: State Management with Vuex</h2><p>Explore Vuex, the official state management library for Vue.js. Understand how to manage state across components and make your application more scalable.</p><pre><code>// Example Vuex store\nimport Vue from 'vue';\nimport Vuex from 'vuex';\n\nVue.use(Vuex);\n\nexport default new Vuex.Store({\n  state: {\n    user: null\n  },\n  mutations: {\n    setUser(state, user) {\n      state.user = user;\n    }\n  }\n});</code></pre><p>This tutorial provides a solid foundation for your Vue.js journey. Follow each chapter to gain a comprehensive understanding of Vue.js and start building dynamic and interactive web applications. Happy coding!</p>",
+        "author": 1,
+        "tags": [
+          "#vuejs",
+          "#webdevelopment",
+          "#programming"
+        ],
+        "timestamp": 1684736547
+      }
+      
 ]
