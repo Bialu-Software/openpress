@@ -42,7 +42,7 @@
       </div>
     </div>
 
-    <div v-html="post.html" class="content"></div>
+    <div v-html="post.html" v-highlight class="content"></div>
 
     <div class="post-footer">
       <div class="tags">
@@ -155,7 +155,6 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 @import '@/assets/styles/main';
-@import '@/assets/styles/codePostFormater.scss';
 
 .section-title {
   font-size: 30px;
@@ -177,8 +176,8 @@ export default defineComponent({
   }
 
   pre {
-  background-color: $card-background-color;
-  padding: 20px;
+  background-color: $code-card-background-color;
+  padding: 10px;
   border-radius: $card-border-radius;
   max-width: 100%;
   overflow-x: auto;
