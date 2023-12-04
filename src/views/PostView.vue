@@ -176,21 +176,21 @@ export default defineComponent({
   }
 
   pre {
-  background-color: $code-card-background-color;
-  padding: 10px;
-  border-radius: $card-border-radius;
-  max-width: 100%;
-  overflow-x: auto;
-  margin-bottom: 20px;
-}
+    background-color: $code-card-background-color;
+    padding: 10px;
+    border-radius: $card-border-radius;
+    max-width: 100%;
+    overflow-x: auto;
+    margin-bottom: 20px;
+  }
 
-code {
-  color: $card-text-color;
-  display: block;
-  white-space: pre-wrap;
-  font-family: "Courier New", Courier, monospace;
-  word-wrap: break-word;
-}
+  code {
+    color: $card-text-color;
+    display: block;
+    white-space: pre-wrap;
+    font-family: "Courier New", Courier, monospace;
+    word-wrap: break-word;
+  }
 
 
 }
@@ -405,14 +405,17 @@ code {
 }
 
 @media (max-width: 454px) {
-  #footer {
-    padding: 0;
+  #footer, #subscribe-form {
+    padding: 0 !important;
   }
 
   .section {
     // width: 100%;
     padding: 0;
 
+    #post-content {
+    padding: 20px !important;
+    }
     .section-title {
       padding-left: 20px;
     }

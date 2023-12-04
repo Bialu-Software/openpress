@@ -104,22 +104,27 @@ export default defineComponent({
 
 @media (max-width: 1409px) {
   .section {
-    padding-left: 90px;
-    padding-right: 90px;
+    padding-left: 90px !important;
+    padding-right: 90px !important;
   }
 }
 
 @media (max-width: 820px) {
   .section {
-    padding-left: 50px;
-    padding-right: 50px;
+    padding-left: 50px !important;
+    padding-right: 50px !important;
+  }
+}
+
+@media (max-width: 455px) {
+  .section {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
   }
 }
 
 @media (max-width: 454px) {
-  #footer {
-    padding: 0;
-  }
+
   .section {
     // width: 100%;
     padding: 0;
