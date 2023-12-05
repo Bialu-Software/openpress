@@ -3,7 +3,7 @@ import App from './App.vue';
 import router from './router';
 
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import hljs from 'highlight.js';
+import hljs from "highlight.js/lib/common";
 import '@/assets/styles/code_formater.scss';
 
 import { createHead } from '@unhead/vue';
